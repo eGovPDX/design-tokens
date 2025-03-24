@@ -1,0 +1,85 @@
+name: Export Design Tokens
+
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow
+  schedule:
+    - cron: '0 * * * *' # Runs every hour (adjust as needed)
+
+jobs:
+  export-tokens:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14' # Specify the Node.js version
+
+      - name: Install dependencies
+        run: |
+          npm install node-fetch
+
+      - name: Fetch and export tokens
+        env:
+          FIGMA_FILE_ID: ${{ secrets.FIGMA_FILE_ID }}
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+        run: |
+          const fetch = require('node-fetch');
+          const fs = require('fs');
+
+          async function fetchTokens() {
+              const response = await fetch(`https://api.figma.com/v1/files/${FIGMA_FILE_ID}`, {
+                  headers: {
+                      'X-Figma-Token': FIGMA_ACCESS_TOKEN,
+                  },
+              });
+              const data = await response.json();
+              // Process data to extract tokens
+              const tokens = extractTokens(data);
+              fs.writeFileSync('tokens.json', JSON.stringify(tokens, null, 2));
+          }
+
+          function extractTokens(data) {
+            const tokens = {
+                colors: {},
+                typography: {},
+            };
+        
+            // Extract styles from the Figma data
+            const styles = data.document.children[0].children;
+        
+            styles.forEach(style => {
+                if (style.type === 'STYLE') {
+                    const styleId = style.id;
+                    const styleName = style.name;
+        
+                    // Check for color styles
+                    if (style.styleType === 'FILL') {
+                        const color = style.fills[0].color;
+                        tokens.colors[styleName] = {
+                            r: color.r,
+                            g: color.g,
+                            b: color.b,
+                            a: style.fills[0].opacity || 1,
+                        };
+                    }
+        
+                    // Check for text styles
+                    if (style.styleType === 'TEXT') {
+                        tokens.typography[styleName] = {
+                            fontFamily: style.style.fontFamily,
+                            fontWeight: style.style.fontWeight,
+                            fontSize: style.style.fontSize,
+                            lineHeight: style.style.lineHeightPx,
+                        };
+                    }
+                }
+            });
+        
+            return tokens;
+          };
+
+          fetchTokens().then(() => console.log('Tokens exported successfully!'));
