@@ -1,1 +1,28 @@
+# .gitignore
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Dependency directories
+node_modules/
+
+# Build outputs
+dist/
+output/
+test-output/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# npm package files
+*.tgz
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
 .DS_Store

@@ -1,0 +1,25 @@
+{
+  "name": "figma-to-css",
+  "version": "1.0.0",
+  "description": "A system that pulls design tokens from the Figma API into a GitHub repository and transforms them into CSS files",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js",
+    "sync": "node -e \"require('./src/figmaToGithub').syncTokens()\""
+  },
+  "keywords": [
+    "figma",
+    "design-tokens",
+    "css",
+    "github",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/rest": "^19.0.13",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1"
+  }
+}
