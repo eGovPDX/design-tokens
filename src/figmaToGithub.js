@@ -18,7 +18,7 @@ class FigmaToGithub {
    * @param {object} config - Configuration object
    * @param {string} config.figmaToken - Figma personal access token
    * @param {string} config.githubToken - GitHub personal access token
-   * @param {string} config.fileKey - Figma file key
+   * @param {string|string[]} config.fileKeys - Figma file key(s)
    * @param {string} config.owner - GitHub repository owner
    * @param {string} config.repo - GitHub repository name
    * @param {string} config.branch - GitHub branch (default: main)
@@ -34,6 +34,34 @@ class FigmaToGithub {
     // Initialize clients
     this.figmaAuth = new FigmaAuth(this.config.figmaToken);
     this.githubClient = new GitHubClient(this.config.githubToken);
+  }
+
+  /**
+   * Merge multiple token objects into a single object.
+   * 
+   * @param {object[]} tokenObjects - Array of token objects to merge
+   * @returns {object} - Merged token object
+   */
+  _mergeTokens(tokenObjects) {
+    const mergedTokens = {
+      colors: {},
+      typography: {},
+      spacing: {}
+    };
+
+    tokenObjects.forEach(tokens => {
+      if (tokens.colors) {
+        Object.assign(mergedTokens.colors, tokens.colors);
+      }
+      if (tokens.typography) {
+        Object.assign(mergedTokens.typography, tokens.typography);
+      }
+      if (tokens.spacing) {
+        Object.assign(mergedTokens.spacing, tokens.spacing);
+      }
+    });
+
+    return mergedTokens;
   }
   
   /**
@@ -57,9 +85,18 @@ class FigmaToGithub {
         throw new Error('Failed to authenticate with GitHub API');
       }
       
-      // Extract tokens from Figma
+      // Get file keys
+      const fileKeys = Array.isArray(this.config.fileKeys) 
+        ? this.config.fileKeys 
+        : this.config.fileKeys.split(',').map(key => key.trim());
+      
+      // Extract tokens from all Figma files
       const extractor = new FigmaTokenExtractor(this.figmaAuth);
-      const tokens = await extractor.extractTokens(this.config.fileKey);
+      const tokenPromises = fileKeys.map(fileKey => extractor.extractTokens(fileKey));
+      const tokenObjects = await Promise.all(tokenPromises);
+      
+      // Merge tokens from all files
+      const tokens = this._mergeTokens(tokenObjects);
       
       // Transform tokens to CSS
       const transformer = new TokenTransformer();
@@ -134,9 +171,16 @@ class FigmaToGithub {
    */
   async haveTokensChanged() {
     try {
-      // Extract current tokens from Figma
+      // Get file keys
+      const fileKeys = Array.isArray(this.config.fileKeys) 
+        ? this.config.fileKeys 
+        : this.config.fileKeys.split(',').map(key => key.trim());
+      
+      // Extract current tokens from all Figma files
       const extractor = new FigmaTokenExtractor(this.figmaAuth);
-      const currentTokens = await extractor.extractTokens(this.config.fileKey);
+      const tokenPromises = fileKeys.map(fileKey => extractor.extractTokens(fileKey));
+      const tokenObjects = await Promise.all(tokenPromises);
+      const currentTokens = this._mergeTokens(tokenObjects);
       
       // Get tokens from GitHub
       const jsonPath = path.join(this.config.tokenPath, 'design_tokens.json');
