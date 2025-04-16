@@ -1,0 +1,91 @@
+name: Process Design Tokens
+
+on:
+  push:
+    branches:
+      - incoming-tokens
+    paths:
+      - 'design-tokens.json'
+
+jobs:
+  process-tokens:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: incoming-tokens
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Process tokens
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+        run: |
+          pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'Design Tokens Bot'
+          git config --global user.email 'design-tokens-bot@portland.gov'
+
+      - name: Update processed-tokens branch
+        run: |
+          # Create or update processed-tokens branch
+          git checkout -b processed-tokens || git checkout processed-tokens
+          git pull origin processed-tokens || true
+          
+          # Copy processed files
+          cp -r output/* .
+          
+          # Commit changes
+          git add .
+          git commit -m "Update processed design tokens"
+          
+          # Push to processed-tokens branch
+          git push origin processed-tokens --force
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: processed-tokens
+          base: main
+          title: 'Update Design Tokens'
+          body: |
+            Automated update of design tokens
+            
+            Changes include:
+            - Updated design tokens from Figma
+            - Generated CSS variables
+            - Generated JSON output
+          commit-message: 'Update design tokens'
+          labels: design-tokens, automated
+          draft: false
+          delete-branch: false
+
+      - name: Update incoming-tokens branch
+        run: |
+          # Update incoming-tokens branch with latest from main
+          git checkout incoming-tokens
+          git pull origin main
+          git push origin incoming-tokens 
