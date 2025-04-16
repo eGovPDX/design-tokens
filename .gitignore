@@ -12,7 +12,6 @@
 
 # Dependency directories
 node_modules/
-.github/
 
 # Build outputs
 dist/
