@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - 'design-tokens.json'
-      - '.github/workflows/process-tokens.yml'
 
 jobs:
   process-tokens:
@@ -38,11 +37,49 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Process tokens
+        id: process
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
         run: |
+          # Process tokens
           pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
+          
+          # Validate output
+          pnpm run validate
+          
+          # Count changes and analyze tokens
+          CHANGES=$(git diff --name-only output/ | wc -l)
+          echo "changes=$CHANGES" >> $GITHUB_OUTPUT
+          
+          # Analyze token changes
+          TOKEN_ANALYSIS=$(node -e "
+            const fs = require('fs');
+            const path = require('path');
+            
+            const oldTokens = JSON.parse(fs.readFileSync('design-tokens.json', 'utf8'));
+            const newTokens = JSON.parse(fs.readFileSync('output/design_tokens.json', 'utf8'));
+            
+            const getTokenCounts = (tokens) => ({
+              colors: Object.keys(tokens.colors || {}).length,
+              typography: Object.keys(tokens.typography || {}).length,
+              spacing: Object.keys(tokens.spacing || {}).length
+            });
+            
+            const oldCounts = getTokenCounts(oldTokens);
+            const newCounts = getTokenCounts(newTokens);
+            
+            const changes = {
+              added: {
+                colors: newCounts.colors - oldCounts.colors,
+                typography: newCounts.typography - oldCounts.typography,
+                spacing: newCounts.spacing - oldCounts.spacing
+              }
+            };
+            
+            console.log(JSON.stringify(changes));
+          ")
+          echo "token_analysis=$TOKEN_ANALYSIS" >> $GITHUB_OUTPUT
 
       - name: Configure Git
         run: |
@@ -50,6 +87,7 @@ jobs:
           git config --global user.email 'design-tokens-bot@portland.gov'
 
       - name: Update PR with processed tokens
+        if: steps.process.outputs.changes != '0'
         run: |
           # Copy processed files
           cp -r output/* .
@@ -61,17 +99,54 @@ jobs:
           # Push changes to PR branch
           git push origin ${{ github.head_ref }}
 
-      - name: Validate changes
-        run: |
-          pnpm run validate
-
       - name: Comment on PR
         uses: actions/github-script@v6
         with:
           script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            // Read the processed files
+            const jsonContent = fs.readFileSync(path.join(process.cwd(), 'output/design_tokens.json'), 'utf8');
+            const cssContent = fs.readFileSync(path.join(process.cwd(), 'output/design_tokens.css'), 'utf8');
+            
+            // Parse token analysis
+            const tokenAnalysis = JSON.parse('${{ steps.process.outputs.token_analysis }}');
+            
+            // Create comment
+            const comment = '### Design Tokens Processing Results\n\n' +
+              '✅ Tokens processed successfully!\n\n' +
+              '**Token Changes:**\n' +
+              (tokenAnalysis.added.colors > 0 ? `- Added ${tokenAnalysis.added.colors} color tokens\n` : '') +
+              (tokenAnalysis.added.typography > 0 ? `- Added ${tokenAnalysis.added.typography} typography tokens\n` : '') +
+              (tokenAnalysis.added.spacing > 0 ? `- Added ${tokenAnalysis.added.spacing} spacing tokens\n` : '') +
+              '\n' +
+              '**Preview:**\n' +
+              '```css\n' +
+              `${cssContent.split('\n').slice(0, 20).join('\n')}\n` +
+              '...\n' +
+              '```\n\n' +
+              '*Note: Only showing first 20 lines of CSS. Full changes can be viewed in the PR.*\n\n' +
+              '**Files Changed:**\n' +
+              '- `design_tokens.json`\n' +
+              '- `design_tokens.css`\n\n' +
+              '**Next Steps:**\n' +
+              '1. Review the changes\n' +
+              '2. Check the token usage examples\n' +
+              '3. Approve and merge if everything looks good';
+            
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.name,
-              body: '✅ Design tokens have been processed and validated successfully.\n\nChanges include:\n- Updated design tokens\n- Generated CSS variables\n- Generated JSON output'
-            })
+              body: comment
+            });
+
+      - name: Notify Slack
+        if: always()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
