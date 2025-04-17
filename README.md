@@ -1,15 +1,267 @@
 # Figma to CSS Design Tokens System
 
-A system that pulls design tokens from the Figma API into a GitHub repository and transforms them into CSS files.
+A system that processes design tokens from Tokens Studio for Figma and transforms them into CSS files.
+
+## Why Tokens Studio?
+
+This project uses the [Tokens Studio for Figma](https://tokens.studio/) plugin as the primary method for managing design tokens. Here's why:
+
+### Figma API Limitations
+
+The Figma API, while powerful for many use cases, has several limitations when it comes to design tokens:
+
+1. **Incomplete Token Data**:
+   - Only provides basic style information
+   - Missing computed values and references
+   - No support for token relationships
+   - Limited metadata and documentation
+
+2. **Missing Features**:
+   - No token versioning
+   - Limited support for nested tokens
+   - No built-in token validation
+   - Missing token usage context
+
+3. **Data Structure Issues**:
+   - Inconsistent formatting
+   - Partial token sets
+   - Missing style definitions
+   - No support for token aliases
+
+### Tokens Studio Advantages
+
+Tokens Studio provides a complete solution for design token management:
+
+1. **Complete Token System**:
+   - Full token definitions
+   - Computed values
+   - Token relationships
+   - Metadata and documentation
+
+2. **Consistent Output**:
+   - Standardized formatting
+   - Complete token sets
+   - Proper value handling
+   - Consistent naming
+
+3. **Better Integration**:
+   - Direct GitHub integration
+   - PR-based workflow
+   - Change tracking
+   - Version control
+
+### Workflow
+
+The recommended workflow is:
+
+1. Use Tokens Studio in Figma to manage tokens
+2. Push changes to GitHub via the plugin
+3. Let the GitHub Action process the tokens
+4. Review and merge changes
+
+This approach ensures we have complete, consistent, and well-managed design tokens.
+
+### GitHub Integration
+
+#### PR Workflow
+
+1. **Token Updates**:
+   - Tokens Studio creates a PR when changes are pushed
+   - PR includes the updated `design-tokens.json` file
+   - GitHub Action automatically triggers on PR creation
+
+2. **Action Processing**:
+   - Action checks out the PR branch
+   - Processes the token file
+   - Generates CSS variables
+   - Updates the PR with processed files
+
+3. **File Management**:
+   - Original `design-tokens.json` is preserved
+   - Processed files are added to the PR:
+     - `design_tokens.json` (processed version)
+     - `design_tokens.css` (CSS variables)
+
+#### Branch Management
+
+1. **Branch Structure**:
+   - `main`: Production-ready tokens
+   - Feature branches: Created by Tokens Studio
+   - No long-lived branches needed
+
+2. **Naming Conventions**:
+   - Feature branches: `tokens/description`
+   - PR titles: `Update Design Tokens: Description`
+   - Commit messages: `Update design tokens`
+
+3. **Conflict Resolution**:
+   - Always rebase on latest `main`
+   - Resolve conflicts in Tokens Studio
+   - Push resolved changes to update PR
+
+#### Action Configuration
+
+1. **Required Secrets**:
+   ```yaml
+   SLACK_WEBHOOK_URL: # For notifications
+   FIGMA_ACCESS_TOKEN: # For validation
+   ```
+
+2. **Permissions**:
+   ```yaml
+   permissions:
+     contents: write
+     pull-requests: write
+   ```
+
+3. **Triggers**:
+   ```yaml
+   on:
+     pull_request:
+       branches:
+         - main
+       paths:
+         - 'design-tokens.json'
+   ```
+
+#### Review Process
+
+1. **PR Checklist**:
+   - [ ] Token changes are valid
+   - [ ] CSS generation successful
+   - [ ] No conflicts with existing tokens
+   - [ ] Documentation updated if needed
+
+2. **Validation Steps**:
+   - Check token counts
+   - Verify CSS output
+   - Review change comments
+   - Test in preview if available
+
+3. **Common Issues**:
+   - Missing token references
+   - Invalid token values
+   - CSS generation errors
+   - Merge conflicts
+
+#### Integration Features
+
+1. **PR Comments**:
+   - Token change summary
+   - Processing results
+   - Validation status
+   - Next steps
+
+2. **Change Tracking**:
+   - Token additions/removals
+   - Value changes
+   - CSS variable updates
+   - Version history
+
+3. **Rollback Process**:
+   - Revert PR if needed
+   - Restore previous version
+   - Update Tokens Studio
+   - Create new PR with fixes
+
+#### Troubleshooting
+
+1. **Action Failures**:
+   - Check action logs
+   - Verify secrets
+   - Review token file
+   - Test locally
+
+2. **PR Issues**:
+   - Branch conflicts
+   - Permission errors
+   - Processing failures
+   - Validation errors
+
+3. **Debug Steps**:
+   ```bash
+   # Test locally
+   npm run process-tokens -- --input design-tokens.json --output ./output
+   
+   # Check logs
+   cat output/design_tokens.json
+   cat output/design_tokens.css
+   ```
+
+4. **Common Solutions**:
+   - Update branch from main
+   - Fix token references
+   - Adjust permissions
+   - Clear action cache
+
+#### Workflow Diagrams
+
+1. **Token Update Flow**:
+   ```mermaid
+   sequenceDiagram
+     participant TS as Tokens Studio
+     participant GH as GitHub
+     participant GA as GitHub Action
+     participant PR as Pull Request
+
+     TS->>GH: Push token changes
+     GH->>PR: Create PR
+     PR->>GA: Trigger action
+     GA->>PR: Process tokens
+     GA->>PR: Add processed files
+     GA->>PR: Add comment
+     PR->>GH: Ready for review
+   ```
+
+2. **Branch Structure**:
+   ```mermaid
+   graph TD
+     A[main] --> B[Feature Branch]
+     B --> C[PR]
+     C --> D[Processed Files]
+     D --> E[Review]
+     E -->|Approved| A
+     E -->|Rejected| B
+   ```
+
+3. **Action Process**:
+   ```mermaid
+   flowchart LR
+     A[PR Created] --> B[Checkout Branch]
+     B --> C[Process Tokens]
+     C --> D[Generate CSS]
+     D --> E[Update PR]
+     E --> F[Add Comment]
+     F --> G[Complete]
+   ```
+
+4. **Review Process**:
+   ```mermaid
+   flowchart TD
+     A[PR Created] --> B{Valid Tokens?}
+     B -->|Yes| C{Valid CSS?}
+     B -->|No| D[Fix in TS]
+     C -->|Yes| E{No Conflicts?}
+     C -->|No| F[Fix Processing]
+     E -->|Yes| G[Approve]
+     E -->|No| H[Resolve Conflicts]
+     D --> A
+     F --> A
+     H --> A
+   ```
+
+These diagrams show:
+- The sequence of events in the token update process
+- How branches interact and merge
+- The steps in the GitHub Action
+- The review and approval workflow
 
 ## Features
 
-- Authenticates with the Figma API using personal access tokens
-- Extracts design tokens (colors, typography, spacing) from specific nodes in Figma files
-- Merges tokens from multiple files into a single token set
+- Processes design tokens from Tokens Studio output
 - Transforms tokens into CSS variables with utility classes
 - Integrates with GitHub repositories for version control
-- Automated synchronization via GitHub Actions (daily or on-demand)
+- Automated processing via GitHub Actions
 - Detects changes to avoid unnecessary updates
 
 ## Setup Instructions
@@ -17,8 +269,8 @@ A system that pulls design tokens from the Figma API into a GitHub repository an
 ### Prerequisites
 
 - Node.js (v14 or higher)
-- Figma account with personal access token
-- GitHub repository with access token
+- GitHub repository
+- Tokens Studio for Figma plugin
 
 ### Installation
 
@@ -33,108 +285,41 @@ A system that pulls design tokens from the Figma API into a GitHub repository an
    npm install
    ```
 
-3. Create environment configuration files:
-   - For development: Copy `.env.development.example` to `.env.development`
-   - For production: Copy `.env.production.example` to `.env.production`
-
-   The environment files should contain the following variables:
-   ```
-   # Figma API credentials
-   FIGMA_ACCESS_TOKEN=your_figma_personal_access_token
-   FIGMA_FILE_KEYS=your_figma_file_key
-
-   # Figma Node IDs for token extraction
-   FIGMA_TYPOGRAPHY_NODE_ID=115-2
-   FIGMA_COLOR_NODE_ID=165-2427
-   FIGMA_SPACING_NODE_ID=351-581
-
-   # GitHub credentials
-   GITHUB_TOKEN=your_github_personal_access_token
-
-   # Repository information
-   GITHUB_OWNER=eGovPDX
-   GITHUB_REPO=design-tokens
-   GITHUB_BRANCH=main
-   ```
-
-### Finding Node IDs in Figma
-
-To find the node IDs for your tokens:
-
-1. Open your Figma file
-2. Select the frame or component containing your tokens
-3. Look at the URL in your browser - the node ID will be in the format `node-id=XXX-XXX`
-4. Copy the node ID and add it to your environment file
-
-### Environment Configuration
-
-The system supports different configurations for development and production environments:
-
-- `.env.development`: Used for local development and testing
-- `.env.production`: Used for production deployments and GitHub Actions
-
-To switch between environments, you can use the `NODE_ENV` environment variable:
-```
-NODE_ENV=development node index.js
-NODE_ENV=production node index.js
-```
-
-### GitHub Secrets Setup
-
-For the GitHub Action to work, you need to add the following secrets to your repository:
-
-1. Go to your repository settings
-2. Navigate to Secrets > Actions
-3. Add the following secrets:
-   - `FIGMA_ACCESS_TOKEN`: Your Figma personal access token
-   - `GITHUB_TOKEN`: Your GitHub personal access token with repo scope
-   - `FIGMA_FILE_KEYS`: Your Figma file key
-   - `FIGMA_TYPOGRAPHY_NODE_ID`: Node ID for typography tokens
-   - `FIGMA_COLOR_NODE_ID`: Node ID for color tokens
-   - `FIGMA_SPACING_NODE_ID`: Node ID for spacing tokens
+3. Configure GitHub repository:
+   - Set up GitHub Actions secrets if needed
+   - Configure Tokens Studio to push to your repository
 
 ## Usage
 
-### Manual Execution
+### Manual Processing
 
-Run the script manually to extract tokens from Figma and save them locally:
+Process tokens from a local file:
 
 ```
-# For development
-NODE_ENV=development node index.js --file-keys YOUR_FIGMA_FILE_KEY --output-dir ./output
-
-# For production
-NODE_ENV=production node index.js --file-keys YOUR_FIGMA_FILE_KEY --output-dir ./output
+npm run process-tokens -- --input design-tokens.json --output ./output
 ```
 
 ### GitHub Action
 
 The included GitHub Action will:
 
-1. Run automatically once per day
-2. Check if design tokens have changed in any of the Figma files
-3. Update the repository if changes are detected
-4. Create a pull request (for scheduled runs) or commit directly (for manual triggers)
-
-You can also trigger the workflow manually from the Actions tab in your GitHub repository.
+1. Trigger when Tokens Studio creates a PR
+2. Process the design tokens
+3. Update the PR with processed files
+4. Add a comment with processing details
 
 ## File Structure
 
-- `src/figmaAuth.js`: Handles authentication with the Figma API
-- `src/figmaTokenExtractor.js`: Extracts design tokens from Figma files
+- `src/tokenProcessor.js`: Processes design tokens from files
 - `src/tokenTransformer.js`: Transforms tokens into CSS variables
-- `src/githubClient.js`: Handles GitHub repository operations
-- `src/figmaToGithub.js`: Integrates Figma extraction with GitHub updates
-- `index.js`: Main script for local execution
-- `.github/workflows/sync-design-tokens.yml`: GitHub Action workflow
-- `.env.development`: Development environment configuration
-- `.env.production`: Production environment configuration
+- `.github/workflows/process-tokens.yml`: GitHub Action workflow
+- `output/`: Directory for processed files
 
 ## Output Format
 
 ### JSON Structure
 
-The extracted tokens are saved in JSON format with the following structure:
+The processed tokens are saved in JSON format with the following structure:
 
 ```json
 {
@@ -156,8 +341,6 @@ The extracted tokens are saved in JSON format with the following structure:
   }
 }
 ```
-
-Tokens from multiple Figma files are merged into a single token set. If there are duplicate token names across files, the last file's tokens will take precedence.
 
 ### CSS Variables
 
@@ -187,7 +370,7 @@ The tokens are transformed into CSS variables:
 
 ### Token Path
 
-You can customize the path where tokens are saved in the GitHub repository by modifying the `tokenPath` option in the `FigmaToGithub` constructor.
+You can customize the path where tokens are saved in the GitHub repository by modifying the workflow file.
 
 ### CSS Output Format
 
@@ -195,82 +378,18 @@ Modify the `transformToCss` method in the `TokenTransformer` class to change the
 
 ## Troubleshooting
 
-### Authentication Issues
+### Processing Issues
 
-- Ensure your Figma token has the correct permissions
-- Verify that your GitHub token has the repo scope
-- Check that you're using the correct environment file for your context
+- Verify that the input file is valid JSON
+- Check that the file structure matches the expected format
+- Ensure all required token types are present
 
-### Missing Tokens
+### GitHub Action Issues
 
-- Verify that the node IDs in your environment file are correct
-- Check that the nodes contain the expected token types
-- Ensure your Figma file is structured properly with named styles
-- For colors, ensure they are applied as fill styles
-- For typography, ensure they are applied as text styles
-- For spacing, ensure frame names include "spacing" or "space-"
+- Check workflow permissions
+- Verify repository secrets
+- Review action logs for errors
 
 ## License
 
 MIT
-
-# Design Tokens Processor
-
-## Automated Token Updates
-
-The project includes a script to automate the process of updating design tokens and creating pull requests.
-
-### Usage
-
-```bash
-# Normal update
-npm run update-tokens
-
-# Preview changes without making them
-npm run update-tokens:dry-run
-
-# Direct script usage
-./scripts/update-tokens.sh [--dry-run] [--help]
-```
-
-### Options
-
-- `--dry-run`: Preview all changes without making them
-- `--help` or `-h`: Show help message
-
-### What the Script Does
-
-1. Creates a new branch with today's date (e.g., `update-tokens-2024-03-21`)
-2. Checks for changes in `design-tokens.json`
-3. Commits and pushes changes
-4. Creates a PR (if GitHub CLI is installed)
-
-### Requirements
-
-- Git
-- GitHub CLI (optional, for automatic PR creation)
-
-### Example Output
-
-```bash
-# Normal run
-$ npm run update-tokens
-Creating new branch: update-tokens-2024-03-21
-Committing changes...
-Pushing branch to remote...
-Creating pull request...
-Process complete! 🎉
-
-# Dry run
-$ npm run update-tokens:dry-run
-[DRY RUN] Would create new branch: update-tokens-2024-03-21
-[DRY RUN] Would stage design-tokens.json
-[DRY RUN] Would commit changes with message: Update design tokens 2024-03-21
-[DRY RUN] Would push branch to remote
-[DRY RUN] Would create PR with:
-  Title: Update Design Tokens 2024-03-21
-  Base: main
-  Head: update-tokens-2024-03-21
-  Labels: design-tokens,automated
-[DRY RUN] Process would be complete! 🎉
-```
