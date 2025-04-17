@@ -213,3 +213,64 @@ Modify the `transformToCss` method in the `TokenTransformer` class to change the
 ## License
 
 MIT
+
+# Design Tokens Processor
+
+## Automated Token Updates
+
+The project includes a script to automate the process of updating design tokens and creating pull requests.
+
+### Usage
+
+```bash
+# Normal update
+npm run update-tokens
+
+# Preview changes without making them
+npm run update-tokens:dry-run
+
+# Direct script usage
+./scripts/update-tokens.sh [--dry-run] [--help]
+```
+
+### Options
+
+- `--dry-run`: Preview all changes without making them
+- `--help` or `-h`: Show help message
+
+### What the Script Does
+
+1. Creates a new branch with today's date (e.g., `update-tokens-2024-03-21`)
+2. Checks for changes in `design-tokens.json`
+3. Commits and pushes changes
+4. Creates a PR (if GitHub CLI is installed)
+
+### Requirements
+
+- Git
+- GitHub CLI (optional, for automatic PR creation)
+
+### Example Output
+
+```bash
+# Normal run
+$ npm run update-tokens
+Creating new branch: update-tokens-2024-03-21
+Committing changes...
+Pushing branch to remote...
+Creating pull request...
+Process complete! 🎉
+
+# Dry run
+$ npm run update-tokens:dry-run
+[DRY RUN] Would create new branch: update-tokens-2024-03-21
+[DRY RUN] Would stage design-tokens.json
+[DRY RUN] Would commit changes with message: Update design tokens 2024-03-21
+[DRY RUN] Would push branch to remote
+[DRY RUN] Would create PR with:
+  Title: Update Design Tokens 2024-03-21
+  Base: main
+  Head: update-tokens-2024-03-21
+  Labels: design-tokens,automated
+[DRY RUN] Process would be complete! 🎉
+```
