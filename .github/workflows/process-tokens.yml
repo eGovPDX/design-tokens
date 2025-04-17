@@ -1,11 +1,12 @@
 name: Process Design Tokens
 
 on:
-  push:
+  pull_request:
     branches:
-      - incoming-tokens
+      - main
     paths:
       - 'design-tokens.json'
+      - '.github/workflows/process-tokens.yml'
 
 jobs:
   process-tokens:
@@ -18,7 +19,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: incoming-tokens
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
 
       - name: Set up Node.js
@@ -48,12 +49,8 @@ jobs:
           git config --global user.name 'Design Tokens Bot'
           git config --global user.email 'design-tokens-bot@portland.gov'
 
-      - name: Update processed-tokens branch
+      - name: Update PR with processed tokens
         run: |
-          # Create or update processed-tokens branch
-          git checkout -b processed-tokens || git checkout processed-tokens
-          git pull origin processed-tokens || true
-          
           # Copy processed files
           cp -r output/* .
           
@@ -61,31 +58,20 @@ jobs:
           git add .
           git commit -m "Update processed design tokens"
           
-          # Push to processed-tokens branch
-          git push origin processed-tokens --force
+          # Push changes to PR branch
+          git push origin ${{ github.head_ref }}
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: processed-tokens
-          base: main
-          title: 'Update Design Tokens'
-          body: |
-            Automated update of design tokens
-            
-            Changes include:
-            - Updated design tokens from Figma
-            - Generated CSS variables
-            - Generated JSON output
-          commit-message: 'Update design tokens'
-          labels: design-tokens, automated
-          draft: false
-          delete-branch: false
-
-      - name: Update incoming-tokens branch
+      - name: Validate changes
         run: |
-          # Update incoming-tokens branch with latest from main
-          git checkout incoming-tokens
-          git pull origin main
-          git push origin incoming-tokens 
+          pnpm run validate
+
+      - name: Comment on PR
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.name,
+              body: '✅ Design tokens have been processed and validated successfully.\n\nChanges include:\n- Updated design tokens\n- Generated CSS variables\n- Generated JSON output'
+            }) 
