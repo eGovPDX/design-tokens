@@ -6647,7 +6647,7 @@
       "color": {
         "base": {
           "lightest": {
-            "value": "{!-usa.color.gray-cool.5}",
+            "value": "{--usa.color.gray-cool.5}",
             "type": "color"
           },
           "lighter": {
@@ -8628,12 +8628,12 @@
           "type": "text"
         },
         "padding-x": {
-          "value": "{!-usa.spacing.205}",
+          "value": "{--usa.spacing.205}",
           "type": "dimension"
         },
         "small": {
           "padding-x": {
-            "value": "{!-usa.spacing.105}",
+            "value": "{--usa.spacing.105}",
             "type": "dimension"
           },
           "padding-y": {
