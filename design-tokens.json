@@ -6791,7 +6791,7 @@
             "type": "color"
           },
           "dark": {
-            "value": "{!-usa.color.red-warm.50}",
+            "value": "{--usa.color.red-warm.50}",
             "type": "color"
           },
           "darker": {
@@ -6851,7 +6851,7 @@
             "type": "color"
           },
           "medium": {
-            "value": "{!-usa.color.red-cool.60v}",
+            "value": "{--usa.color.red-cool.60v}",
             "type": "color"
           },
           "dark": {
