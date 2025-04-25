@@ -6813,7 +6813,7 @@
         },
         "info": {
           "lighter": {
-            "value": "{!-usa.color.cyan.5}",
+            "value": "{--usa.color.cyan.5}",
             "type": "color"
           },
           "light": {
