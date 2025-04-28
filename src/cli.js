@@ -21,14 +21,33 @@ console.log('Processed arguments:', args);
 const filteredArgs = args.filter(arg => arg !== '--');
 console.log('Filtered arguments:', filteredArgs);
 
+// Parse arguments manually first
+const options = {};
+for (let i = 0; i < filteredArgs.length; i++) {
+  const arg = filteredArgs[i];
+  if (arg.startsWith('--')) {
+    const key = arg.slice(2);
+    const value = filteredArgs[i + 1];
+    if (value && !value.startsWith('--')) {
+      options[key] = value;
+      i++; // Skip the next argument since we've used it
+    } else {
+      options[key] = true;
+    }
+  }
+}
+
+console.log('Manually parsed options:', options);
+
+// Now use commander to validate the options
 program
   .option('--source <source>', 'Source of tokens (file or figma)')
   .option('--input <input>', 'Input file path')
   .option('--output <output>', 'Output directory path')
   .parse(filteredArgs);
 
-const options = program.opts();
-console.log('Parsed options:', options);
+const commanderOptions = program.opts();
+console.log('Commander parsed options:', commanderOptions);
 
 async function main() {
   try {
