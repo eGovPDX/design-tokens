@@ -1,25 +1,20 @@
 #!/usr/bin/env node
 
-const { processTokens } = require('./index');
-const path = require('path');
-const fs = require('fs');
+import { processTokens } from './index.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { program } from 'commander';
 
-const args = process.argv.slice(2);
-const options = {};
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-// Parse command line arguments
-for (let i = 0; i < args.length; i++) {
-  if (args[i].startsWith('--')) {
-    const key = args[i].slice(2);
-    const value = args[i + 1];
-    if (value && !value.startsWith('--')) {
-      options[key] = value;
-      i++;
-    } else {
-      options[key] = true;
-    }
-  }
-}
+program
+  .option('--source <source>', 'Source of tokens (file or figma)')
+  .option('--input <input>', 'Input file path')
+  .option('--output <output>', 'Output directory path')
+  .parse(process.argv);
+
+const options = program.opts();
 
 async function main() {
   try {
