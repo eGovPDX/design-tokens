@@ -153,7 +153,7 @@
             "type": "color"
           },
           "darker": {
-            "value": "{!-usa.color.indigo.70v}",
+            "value": "{--usa.color.indigo.70v}",
             "type": "color"
           },
           "lightest": {
@@ -9777,10 +9777,6 @@
           "70v": {
             "value": "#0b4b3f",
             "type": "color"
-          },
-          "80v": {
-            "value": "#123131",
-            "type": "color"
           }
         },
         "cyan": {
@@ -10205,10 +10201,6 @@
           "50v": {
             "value": "#656bd7",
             "type": "color"
-          },
-          "70v": {
-            "value": "#3333a3",
-            "type": "color"
           }
         },
         "indigo-warm": {
@@ -10278,10 +10270,6 @@
           },
           "60v": {
             "value": "#5942d2",
-            "type": "color"
-          },
-          "70v": {
-            "value": "#3d2c9d",
             "type": "color"
           },
           "80v": {
@@ -10809,6 +10797,10 @@
           "50v": {
             "value": "#008480",
             "type": "color"
+          },
+          "80v": {
+            "value": "#123131",
+            "type": "color"
           }
         },
         "cyan": {
@@ -10858,8 +10850,18 @@
             "value": "#4a50c4",
             "type": "color"
           },
+          "70v": {
+            "value": "#3333a3",
+            "type": "color"
+          },
           "80v": {
             "value": "#212463",
+            "type": "color"
+          }
+        },
+        "indigo-warm": {
+          "70v": {
+            "value": "#3d2c9d",
             "type": "color"
           }
         },
