@@ -4,6 +4,8 @@ import { processTokens } from './index.js';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { program } from 'commander';
+import fs from 'fs';
+import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,7 +14,7 @@ program
   .option('--source <source>', 'Source of tokens (file or figma)')
   .option('--input <input>', 'Input file path')
   .option('--output <output>', 'Output directory path')
-  .parse(process.argv);
+  .parse(process.argv.slice(2)); // Skip the first two arguments (node and script path)
 
 const options = program.opts();
 
