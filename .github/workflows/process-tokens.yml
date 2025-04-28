@@ -163,6 +163,7 @@ jobs:
           git push origin ${{ github.head_ref }}
 
       - name: Comment on PR
+        if: github.event_name == 'pull_request'
         uses: actions/github-script@v6
         with:
           script: |
