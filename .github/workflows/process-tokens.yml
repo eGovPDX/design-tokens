@@ -84,7 +84,7 @@ jobs:
         id: process-tokens
         env:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
           echo "::group::Processing Tokens"
           
@@ -159,9 +159,7 @@ jobs:
 
       - name: Notify on failure
         if: failure()
-        uses: slackapi/slack-github-action@v1.24.0
-        with:
-          channel-id: 'design-system'
-          slack-message: "❌ Failed to process design tokens\nWorkflow: ${{ github.workflow }}\nRun: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+            --data '{"text":"❌ Failed to process design tokens\nWorkflow: ${{ github.workflow }}\nRun: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}' \
+            ${{ secrets.SLACK_WEBHOOK_URL }}
