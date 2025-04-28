@@ -95,16 +95,15 @@ jobs:
           # Process tokens with debug output
           echo "::group::Process Tokens Command"
           echo "Running process-tokens command..."
-          OUTPUT=$(pnpm run process-tokens -- --source file --input design-tokens.json --output ./output 2>&1)
+          set -x
+          pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
           EXIT_CODE=$?
-          echo "Command output:"
-          echo "$OUTPUT"
+          set +x
           echo "Exit code: $EXIT_CODE"
           echo "::endgroup::"
           
           if [ $EXIT_CODE -ne 0 ]; then
             echo "::error::Failed to run process-tokens command"
-            echo "::error::Command output: $OUTPUT"
             echo "::error::Exit code: $EXIT_CODE"
             exit 1
           fi
