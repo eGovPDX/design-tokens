@@ -1,5 +1,5 @@
-const axios = require('axios');
-const logger = require('./logger');
+import axios from 'axios';
+import logger from './logger.js';
 
 class SlackNotifier {
   constructor(webhookUrl) {
@@ -45,4 +45,4 @@ class SlackNotifier {
   }
 }
 
-module.exports = new SlackNotifier(process.env.SLACK_WEBHOOK_URL); 
+export default new SlackNotifier(process.env.SLACK_WEBHOOK_URL); 
