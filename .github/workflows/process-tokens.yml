@@ -67,23 +67,41 @@ jobs:
           if [ -f "package.json" ]; then
             echo "package.json contents:"
             cat package.json
+            echo "process-tokens script definition:"
+            node -e "console.log(require('./package.json').scripts['process-tokens'] || 'Script not found')"
           else
             echo "package.json not found!"
           fi
           
+          # Debug: Show available pnpm commands
+          echo "Available pnpm commands:"
+          pnpm run
+          
           # Process tokens with debug output
           echo "Running process-tokens command..."
-          if ! pnpm run process-tokens -- --source file --input design-tokens.json --output ./output; then
+          OUTPUT=$(pnpm run process-tokens -- --source file --input design-tokens.json --output ./output 2>&1)
+          EXIT_CODE=$?
+          echo "Command output:"
+          echo "$OUTPUT"
+          echo "Exit code: $EXIT_CODE"
+          
+          if [ $EXIT_CODE -ne 0 ]; then
             echo "::error::Failed to run process-tokens command"
-            echo "::error::Exit code: $?"
+            echo "::error::Command output: $OUTPUT"
             exit 1
           fi
           
           # Validate output
           echo "Running validate command..."
-          if ! pnpm run validate; then
+          VALIDATE_OUTPUT=$(pnpm run validate 2>&1)
+          VALIDATE_EXIT_CODE=$?
+          echo "Validate command output:"
+          echo "$VALIDATE_OUTPUT"
+          echo "Validate exit code: $VALIDATE_EXIT_CODE"
+          
+          if [ $VALIDATE_EXIT_CODE -ne 0 ]; then
             echo "::error::Failed to run validate command"
-            echo "::error::Exit code: $?"
+            echo "::error::Command output: $VALIDATE_OUTPUT"
             exit 1
           fi
           
