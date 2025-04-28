@@ -10,13 +10,21 @@ import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Debug: Log all arguments
+console.log('Raw arguments:', process.argv);
+
+// Remove the first two arguments (node and script path)
+const args = process.argv.slice(2);
+console.log('Processed arguments:', args);
+
 program
   .option('--source <source>', 'Source of tokens (file or figma)')
   .option('--input <input>', 'Input file path')
   .option('--output <output>', 'Output directory path')
-  .parse(process.argv.slice(2)); // Skip the first two arguments (node and script path)
+  .parse(args);
 
 const options = program.opts();
+console.log('Parsed options:', options);
 
 async function main() {
   try {
@@ -37,6 +45,8 @@ async function main() {
       outputDir: options.output || './output',
       figmaFileKey: options.figmaFileKey
     };
+
+    console.log('Using config:', config);
 
     // Create output directory if it doesn't exist
     if (!fs.existsSync(config.outputDir)) {
