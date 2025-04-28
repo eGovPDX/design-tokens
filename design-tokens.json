@@ -10267,10 +10267,6 @@
           "60v": {
             "value": "#5942d2",
             "type": "color"
-          },
-          "80v": {
-            "value": "#261f5b",
-            "type": "color"
           }
         },
         "violet": {
@@ -10862,6 +10858,10 @@
         "indigo-warm": {
           "70v": {
             "value": "#3d2c9d",
+            "type": "color"
+          },
+          "80v": {
+            "value": "#261f5b",
             "type": "color"
           }
         },
