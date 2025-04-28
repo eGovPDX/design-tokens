@@ -10120,10 +10120,6 @@
             "value": "#96abee",
             "type": "color"
           },
-          "40": {
-            "value": "#6b8ee8",
-            "type": "color"
-          },
           "50": {
             "value": "#496fd8",
             "type": "color"
@@ -10844,6 +10840,12 @@
         "red-cool": {
           "80v": {
             "value": "#4f1c24",
+            "type": "color"
+          }
+        },
+        "indigo-cool": {
+          "40": {
+            "value": "#6b8ee8",
             "type": "color"
           }
         },
