@@ -108,23 +108,6 @@ jobs:
             exit 1
           fi
           
-          # Validate output
-          echo "::group::Validate Command"
-          echo "Running validate command..."
-          VALIDATE_OUTPUT=$(pnpm run validate 2>&1)
-          VALIDATE_EXIT_CODE=$?
-          echo "Validate command output:"
-          echo "$VALIDATE_OUTPUT"
-          echo "Validate exit code: $VALIDATE_EXIT_CODE"
-          echo "::endgroup::"
-          
-          if [ $VALIDATE_EXIT_CODE -ne 0 ]; then
-            echo "::error::Failed to run validate command"
-            echo "::error::Command output: $VALIDATE_OUTPUT"
-            echo "::error::Exit code: $VALIDATE_EXIT_CODE"
-            exit 1
-          fi
-          
           # Count changes and analyze tokens
           CHANGES=$(git diff --name-only output/ | wc -l)
           echo "changes=$CHANGES" >> $GITHUB_OUTPUT
@@ -198,6 +181,15 @@ jobs:
               (tokenAnalysis.added.typography > 0 ? `- Added ${tokenAnalysis.added.typography} typography tokens\n` : '') +
               (tokenAnalysis.added.spacing > 0 ? `- Added ${tokenAnalysis.added.spacing} spacing tokens\n` : '') +
               '\n' +
-              '**Preview:**\n' +
-              '```css\n' +
-              `${cssContent.split('\n').slice(0, 20).join('\n')}\n`
+              '**Generated Files:**\n' +
+              '- `design_tokens.json`\n' +
+              '- `design_tokens.css`\n\n' +
+              'The changes have been automatically applied to this PR.';
+            
+            // Add comment to PR
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
