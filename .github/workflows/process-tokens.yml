@@ -58,9 +58,6 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
         run: |
-          # Enable error handling
-          set -e
-          
           # Debug: Show current directory and files
           echo "Current directory: $(pwd)"
           echo "Directory contents:"
@@ -76,17 +73,19 @@ jobs:
           
           # Process tokens with debug output
           echo "Running process-tokens command..."
-          pnpm run process-tokens -- --source file --input design-tokens.json --output ./output || {
-            echo "Error running process-tokens command"
+          if ! pnpm run process-tokens -- --source file --input design-tokens.json --output ./output; then
+            echo "::error::Failed to run process-tokens command"
+            echo "::error::Exit code: $?"
             exit 1
-          }
+          fi
           
           # Validate output
           echo "Running validate command..."
-          pnpm run validate || {
-            echo "Error running validate command"
+          if ! pnpm run validate; then
+            echo "::error::Failed to run validate command"
+            echo "::error::Exit code: $?"
             exit 1
-          }
+          fi
           
           # Count changes and analyze tokens
           CHANGES=$(git diff --name-only output/ | wc -l)
