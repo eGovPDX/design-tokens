@@ -10208,10 +10208,6 @@
             "value": "#7665d1",
             "type": "color"
           },
-          "60": {
-            "value": "#5e519e",
-            "type": "color"
-          },
           "70": {
             "value": "#453c7b",
             "type": "color"
@@ -10852,6 +10848,10 @@
           }
         },
         "indigo-warm": {
+          "60": {
+            "value": "#5e519e",
+            "type": "color"
+          },
           "60v": {
             "value": "#5942d2",
             "type": "color"
