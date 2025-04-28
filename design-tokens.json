@@ -4539,7 +4539,7 @@
             "type": "color"
           },
           "medium": {
-            "value": "{!-usa.color.cyan.30v}",
+            "value": "{--usa.color.cyan.30v}",
             "type": "color"
           },
           "dark": {
@@ -9844,10 +9844,6 @@
             "value": "#52daf2",
             "type": "color"
           },
-          "30v": {
-            "value": "#00bde3",
-            "type": "color"
-          },
           "40v": {
             "value": "#009ec1",
             "type": "color"
@@ -10836,6 +10832,10 @@
           }
         },
         "cyan": {
+          "30v": {
+            "value": "#00bde3",
+            "type": "color"
+          },
           "80v": {
             "value": "#093b44",
             "type": "color"
