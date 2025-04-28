@@ -59,6 +59,7 @@ jobs:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
         run: |
           # Debug: Show current directory and files
+          echo "::group::Debug Information"
           echo "Current directory: $(pwd)"
           echo "Directory contents:"
           ls -la
@@ -76,32 +77,39 @@ jobs:
           # Debug: Show available pnpm commands
           echo "Available pnpm commands:"
           pnpm run
+          echo "::endgroup::"
           
           # Process tokens with debug output
+          echo "::group::Process Tokens Command"
           echo "Running process-tokens command..."
           OUTPUT=$(pnpm run process-tokens -- --source file --input design-tokens.json --output ./output 2>&1)
           EXIT_CODE=$?
           echo "Command output:"
           echo "$OUTPUT"
           echo "Exit code: $EXIT_CODE"
+          echo "::endgroup::"
           
           if [ $EXIT_CODE -ne 0 ]; then
             echo "::error::Failed to run process-tokens command"
             echo "::error::Command output: $OUTPUT"
+            echo "::error::Exit code: $EXIT_CODE"
             exit 1
           fi
           
           # Validate output
+          echo "::group::Validate Command"
           echo "Running validate command..."
           VALIDATE_OUTPUT=$(pnpm run validate 2>&1)
           VALIDATE_EXIT_CODE=$?
           echo "Validate command output:"
           echo "$VALIDATE_OUTPUT"
           echo "Validate exit code: $VALIDATE_EXIT_CODE"
+          echo "::endgroup::"
           
           if [ $VALIDATE_EXIT_CODE -ne 0 ]; then
             echo "::error::Failed to run validate command"
             echo "::error::Command output: $VALIDATE_OUTPUT"
+            echo "::error::Exit code: $VALIDATE_EXIT_CODE"
             exit 1
           fi
           
