@@ -9863,10 +9863,6 @@
           "70v": {
             "value": "#0e4f5c",
             "type": "color"
-          },
-          "80v": {
-            "value": "#093b44",
-            "type": "color"
           }
         },
         "blue-cool": {
@@ -10836,6 +10832,12 @@
         "red-cool": {
           "80v": {
             "value": "#4f1c24",
+            "type": "color"
+          }
+        },
+        "cyan": {
+          "80v": {
+            "value": "#093b44",
             "type": "color"
           }
         },
