@@ -10221,10 +10221,6 @@
           "70v": {
             "value": "#3333a3",
             "type": "color"
-          },
-          "80v": {
-            "value": "#212463",
-            "type": "color"
           }
         },
         "indigo-warm": {
@@ -10856,6 +10852,12 @@
         "indigo-cool": {
           "40": {
             "value": "#6b8ee8",
+            "type": "color"
+          }
+        },
+        "indigo": {
+          "80v": {
+            "value": "#212463",
             "type": "color"
           }
         },
