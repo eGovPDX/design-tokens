@@ -58,11 +58,35 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
         run: |
-          # Process tokens
-          pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
+          # Enable error handling
+          set -e
+          
+          # Debug: Show current directory and files
+          echo "Current directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la
+          
+          # Debug: Show package.json if it exists
+          if [ -f "package.json" ]; then
+            echo "package.json contents:"
+            cat package.json
+          else
+            echo "package.json not found!"
+          fi
+          
+          # Process tokens with debug output
+          echo "Running process-tokens command..."
+          pnpm run process-tokens -- --source file --input design-tokens.json --output ./output || {
+            echo "Error running process-tokens command"
+            exit 1
+          }
           
           # Validate output
-          pnpm run validate
+          echo "Running validate command..."
+          pnpm run validate || {
+            echo "Error running validate command"
+            exit 1
+          }
           
           # Count changes and analyze tokens
           CHANGES=$(git diff --name-only output/ | wc -l)
