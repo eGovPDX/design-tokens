@@ -9774,10 +9774,6 @@
             "value": "#00a398",
             "type": "color"
           },
-          "50v": {
-            "value": "#008480",
-            "type": "color"
-          },
           "60v": {
             "value": "#0f6460",
             "type": "color"
@@ -10828,6 +10824,12 @@
         "red-cool": {
           "80v": {
             "value": "#4f1c24",
+            "type": "color"
+          }
+        },
+        "mint-cool": {
+          "50v": {
+            "value": "#008480",
             "type": "color"
           }
         },
