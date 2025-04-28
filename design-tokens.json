@@ -9699,10 +9699,6 @@
           "70v": {
             "value": "#0c4e29",
             "type": "color"
-          },
-          "80v": {
-            "value": "#0d351e",
-            "type": "color"
           }
         },
         "mint-cool": {
@@ -10754,6 +10750,10 @@
           },
           "40v": {
             "value": "#00a871",
+            "type": "color"
+          },
+          "80v": {
+            "value": "#0d351e",
             "type": "color"
           }
         },
