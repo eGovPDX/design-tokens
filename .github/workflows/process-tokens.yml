@@ -26,6 +26,11 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
+      - name: Fetch latest changes from main
+        run: |
+          git fetch origin main
+          git merge origin/main --no-edit
+
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -64,6 +69,13 @@ jobs:
           echo "Directory contents:"
           ls -la
           
+          # Check if design-tokens.json exists
+          if [ ! -f "design-tokens.json" ]; then
+            echo "::error::design-tokens.json file not found in the repository"
+            echo "::error::Please ensure the file exists and is committed to the repository"
+            exit 1
+          fi
+          
           # Debug: Show package.json if it exists
           if [ -f "package.json" ]; then
             echo "package.json contents:"
@@ -71,7 +83,8 @@ jobs:
             echo "process-tokens script definition:"
             node -e "console.log(require('./package.json').scripts['process-tokens'] || 'Script not found')"
           else
-            echo "package.json not found!"
+            echo "::error::package.json not found!"
+            exit 1
           fi
           
           # Debug: Show available pnpm commands
@@ -188,97 +201,4 @@ jobs:
               '\n' +
               '**Preview:**\n' +
               '```css\n' +
-              `${cssContent.split('\n').slice(0, 20).join('\n')}\n` +
-              '...\n' +
-              '```\n\n' +
-              '*Note: Only showing first 20 lines of CSS. Full changes can be viewed in the PR.*\n\n' +
-              '**Files Changed:**\n' +
-              '- `design_tokens.json`\n' +
-              '- `design_tokens.css`\n\n' +
-              '**Next Steps:**\n' +
-              '1. Review the changes\n' +
-              '2. Check the token usage examples\n' +
-              '3. Approve and merge if everything looks good';
-            
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.name,
-              body: comment
-            });
-
-      - name: Notify Slack
-        if: always()
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          fields: ""
-          custom_payload: |
-            {
-              "blocks": [
-                {
-                  "type": "header",
-                  "text": {
-                    "type": "plain_text",
-                    "text": "🔨 Design Token Processing ${{ job.status == 'success' && '✅' || '❌' }}"
-                  }
-                },
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Repository:*\n${{ github.repository }}"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Author:*\n${{ github.actor }}"
-                    }
-                  ]
-                },
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Job:*\n${{ github.workflow }} / ${{ github.job }}"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Event:*\n${{ github.event_name }}"
-                    }
-                  ]
-                },
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Commit:*\n${{ github.sha }}"
-                    }
-                  ]
-                }
-              ]
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-      - name: Notify Slack on Failure
-        if: failure()
-        uses: 8398a7/action-slack@v3
-        with:
-          status: custom
-          custom_payload: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "*Error Details:*\n```${{ toJSON(job.steps.*.outcome) }}```"
-                  }
-                }
-              ]
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+              `${cssContent.split('\n').slice(0, 20).join('\n')}\n`
