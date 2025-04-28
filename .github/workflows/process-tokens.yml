@@ -57,6 +57,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Create output directory
+        run: mkdir -p output
+
       - name: Process tokens
         id: process
         env:
@@ -96,7 +99,7 @@ jobs:
           echo "::group::Process Tokens Command"
           echo "Running process-tokens command..."
           set -x
-          pnpm run process-tokens --source file --input design-tokens.json --output ./output
+          pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
           EXIT_CODE=$?
           set +x
           echo "Exit code: $EXIT_CODE"
