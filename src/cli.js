@@ -17,11 +17,15 @@ console.log('Raw arguments:', process.argv);
 const args = process.argv.slice(2);
 console.log('Processed arguments:', args);
 
+// Remove the -- argument if it exists
+const filteredArgs = args.filter(arg => arg !== '--');
+console.log('Filtered arguments:', filteredArgs);
+
 program
   .option('--source <source>', 'Source of tokens (file or figma)')
   .option('--input <input>', 'Input file path')
   .option('--output <output>', 'Output directory path')
-  .parse(args);
+  .parse(filteredArgs);
 
 const options = program.opts();
 console.log('Parsed options:', options);
