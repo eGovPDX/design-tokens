@@ -2,8 +2,6 @@ name: Process Design Tokens
 
 on:
   pull_request:
-    branches:
-      - main
     paths:
       - 'design-tokens.json'
   push:
@@ -21,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
@@ -42,176 +40,128 @@ jobs:
           version: 8
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          node-version: '18.19.1'  # Latest LTS version
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Validate token format
+        run: |
+          echo "::group::Token Validation"
+          # Validate JSON structure
+          if ! jq empty design-tokens.json; then
+            echo "::error::Invalid JSON format in design-tokens.json"
+            exit 1
+          fi
+          
+          # Validate required token categories
+          VALIDATION_RESULT=$(node -e "
+            const tokens = require('./design-tokens.json');
+            const requiredCategories = ['colors', 'typography', 'spacing'];
+            const missingCategories = requiredCategories.filter(cat => !tokens[cat]);
+            
+            if (missingCategories.length > 0) {
+              console.error('Missing required categories:', missingCategories.join(', '));
+              process.exit(1);
+            }
+            
+            console.log('Token validation successful');
+          ")
+          
+          if [ $? -ne 0 ]; then
+            echo "::error::$VALIDATION_RESULT"
+            exit 1
+          fi
+          echo "::endgroup::"
 
       - name: Create output directory
         run: mkdir -p output
 
       - name: Process tokens
-        id: process
+        id: process-tokens
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         run: |
-          # Debug: Show current directory and files
-          echo "::group::Debug Information"
-          echo "Current directory: $(pwd)"
-          echo "Directory contents:"
-          ls -la
+          echo "::group::Processing Tokens"
           
           # Check if design-tokens.json exists
-          if [ ! -f "design-tokens.json" ]; then
-            echo "::error::design-tokens.json file not found in the repository"
-            echo "::error::Please ensure the file exists and is committed to the repository"
+          if [ ! -f design-tokens.json ]; then
+            echo "::error::design-tokens.json not found"
             exit 1
           fi
           
-          # Debug: Show package.json if it exists
-          if [ -f "package.json" ]; then
-            echo "package.json contents:"
-            cat package.json
-            echo "process-tokens script definition:"
-            node -e "console.log(require('./package.json').scripts['process-tokens'] || 'Script not found')"
+          # Create a backup of the original tokens
+          cp design-tokens.json design-tokens.backup.json
+          
+          # Process tokens and capture any changes
+          if ! pnpm run process-tokens > token-changes.log 2>&1; then
+            echo "::error::Token processing failed"
+            cat token-changes.log
+            exit 1
+          fi
+          
+          # Compare files to detect changes
+          if ! cmp -s design-tokens.json design-tokens.backup.json; then
+            echo "TOKENS_CHANGED=true" >> $GITHUB_ENV
+            echo "::notice::Tokens were processed and modified"
+            
+            # Generate a diff for the PR comment
+            git diff --no-index design-tokens.backup.json design-tokens.json > token-diff.patch || true
           else
-            echo "::error::package.json not found!"
-            exit 1
+            echo "TOKENS_CHANGED=false" >> $GITHUB_ENV
+            echo "::notice::No changes were needed in the tokens"
           fi
-          
-          # Debug: Show available pnpm commands
-          echo "Available pnpm commands:"
-          pnpm run
           echo "::endgroup::"
-          
-          # Process tokens with debug output
-          echo "::group::Process Tokens Command"
-          echo "Running process-tokens command..."
-          set -x
-          pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
-          EXIT_CODE=$?
-          set +x
-          echo "Exit code: $EXIT_CODE"
-          echo "::endgroup::"
-          
-          if [ $EXIT_CODE -ne 0 ]; then
-            echo "::error::Failed to run process-tokens command"
-            echo "::error::Exit code: $EXIT_CODE"
-            exit 1
-          fi
-          
-          # Debug: Show output directory contents
-          echo "::group::Output Directory Contents"
-          echo "Output directory contents:"
-          ls -la output/
-          echo "::endgroup::"
-          
-          # Count changes and analyze tokens
-          CHANGES=$(git diff --name-only output/ | wc -l)
-          echo "changes=$CHANGES" >> $GITHUB_OUTPUT
-          
-          # Analyze token changes
-          TOKEN_ANALYSIS=$(node -e "
-            const fs = require('fs');
-            const path = require('path');
-            
-            const oldTokens = JSON.parse(fs.readFileSync('design-tokens.json', 'utf8'));
-            const newTokens = JSON.parse(fs.readFileSync('output/design_tokens.json', 'utf8'));
-            
-            const getTokenCounts = (tokens) => ({
-              colors: Object.keys(tokens.colors || {}).length,
-              typography: Object.keys(tokens.typography || {}).length,
-              spacing: Object.keys(tokens.spacing || {}).length
-            });
-            
-            const oldCounts = getTokenCounts(oldTokens);
-            const newCounts = getTokenCounts(newTokens);
-            
-            const changes = {
-              added: {
-                colors: newCounts.colors - oldCounts.colors,
-                typography: newCounts.typography - oldCounts.typography,
-                spacing: newCounts.spacing - oldCounts.spacing
-              }
-            };
-            
-            console.log(JSON.stringify(changes));
-          ")
-          echo "token_analysis=$TOKEN_ANALYSIS" >> $GITHUB_OUTPUT
 
-      - name: Update PR with processed tokens
-        if: steps.process.outputs.changes != '0'
+      - name: Update Pull Request
+        if: github.event_name == 'pull_request' && env.TOKENS_CHANGED == 'true'
         run: |
-          # Debug: Show output directory contents before copying
-          echo "::group::Output Directory Contents Before Copying"
-          echo "Output directory contents:"
-          ls -la output/
-          echo "::endgroup::"
+          echo "::group::Updating Pull Request"
           
-          # Copy processed files
-          cp -r output/* .
+          # Stage and commit changes
+          git add design-tokens.json output/
+          git commit -m "chore: process design tokens
           
-          # Debug: Show root directory contents after copying
-          echo "::group::Root Directory Contents After Copying"
-          echo "Root directory contents:"
-          ls -la
-          echo "::endgroup::"
+          Automated token processing via GitHub Actions.
+          This commit updates the processed token files based on changes in design-tokens.json."
           
-          # Commit changes
-          git add .
-          git commit -m "Update processed design tokens"
+          # Push changes back to the PR branch
+          git push origin HEAD
           
-          # Push changes to PR branch
-          git push origin ${{ github.head_ref }}
+          # Add PR comment with changes
+          if [ -f token-diff.patch ]; then
+            PR_COMMENT="## Design Token Changes
 
-      - name: Comment on PR
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v6
+            The following changes were made to the design tokens:
+            
+            \`\`\`diff
+            $(cat token-diff.patch)
+            \`\`\`
+            
+            These changes have been automatically processed and committed."
+            
+            gh pr comment ${{ github.event.pull_request.number }} --body "$PR_COMMENT"
+          fi
+          echo "::endgroup::"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push changes to main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && env.TOKENS_CHANGED == 'true'
+        run: |
+          echo "::group::Pushing to main"
+          git push origin HEAD
+          echo "::endgroup::"
+
+      - name: Notify on failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1.24.0
         with:
-          script: |
-            const fs = require('fs');
-            const path = require('path');
-            
-            // Read the processed files
-            const jsonContent = fs.readFileSync(path.join(process.cwd(), 'output/design_tokens.json'), 'utf8');
-            const cssContent = fs.readFileSync(path.join(process.cwd(), 'output/design_tokens.css'), 'utf8');
-            
-            // Parse token analysis
-            const tokenAnalysis = JSON.parse('${{ steps.process.outputs.token_analysis }}');
-            
-            // Create comment
-            const comment = '### Design Tokens Processing Results\n\n' +
-              '✅ Tokens processed successfully!\n\n' +
-              '**Token Changes:**\n' +
-              (tokenAnalysis.added.colors > 0 ? `- Added ${tokenAnalysis.added.colors} color tokens\n` : '') +
-              (tokenAnalysis.added.typography > 0 ? `- Added ${tokenAnalysis.added.typography} typography tokens\n` : '') +
-              (tokenAnalysis.added.spacing > 0 ? `- Added ${tokenAnalysis.added.spacing} spacing tokens\n` : '') +
-              '\n' +
-              '**Generated Files:**\n' +
-              '- `design_tokens.json`\n' +
-              '- `design_tokens.css`\n\n' +
-              'The changes have been automatically applied to this PR.';
-            
-            // Add comment to PR
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: comment
-            });
+          channel-id: 'design-system'
+          slack-message: "❌ Failed to process design tokens\nWorkflow: ${{ github.workflow }}\nRun: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
