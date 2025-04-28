@@ -4,7 +4,7 @@ import TokenValidator from '../validators/tokenValidator.js';
 import { transformToCSS } from '../transformers/cssTransformer.js';
 import { transformToJSON } from '../transformers/jsonTransformer.js';
 import logger from '../utils/logger.js';
-import slackNotifier from '../utils/slackNotifier.js';
+// import slackNotifier from '../utils/slackNotifier.js';
 
 export default class FigmaProcessor {
   constructor(config) {
@@ -51,7 +51,7 @@ export default class FigmaProcessor {
       };
     } catch (error) {
       logger.error('Failed to process Figma design tokens', error);
-      await slackNotifier.sendError(error.message);
+      // await slackNotifier.sendError(error.message);
       throw error;
     }
   }

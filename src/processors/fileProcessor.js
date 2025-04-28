@@ -4,7 +4,7 @@ import TokenValidator from '../validators/tokenValidator.js';
 import { transformToCSS } from '../transformers/cssTransformer.js';
 import { transformToJSON } from '../transformers/jsonTransformer.js';
 import logger from '../utils/logger.js';
-import slackNotifier from '../utils/slackNotifier.js';
+// import slackNotifier from '../utils/slackNotifier.js';
 
 export default class FileProcessor {
   constructor(config) {
@@ -48,7 +48,7 @@ export default class FileProcessor {
       };
     } catch (error) {
       logger.error('Failed to process design tokens file', error);
-      await slackNotifier.sendError(error.message);
+      // await slackNotifier.sendError(error.message);
       throw error;
     }
   }

@@ -1,7 +1,7 @@
 import FileProcessor from './processors/fileProcessor.js';
 import FigmaProcessor from './processors/figmaProcessor.js';
 import logger from './utils/logger.js';
-import slackNotifier from './utils/slackNotifier.js';
+// import slackNotifier from './utils/slackNotifier.js';
 
 export async function processTokens(source, config) {
   try {
@@ -24,17 +24,17 @@ export async function processTokens(source, config) {
       throw new Error(`Invalid source: ${source}`);
     }
 
-    await slackNotifier.sendSuccess(
-      `Processed design tokens from ${source}\n` +
-      `Generated files:\n` +
-      `- ${result.cssPath}\n` +
-      `- ${result.jsonPath}`
-    );
+    // await slackNotifier.sendSuccess(
+    //   `Processed design tokens from ${source}\n` +
+    //   `Generated files:\n` +
+    //   `- ${result.cssPath}\n` +
+    //   `- ${result.jsonPath}`
+    // );
 
     return result;
   } catch (error) {
     logger.error('Failed to process tokens', error);
-    await slackNotifier.sendError(error.message);
+    // await slackNotifier.sendError(error.message);
     throw error;
   }
 } 
