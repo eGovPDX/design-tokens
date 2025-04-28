@@ -2,8 +2,10 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Design Tokens Schema",
   "type": "object",
-  "required": ["USWDS Theme/Project theme"],
   "properties": {
+    "global": {
+      "type": "object"
+    },
     "USWDS Theme/Project theme": {
       "type": "object",
       "required": ["#-theme"],
@@ -14,37 +16,9 @@
           "properties": {
             "color": {
               "type": "object",
-              "patternProperties": {
-                "^.*$": {
-                  "type": "object",
-                  "patternProperties": {
-                    "^.*$": {
-                      "type": "object",
-                      "patternProperties": {
-                        "^.*$": {
-                          "type": "object",
-                          "properties": {
-                            "value": {
-                              "type": "string",
-                              "pattern": "^(#[A-Fa-f0-9]{6}|#[A-Fa-f0-9]{8}|\\{[^}]*\\})$"
-                            },
-                            "type": {
-                              "type": "string",
-                              "enum": ["color"]
-                            }
-                          },
-                          "required": ["value", "type"]
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "typography": {
-              "type": "object",
-              "patternProperties": {
-                "^.*$": {
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": {
                   "type": "object",
                   "properties": {
                     "value": {
@@ -52,34 +26,49 @@
                     },
                     "type": {
                       "type": "string",
-                      "enum": ["typography"]
+                      "enum": ["color"]
                     }
                   },
                   "required": ["value", "type"]
                 }
               }
             },
+            "typography": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": ["typography"]
+                  }
+                },
+                "required": ["value", "type"]
+              }
+            },
             "spacing": {
               "type": "object",
-              "patternProperties": {
-                "^.*$": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": ["string", "number"]
-                    },
-                    "type": {
-                      "type": "string",
-                      "enum": ["spacing"]
-                    }
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": ["string", "number"]
                   },
-                  "required": ["value", "type"]
-                }
+                  "type": {
+                    "type": "string",
+                    "enum": ["spacing"]
+                  }
+                },
+                "required": ["value", "type"]
               }
             }
           }
         }
       }
     }
-  }
+  },
+  "required": ["USWDS Theme/Project theme"]
 } 
