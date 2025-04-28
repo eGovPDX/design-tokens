@@ -9688,10 +9688,6 @@
             "value": "#0ceda6",
             "type": "color"
           },
-          "40v": {
-            "value": "#00a871",
-            "type": "color"
-          },
           "50v": {
             "value": "#008659",
             "type": "color"
@@ -10770,6 +10766,10 @@
         "mint": {
           "30v": {
             "value": "#04c585",
+            "type": "color"
+          },
+          "40v": {
+            "value": "#00a871",
             "type": "color"
           }
         },
