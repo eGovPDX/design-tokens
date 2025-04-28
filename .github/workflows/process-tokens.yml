@@ -116,6 +116,12 @@ jobs:
             exit 1
           fi
           
+          # Debug: Show output directory contents
+          echo "::group::Output Directory Contents"
+          echo "Output directory contents:"
+          ls -la output/
+          echo "::endgroup::"
+          
           # Count changes and analyze tokens
           CHANGES=$(git diff --name-only output/ | wc -l)
           echo "changes=$CHANGES" >> $GITHUB_OUTPUT
@@ -152,8 +158,20 @@ jobs:
       - name: Update PR with processed tokens
         if: steps.process.outputs.changes != '0'
         run: |
+          # Debug: Show output directory contents before copying
+          echo "::group::Output Directory Contents Before Copying"
+          echo "Output directory contents:"
+          ls -la output/
+          echo "::endgroup::"
+          
           # Copy processed files
           cp -r output/* .
+          
+          # Debug: Show root directory contents after copying
+          echo "::group::Root Directory Contents After Copying"
+          echo "Root directory contents:"
+          ls -la
+          echo "::endgroup::"
           
           # Commit changes
           git add .
