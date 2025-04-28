@@ -9808,10 +9808,6 @@
             "value": "#2a646d",
             "type": "color"
           },
-          "70": {
-            "value": "#2c4a4e",
-            "type": "color"
-          },
           "80": {
             "value": "#203133",
             "type": "color"
@@ -10804,6 +10800,10 @@
           }
         },
         "cyan": {
+          "70": {
+            "value": "#2c4a4e",
+            "type": "color"
+          },
           "20v": {
             "value": "#52daf2",
             "type": "color"
