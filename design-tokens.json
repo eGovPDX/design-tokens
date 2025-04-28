@@ -10034,10 +10034,6 @@
             "value": "#d4e5ff",
             "type": "color"
           },
-          "20v": {
-            "value": "#adcdff",
-            "type": "color"
-          },
           "30v": {
             "value": "#81aefc",
             "type": "color"
@@ -10828,6 +10824,10 @@
         "blue-warm": {
           "60": {
             "value": "#345d96",
+            "type": "color"
+          },
+          "20v": {
+            "value": "#adcdff",
             "type": "color"
           }
         },
