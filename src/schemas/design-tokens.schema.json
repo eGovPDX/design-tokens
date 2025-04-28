@@ -20,6 +20,7 @@
                 "type": "object",
                 "additionalProperties": {
                   "type": "object",
+                  "required": ["value", "type"],
                   "properties": {
                     "value": {
                       "type": "string"
@@ -28,8 +29,7 @@
                       "type": "string",
                       "enum": ["color"]
                     }
-                  },
-                  "required": ["value", "type"]
+                  }
                 }
               }
             },
