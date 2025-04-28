@@ -10534,10 +10534,6 @@
             "value": "#1b1617",
             "type": "color"
           },
-          "5v": {
-            "value": "#fff2f5",
-            "type": "color"
-          },
           "10v": {
             "value": "#ffddea",
             "type": "color"
@@ -10848,6 +10844,12 @@
         "red-cool": {
           "80v": {
             "value": "#4f1c24",
+            "type": "color"
+          }
+        },
+        "magenta": {
+          "5v": {
+            "value": "#fff2f5",
             "type": "color"
           }
         }
