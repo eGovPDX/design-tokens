@@ -1,9 +1,9 @@
-const FileProcessor = require('./processors/fileProcessor');
-const FigmaProcessor = require('./processors/figmaProcessor');
-const logger = require('./utils/logger');
-const slackNotifier = require('./utils/slackNotifier');
+import FileProcessor from './processors/fileProcessor.js';
+import FigmaProcessor from './processors/figmaProcessor.js';
+import logger from './utils/logger.js';
+import slackNotifier from './utils/slackNotifier.js';
 
-async function processTokens(source, config) {
+export async function processTokens(source, config) {
   try {
     let processor;
     let result;
@@ -37,8 +37,4 @@ async function processTokens(source, config) {
     await slackNotifier.sendError(error.message);
     throw error;
   }
-}
-
-module.exports = {
-  processTokens
-}; 
+} 
