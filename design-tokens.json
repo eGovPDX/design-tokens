@@ -6859,7 +6859,7 @@
             "type": "color"
           },
           "darker": {
-            "value": "{!-usa.color.red-cool.80v}",
+            "value": "{--usa.color.red-cool.80v}",
             "type": "color"
           },
           "lightest": {
@@ -8931,10 +8931,6 @@
           "70v": {
             "value": "#832133",
             "type": "color"
-          },
-          "80v": {
-            "value": "#4f1c24",
-            "type": "color"
           }
         },
         "red": {
@@ -10844,6 +10840,16 @@
         "none": {
           "value": "#ffffff00",
           "type": "color"
+        }
+      }
+    },
+    "--usa": {
+      "color": {
+        "red-cool": {
+          "80v": {
+            "value": "#4f1c24",
+            "type": "color"
+          }
         }
       }
     }
