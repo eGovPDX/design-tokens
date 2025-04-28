@@ -14,6 +14,9 @@ dependencies:
   axios:
     specifier: ^1.6.2
     version: 1.8.4
+  commander:
+    specifier: ^11.1.0
+    version: 11.1.0
   winston:
     specifier: ^3.11.0
     version: 3.17.0
@@ -1131,6 +1134,11 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       delayed-stream: 1.0.0
+    dev: false
+
+  /commander@11.1.0:
+    resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
+    engines: {node: '>=16'}
     dev: false
 
   /concat-map@0.0.1:
