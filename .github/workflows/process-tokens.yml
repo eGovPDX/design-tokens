@@ -26,6 +26,11 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
+      - name: Configure Git
+        run: |
+          git config --global user.name 'Design Tokens Bot'
+          git config --global user.email 'design-tokens-bot@portland.gov'
+
       - name: Fetch latest changes from main
         run: |
           git fetch origin main
@@ -143,11 +148,6 @@ jobs:
             console.log(JSON.stringify(changes));
           ")
           echo "token_analysis=$TOKEN_ANALYSIS" >> $GITHUB_OUTPUT
-
-      - name: Configure Git
-        run: |
-          git config --global user.name 'Design Tokens Bot'
-          git config --global user.email 'design-tokens-bot@portland.gov'
 
       - name: Update PR with processed tokens
         if: steps.process.outputs.changes != '0'
