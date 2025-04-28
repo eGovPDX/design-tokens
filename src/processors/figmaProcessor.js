@@ -6,15 +6,18 @@ import { transformToJSON } from '../transformers/jsonTransformer.js';
 import logger from '../utils/logger.js';
 import slackNotifier from '../utils/slackNotifier.js';
 
-export default class FileProcessor {
+export default class FigmaProcessor {
   constructor(config) {
     this.config = config;
     this.validator = new TokenValidator();
   }
 
-  async process(inputPath, outputDir) {
+  async process(figmaFileKey, outputDir) {
     try {
-      logger.info('Processing design tokens file...');
+      logger.info('Processing Figma design tokens...');
+      
+      // For now, just read from the local file
+      const inputPath = 'design-tokens.json';
       
       // Validate the input file
       this.validator.validateFile(inputPath);
@@ -47,7 +50,7 @@ export default class FileProcessor {
         jsonPath: path.join(outputDir, 'design_tokens.json')
       };
     } catch (error) {
-      logger.error('Failed to process design tokens file', error);
+      logger.error('Failed to process Figma design tokens', error);
       await slackNotifier.sendError(error.message);
       throw error;
     }
