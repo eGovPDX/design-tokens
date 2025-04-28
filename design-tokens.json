@@ -131,7 +131,7 @@
             "type": "color"
           },
           "vivid": {
-            "value": "{!-usa.color.mint.30v}",
+            "value": "{--usa.color.mint.30v}",
             "type": "color"
           }
         },
@@ -2345,7 +2345,7 @@
             "type": "color"
           },
           "vivid": {
-            "value": "{!-usa.color.mint.30v}",
+            "value": "{--usa.color.mint.30v}",
             "type": "color"
           }
         },
@@ -9688,10 +9688,6 @@
             "value": "#0ceda6",
             "type": "color"
           },
-          "30v": {
-            "value": "#04c585",
-            "type": "color"
-          },
           "40v": {
             "value": "#00a871",
             "type": "color"
@@ -10808,6 +10804,12 @@
         "red-cool": {
           "80v": {
             "value": "#4f1c24",
+            "type": "color"
+          }
+        },
+        "mint": {
+          "30v": {
+            "value": "#04c585",
             "type": "color"
           }
         },
