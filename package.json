@@ -9,7 +9,6 @@
     "test": "jest",
     "lint": "eslint src/**/*.js",
     "process-tokens": "node src/cli.js",
-    "validate": "node src/validate.js",
     "update-tokens": "./scripts/update-tokens.sh",
     "update-tokens:dry-run": "./scripts/update-tokens.sh --dry-run"
   },
