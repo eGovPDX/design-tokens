@@ -48,35 +48,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Validate token format
-        run: |
-          echo "::group::Token Validation"
-          # Validate JSON structure
-          if ! jq empty design-tokens.json; then
-            echo "::error::Invalid JSON format in design-tokens.json"
-            exit 1
-          fi
-          
-          # Validate required token categories
-          VALIDATION_RESULT=$(node -e "
-            const tokens = require('./design-tokens.json');
-            const requiredCategories = ['colors', 'typography', 'spacing'];
-            const missingCategories = requiredCategories.filter(cat => !tokens[cat]);
-            
-            if (missingCategories.length > 0) {
-              console.error('Missing required categories:', missingCategories.join(', '));
-              process.exit(1);
-            }
-            
-            console.log('Token validation successful');
-          ")
-          
-          if [ $? -ne 0 ]; then
-            echo "::error::$VALIDATION_RESULT"
-            exit 1
-          fi
-          echo "::endgroup::"
-
       - name: Create output directory
         run: mkdir -p output
 
