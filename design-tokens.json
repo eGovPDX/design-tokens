@@ -10008,10 +10008,6 @@
             "value": "#2491ff",
             "type": "color"
           },
-          "50v": {
-            "value": "#0076d6",
-            "type": "color"
-          },
           "60v": {
             "value": "#005ea2",
             "type": "color"
@@ -10840,6 +10836,12 @@
         "red-cool": {
           "80v": {
             "value": "#4f1c24",
+            "type": "color"
+          }
+        },
+        "blue": {
+          "50v": {
+            "value": "#0076d6",
             "type": "color"
           }
         },
