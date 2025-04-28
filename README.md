@@ -181,7 +181,7 @@ This approach ensures we have complete, consistent, and well-managed design toke
 3. **Debug Steps**:
    ```bash
    # Test locally
-   npm run process-tokens -- --input design-tokens.json --output ./output
+   pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
    
    # Check logs
    cat output/design_tokens.json
@@ -198,198 +198,86 @@ This approach ensures we have complete, consistent, and well-managed design toke
 
 1. **Token Update Flow**:
    ```mermaid
-   sequenceDiagram
-     participant TS as Tokens Studio
-     participant GH as GitHub
-     participant GA as GitHub Action
-     participant PR as Pull Request
-
-     TS->>GH: Push token changes
-     GH->>PR: Create PR
-     PR->>GA: Trigger action
-     GA->>PR: Process tokens
-     GA->>PR: Add processed files
-     GA->>PR: Add comment
-     PR->>GH: Ready for review
+   graph TD
+       A[Figma Tokens Studio] -->|Push Changes| B[GitHub PR]
+       B -->|Trigger| C[GitHub Action]
+       C -->|Process| D[Generate CSS]
+       D -->|Update PR| E[Review Changes]
+       E -->|Approve| F[Merge to Main]
    ```
 
-2. **Branch Structure**:
+2. **Processing Flow**:
    ```mermaid
    graph TD
-     A[main] --> B[Feature Branch]
-     B --> C[PR]
-     C --> D[Processed Files]
-     D --> E[Review]
-     E -->|Approved| A
-     E -->|Rejected| B
+       A[Token File] -->|Validate| B[Check Schema]
+       B -->|Transform| C[Generate CSS]
+       C -->|Output| D[CSS Variables]
+       D -->|Update| E[PR Files]
    ```
 
-3. **Action Process**:
-   ```mermaid
-   flowchart LR
-     A[PR Created] --> B[Checkout Branch]
-     B --> C[Process Tokens]
-     C --> D[Generate CSS]
-     D --> E[Update PR]
-     E --> F[Add Comment]
-     F --> G[Complete]
-   ```
-
-4. **Review Process**:
-   ```mermaid
-   flowchart TD
-     A[PR Created] --> B{Valid Tokens?}
-     B -->|Yes| C{Valid CSS?}
-     B -->|No| D[Fix in TS]
-     C -->|Yes| E{No Conflicts?}
-     C -->|No| F[Fix Processing]
-     E -->|Yes| G[Approve]
-     E -->|No| H[Resolve Conflicts]
-     D --> A
-     F --> A
-     H --> A
-   ```
-
-These diagrams show:
-- The sequence of events in the token update process
-- How branches interact and merge
-- The steps in the GitHub Action
-- The review and approval workflow
-
-## Features
-
-- Processes design tokens from Tokens Studio output
-- Transforms tokens into CSS variables with utility classes
-- Integrates with GitHub repositories for version control
-- Automated processing via GitHub Actions
-- Detects changes to avoid unnecessary updates
-
-## Setup Instructions
+## Development
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- GitHub repository
-- Tokens Studio for Figma plugin
+- Node.js 18 or higher
+- pnpm 8 or higher
+- Figma account with Tokens Studio plugin
 
 ### Installation
 
-1. Clone this repository:
-   ```
-   git clone https://github.com/eGovPDX/design-tokens.git
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-org/design-tokens.git
    cd design-tokens
    ```
 
 2. Install dependencies:
+   ```bash
+   pnpm install
    ```
-   npm install
+
+3. Configure environment:
+   ```bash
+   cp .env.example .env
+   # Edit .env with your Figma token
    ```
 
-3. Configure GitHub repository:
-   - Set up GitHub Actions secrets if needed
-   - Configure Tokens Studio to push to your repository
+### Usage
 
-## Usage
+1. **Process Tokens**:
+   ```bash
+   pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
+   ```
 
-### Manual Processing
+2. **Update Tokens**:
+   ```bash
+   pnpm run update-tokens
+   ```
 
-Process tokens from a local file:
+3. **Dry Run**:
+   ```bash
+   pnpm run update-tokens:dry-run
+   ```
 
-```
-npm run process-tokens -- --input design-tokens.json --output ./output
-```
+### Testing
 
-### GitHub Action
+1. **Run Tests**:
+   ```bash
+   pnpm test
+   ```
 
-The included GitHub Action will:
+2. **Lint Code**:
+   ```bash
+   pnpm run lint
+   ```
 
-1. Trigger when Tokens Studio creates a PR
-2. Process the design tokens
-3. Update the PR with processed files
-4. Add a comment with processing details
+### Contributing
 
-## File Structure
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a PR
 
-- `src/tokenProcessor.js`: Processes design tokens from files
-- `src/tokenTransformer.js`: Transforms tokens into CSS variables
-- `.github/workflows/process-tokens.yml`: GitHub Action workflow
-- `output/`: Directory for processed files
-
-## Output Format
-
-### JSON Structure
-
-The processed tokens are saved in JSON format with the following structure:
-
-```json
-{
-  "colors": {
-    "primary": "#000000",
-    "secondary": "#ffffff"
-  },
-  "typography": {
-    "heading-1": {
-      "fontFamily": "Inter",
-      "fontSize": 32,
-      "fontWeight": 700
-    }
-  },
-  "spacing": {
-    "small": 8,
-    "medium": 16,
-    "large": 24
-  }
-}
-```
-
-### CSS Variables
-
-The tokens are transformed into CSS variables:
-
-```css
-:root {
-  /* Colors */
-  --color-primary-blue: #0066cc;
-  --color-secondary-green: #00cc66;
-
-  /* Typography */
-  --typography-heading-h1-font-family: Roboto;
-  --typography-heading-h1-font-size: 32px;
-  --typography-heading-h1-font-weight: 700;
-  --typography-heading-h1-line-height: 1.2;
-
-  /* Spacing */
-  --spacing-small: 8px;
-  --spacing-medium: 16px;
-}
-
-/* Utility classes are also generated */
-```
-
-## Customization
-
-### Token Path
-
-You can customize the path where tokens are saved in the GitHub repository by modifying the workflow file.
-
-### CSS Output Format
-
-Modify the `transformToCss` method in the `TokenTransformer` class to change the CSS output format.
-
-## Troubleshooting
-
-### Processing Issues
-
-- Verify that the input file is valid JSON
-- Check that the file structure matches the expected format
-- Ensure all required token types are present
-
-### GitHub Action Issues
-
-- Check workflow permissions
-- Verify repository secrets
-- Review action logs for errors
-
-## License
+### License
 
 MIT

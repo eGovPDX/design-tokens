@@ -17,20 +17,37 @@
             "color": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": "object",
-                  "required": ["value", "type"],
-                  "properties": {
-                    "value": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string",
-                      "enum": ["color"]
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "required": ["value", "type"],
+                      "properties": {
+                        "value": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string",
+                          "enum": ["color"]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": ["value", "type"],
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string",
+                        "enum": ["color"]
+                      }
                     }
                   }
-                }
+                ]
               }
             },
             "typography": {
