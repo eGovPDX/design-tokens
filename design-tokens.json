@@ -10124,10 +10124,6 @@
             "value": "#94adff",
             "type": "color"
           },
-          "40v": {
-            "value": "#628ef4",
-            "type": "color"
-          },
           "50v": {
             "value": "#4866ff",
             "type": "color"
@@ -10850,6 +10846,10 @@
         "indigo-cool": {
           "40": {
             "value": "#6b8ee8",
+            "type": "color"
+          },
+          "40v": {
+            "value": "#628ef4",
             "type": "color"
           }
         },
