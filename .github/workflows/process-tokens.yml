@@ -96,7 +96,7 @@ jobs:
           echo "::group::Process Tokens Command"
           echo "Running process-tokens command..."
           set -x
-          pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
+          pnpm run process-tokens --source file --input design-tokens.json --output ./output
           EXIT_CODE=$?
           set +x
           echo "Exit code: $EXIT_CODE"
