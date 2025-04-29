@@ -4810,7 +4810,7 @@
       },
       "global": {
         "focus-color": {
-          "value": "{!-usa.color.blue.40v}",
+          "value": "{--usa.color.blue.40v}",
           "type": "color"
         },
         "focus-style": {
@@ -7024,7 +7024,7 @@
       },
       "global": {
         "focus-color": {
-          "value": "{!-usa.color.blue.40v}",
+          "value": "{--usa.color.blue.40v}",
           "type": "color"
         },
         "focus-style": {
@@ -9956,10 +9956,6 @@
             "value": "#58b4ff",
             "type": "color"
           },
-          "40v": {
-            "value": "#2491ff",
-            "type": "color"
-          },
           "60v": {
             "value": "#005ea2",
             "type": "color"
@@ -10790,6 +10786,10 @@
         "blue": {
           "90": {
             "value": "#11181d",
+            "type": "color"
+          },
+          "40v": {
+            "value": "#2491ff",
             "type": "color"
           },
           "50v": {
