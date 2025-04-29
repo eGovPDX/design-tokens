@@ -9970,10 +9970,6 @@
             "value": "#e1e7f1",
             "type": "color"
           },
-          "20": {
-            "value": "#bbcae4",
-            "type": "color"
-          },
           "30": {
             "value": "#98afd2",
             "type": "color"
@@ -10794,6 +10790,10 @@
           }
         },
         "blue-warm": {
+          "20": {
+            "value": "#bbcae4",
+            "type": "color"
+          },
           "60": {
             "value": "#345d96",
             "type": "color"
