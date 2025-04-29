@@ -95,7 +95,7 @@ jobs:
           echo "Checking for output files..."
           ls -la output/
           
-          if [ ! -f output/tokens.css ] || [ ! -f output/tokens.json ]; then
+          if [ ! -f output/design_tokens.css ] || [ ! -f output/design_tokens.json ]; then
             echo "::error::Output files were not created"
             exit 1
           fi
