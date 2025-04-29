@@ -10417,10 +10417,6 @@
           "70v": {
             "value": "#731f44",
             "type": "color"
-          },
-          "80v": {
-            "value": "#4f172e",
-            "type": "color"
           }
         },
         "gray-cool": {
@@ -10864,6 +10860,10 @@
         "magenta": {
           "5v": {
             "value": "#fff2f5",
+            "type": "color"
+          },
+          "80v": {
+            "value": "#4f172e",
             "type": "color"
           }
         },
