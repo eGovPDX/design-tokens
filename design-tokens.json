@@ -141,7 +141,7 @@
             "type": "color"
           },
           "light": {
-            "value": "{!-usa.color.indigo.40v}",
+            "value": "{--usa.color.indigo.40v}",
             "type": "color"
           },
           "medium": {
@@ -2355,7 +2355,7 @@
             "type": "color"
           },
           "light": {
-            "value": "{!-usa.color.indigo.40v}",
+            "value": "{--usa.color.indigo.40v}",
             "type": "color"
           },
           "medium": {
@@ -10165,10 +10165,6 @@
           "30v": {
             "value": "#a3a7fa",
             "type": "color"
-          },
-          "40v": {
-            "value": "#8289ff",
-            "type": "color"
           }
         },
         "indigo-warm": {
@@ -10826,6 +10822,10 @@
           }
         },
         "indigo": {
+          "40v": {
+            "value": "#8289ff",
+            "type": "color"
+          },
           "50v": {
             "value": "#656bd7",
             "type": "color"
