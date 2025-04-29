@@ -2,11 +2,8 @@ name: Process Design Tokens
 
 on:
   pull_request:
-    paths:
-      - 'design-tokens.json'
-  push:
     branches:
-      - main
+      - incoming-token-changes
     paths:
       - 'design-tokens.json'
 
@@ -37,14 +34,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18.19.1'  # Latest LTS version
+          node-version: '18.19.1'
           cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Create output directory
-        run: mkdir -p output
 
       - name: Process tokens
         id: process-tokens
@@ -60,76 +54,48 @@ jobs:
             exit 1
           fi
           
-          # Create a backup of the original tokens
-          cp design-tokens.json design-tokens.backup.json
+          # Create output directory
+          mkdir -p output
           
-          # Process tokens and capture any changes
-          if ! node src/cli.js --source file --input design-tokens.json --output output > token-changes.log 2>&1; then
+          # Process tokens
+          if ! node src/cli.js --source file --input design-tokens.json --output output; then
             echo "::error::Token processing failed"
-            cat token-changes.log
             exit 1
           fi
           
-          # Compare files to detect changes
-          if ! cmp -s design-tokens.json design-tokens.backup.json; then
-            echo "TOKENS_CHANGED=true" >> $GITHUB_ENV
-            echo "::notice::Tokens were processed and modified"
-            
-            # Generate a diff for the PR comment
-            git diff --no-index design-tokens.backup.json design-tokens.json > token-diff.patch || true
-          else
-            echo "TOKENS_CHANGED=false" >> $GITHUB_ENV
-            echo "::notice::No changes were needed in the tokens"
+          # Check if output files were created
+          if [ ! -f output/tokens.css ] || [ ! -f output/tokens.json ]; then
+            echo "::error::Output files were not created"
+            exit 1
           fi
-          echo "::endgroup::"
-
-      - name: Fetch and merge main
-        if: github.event_name == 'pull_request' && env.TOKENS_CHANGED == 'true'
-        run: |
-          echo "::group::Fetching and merging main"
-          git fetch origin main
-          git merge origin/main --no-edit
-          echo "::endgroup::"
-
-      - name: Update Pull Request
-        if: github.event_name == 'pull_request' && env.TOKENS_CHANGED == 'true'
-        run: |
-          echo "::group::Updating Pull Request"
           
-          # Stage and commit changes
-          git add design-tokens.json output/
+          echo "::notice::Tokens were processed successfully"
+          echo "::endgroup::"
+
+      - name: Commit and push changes
+        run: |
+          echo "::group::Committing and pushing changes"
+          
+          # Stage all changes
+          git add output/
+          
+          # Check if there are any changes to commit
+          if git diff --staged --quiet; then
+            echo "::notice::No changes to commit"
+            exit 0
+          fi
+          
+          # Commit changes
           git commit -m "chore: process design tokens
           
           Automated token processing via GitHub Actions.
-          This commit updates the processed token files based on changes in design-tokens.json."
+          This commit adds the processed token files based on changes in design-tokens.json."
           
           # Push changes back to the PR branch
           git push origin HEAD
-          
-          # Add PR comment with changes
-          if [ -f token-diff.patch ]; then
-            PR_COMMENT="## Design Token Changes
-
-            The following changes were made to the design tokens:
-            
-            \`\`\`diff
-            $(cat token-diff.patch)
-            \`\`\`
-            
-            These changes have been automatically processed and committed."
-            
-            gh pr comment ${{ github.event.pull_request.number }} --body "$PR_COMMENT"
-          fi
           echo "::endgroup::"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Push changes to main
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && env.TOKENS_CHANGED == 'true'
-        run: |
-          echo "::group::Pushing to main"
-          git push origin HEAD
-          echo "::endgroup::"
 
       # - name: Notify on failure
       #   if: failure()
