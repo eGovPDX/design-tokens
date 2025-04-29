@@ -69,7 +69,7 @@ jobs:
           cp design-tokens.json design-tokens.backup.json
           
           # Process tokens and capture any changes
-          if ! pnpm run process-tokens > token-changes.log 2>&1; then
+          if ! pnpm run update-tokens > token-changes.log 2>&1; then
             echo "::error::Token processing failed"
             cat token-changes.log
             exit 1
