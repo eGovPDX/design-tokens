@@ -7,76 +7,93 @@
 export function transformToCSS(tokens) {
   const cssParts = [':root {'];
   
+  // Extract tokens from the nested structure
+  const themeTokens = tokens['USWDS Theme/Project theme']?.['#-theme'] || {};
+  
   // Transform colors
-  if (tokens.colors && Object.keys(tokens.colors).length > 0) {
+  if (themeTokens.color) {
     cssParts.push('  /* Colors */');
-    for (const [name, value] of Object.entries(tokens.colors)) {
-      // Convert name to kebab-case for CSS variables
-      const varName = toKebabCase(name);
-      cssParts.push(`  --color-${varName}: ${value};`);
+    for (const [category, variants] of Object.entries(themeTokens.color)) {
+      for (const [variant, token] of Object.entries(variants)) {
+        if (token.value) {
+          // Convert name to kebab-case for CSS variables
+          const varName = toKebabCase(`${category}-${variant}`);
+          cssParts.push(`  --color-${varName}: ${token.value};`);
+        }
+      }
     }
   }
   
   // Transform typography
-  if (tokens.typography && Object.keys(tokens.typography).length > 0) {
+  if (themeTokens.typography) {
     cssParts.push('\n  /* Typography */');
-    for (const [name, props] of Object.entries(tokens.typography)) {
+    for (const [name, props] of Object.entries(themeTokens.typography)) {
       // Convert name to kebab-case for CSS variables
       const varName = toKebabCase(name);
       
       // Add each typography property as a separate variable
       for (const [propName, propValue] of Object.entries(props)) {
-        // Handle special cases for typography properties
-        let formattedValue = propValue;
-        if (propName === 'fontSize' && typeof propValue === 'number') {
-          formattedValue = `${propValue}px`;
-        } else if (propName === 'lineHeight' && typeof propValue === 'number') {
-          formattedValue = `${propValue}px`;
-        } else if (propName === 'letterSpacing' && typeof propValue === 'number') {
-          formattedValue = `${propValue}px`;
+        if (propValue.value) {
+          // Handle special cases for typography properties
+          let formattedValue = propValue.value;
+          if (propName === 'fontSize' && typeof formattedValue === 'number') {
+            formattedValue = `${formattedValue}px`;
+          } else if (propName === 'lineHeight' && typeof formattedValue === 'number') {
+            formattedValue = `${formattedValue}px`;
+          } else if (propName === 'letterSpacing' && typeof formattedValue === 'number') {
+            formattedValue = `${formattedValue}px`;
+          }
+          
+          cssParts.push(`  --typography-${varName}-${toKebabCase(propName)}: ${formattedValue};`);
         }
-        
-        cssParts.push(`  --typography-${varName}-${toKebabCase(propName)}: ${formattedValue};`);
       }
     }
   }
   
   // Transform spacing
-  if (tokens.spacing && Object.keys(tokens.spacing).length > 0) {
+  if (themeTokens.spacing) {
     cssParts.push('\n  /* Spacing */');
-    for (const [name, value] of Object.entries(tokens.spacing)) {
-      // Convert name to kebab-case for CSS variables
-      const varName = toKebabCase(name);
-      cssParts.push(`  --spacing-${varName}: ${value}px;`);
+    for (const [name, token] of Object.entries(themeTokens.spacing)) {
+      if (token.value) {
+        // Convert name to kebab-case for CSS variables
+        const varName = toKebabCase(name);
+        cssParts.push(`  --spacing-${varName}: ${token.value}px;`);
+      }
     }
   }
   
   cssParts.push('}');
   
   // Add utility classes for colors
-  if (tokens.colors && Object.keys(tokens.colors).length > 0) {
+  if (themeTokens.color) {
     cssParts.push('\n/* Color Utility Classes */');
-    for (const name of Object.keys(tokens.colors)) {
-      const varName = toKebabCase(name);
-      cssParts.push(`.color-${varName} {`);
-      cssParts.push(`  color: var(--color-${varName});`);
-      cssParts.push('}');
-      cssParts.push(`.bg-${varName} {`);
-      cssParts.push(`  background-color: var(--color-${varName});`);
-      cssParts.push('}');
+    for (const [category, variants] of Object.entries(themeTokens.color)) {
+      for (const [variant, token] of Object.entries(variants)) {
+        if (token.value) {
+          const varName = toKebabCase(`${category}-${variant}`);
+          cssParts.push(`.color-${varName} {`);
+          cssParts.push(`  color: var(--color-${varName});`);
+          cssParts.push('}');
+          cssParts.push(`.bg-${varName} {`);
+          cssParts.push(`  background-color: var(--color-${varName});`);
+          cssParts.push('}');
+        }
+      }
     }
   }
   
   // Add utility classes for typography
-  if (tokens.typography && Object.keys(tokens.typography).length > 0) {
+  if (themeTokens.typography) {
     cssParts.push('\n/* Typography Utility Classes */');
-    for (const [name, props] of Object.entries(tokens.typography)) {
+    for (const [name, props] of Object.entries(themeTokens.typography)) {
       const varName = toKebabCase(name);
       cssParts.push(`.typography-${varName} {`);
-      for (const propName of Object.keys(props)) {
-        const cssPropName = toCssProperty(propName);
-        if (cssPropName) {
-          cssParts.push(`  ${cssPropName}: var(--typography-${varName}-${toKebabCase(propName)});`);
+      for (const [propName, propValue] of Object.entries(props)) {
+        if (propValue.value) {
+          const cssPropName = toCssProperty(propName);
+          if (cssPropName) {
+            cssParts.push(`  ${cssPropName}: var(--typography-${varName}-${toKebabCase(propName)});`);
+          }
         }
       }
       cssParts.push('}');
@@ -84,16 +101,18 @@ export function transformToCSS(tokens) {
   }
   
   // Add utility classes for spacing
-  if (tokens.spacing && Object.keys(tokens.spacing).length > 0) {
+  if (themeTokens.spacing) {
     cssParts.push('\n/* Spacing Utility Classes */');
-    for (const name of Object.keys(tokens.spacing)) {
-      const varName = toKebabCase(name);
-      cssParts.push(`.margin-${varName} {`);
-      cssParts.push(`  margin: var(--spacing-${varName});`);
-      cssParts.push('}');
-      cssParts.push(`.padding-${varName} {`);
-      cssParts.push(`  padding: var(--spacing-${varName});`);
-      cssParts.push('}');
+    for (const [name, token] of Object.entries(themeTokens.spacing)) {
+      if (token.value) {
+        const varName = toKebabCase(name);
+        cssParts.push(`.margin-${varName} {`);
+        cssParts.push(`  margin: var(--spacing-${varName});`);
+        cssParts.push('}');
+        cssParts.push(`.padding-${varName} {`);
+        cssParts.push(`  padding: var(--spacing-${varName});`);
+        cssParts.push('}');
+      }
     }
   }
   
