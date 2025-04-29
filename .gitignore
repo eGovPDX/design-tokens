@@ -15,7 +15,9 @@ node_modules/
 
 # Build outputs
 dist/
-output/
+output/*
+!output/design_tokens.css
+!output/design_tokens.json
 test-output/
 
 # Logs
