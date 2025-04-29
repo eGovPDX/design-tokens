@@ -9858,10 +9858,6 @@
             "value": "#14333d",
             "type": "color"
           },
-          "90": {
-            "value": "#0f191c",
-            "type": "color"
-          },
           "5v": {
             "value": "#e1f3f8",
             "type": "color"
@@ -10762,6 +10758,10 @@
           }
         },
         "blue-cool": {
+          "90": {
+            "value": "#0f191c",
+            "type": "color"
+          },
           "80v": {
             "value": "#002d3f",
             "type": "color"
