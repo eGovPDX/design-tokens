@@ -55,9 +55,9 @@ Tokens Studio provides a complete solution for design token management:
 The recommended workflow is:
 
 1. Use Tokens Studio in Figma to manage tokens
-2. Push changes to GitHub via the plugin
-3. Let the GitHub Action process the tokens
-4. Review and merge changes
+2. Push changes to GitHub via the plugin to the `incoming-token-changes` branch
+3. GitHub Action processes the tokens and adds the output files to your PR
+4. Review and merge changes to main
 
 This approach ensures we have complete, consistent, and well-managed design tokens.
 
@@ -66,33 +66,36 @@ This approach ensures we have complete, consistent, and well-managed design toke
 #### PR Workflow
 
 1. **Token Updates**:
-   - Tokens Studio creates a PR when changes are pushed
+   - Tokens Studio creates/updates the `incoming-token-changes` branch when changes are pushed
    - PR includes the updated `design-tokens.json` file
-   - GitHub Action automatically triggers on PR creation
+   - GitHub Action automatically triggers on PR creation/update
 
 2. **Action Processing**:
    - Action checks out the PR branch
    - Processes the token file
-   - Generates CSS variables
-   - Updates the PR with processed files
+   - Generates output files:
+     - CSS variables
+     - Processed JSON
+   - Commits the generated files back to the PR
 
 3. **File Management**:
    - Original `design-tokens.json` is preserved
    - Processed files are added to the PR:
-     - `design_tokens.json` (processed version)
-     - `design_tokens.css` (CSS variables)
+     - `output/design_tokens.json` (processed version)
+     - `output/design_tokens.css` (CSS variables)
 
 #### Branch Management
 
 1. **Branch Structure**:
    - `main`: Production-ready tokens
-   - Feature branches: Created by Tokens Studio
-   - No long-lived branches needed
+   - `incoming-token-changes`: Dedicated branch for Tokens Studio updates
+   - PRs are created from `incoming-token-changes` to `main`
 
 2. **Naming Conventions**:
-   - Feature branches: `tokens/description`
+   - Main branch: `main`
+   - Token updates branch: `incoming-token-changes`
    - PR titles: `Update Design Tokens: Description`
-   - Commit messages: `Update design tokens`
+   - Commit messages: `chore: process design tokens`
 
 3. **Conflict Resolution**:
    - Always rebase on latest `main`
@@ -103,8 +106,8 @@ This approach ensures we have complete, consistent, and well-managed design toke
 
 1. **Required Secrets**:
    ```yaml
-   SLACK_WEBHOOK_URL: # For notifications
    FIGMA_ACCESS_TOKEN: # For validation
+   # SLACK_WEBHOOK_URL: # For notifications (currently disabled)
    ```
 
 2. **Permissions**:
@@ -118,8 +121,7 @@ This approach ensures we have complete, consistent, and well-managed design toke
    ```yaml
    on:
      pull_request:
-       branches:
-         - main
+       types: [opened, synchronize, reopened]
        paths:
          - 'design-tokens.json'
    ```
@@ -128,48 +130,30 @@ This approach ensures we have complete, consistent, and well-managed design toke
 
 1. **PR Checklist**:
    - [ ] Token changes are valid
-   - [ ] CSS generation successful
+   - [ ] Output files generated successfully
    - [ ] No conflicts with existing tokens
    - [ ] Documentation updated if needed
 
 2. **Validation Steps**:
-   - Check token counts
-   - Verify CSS output
+   - Check token changes in `design-tokens.json`
+   - Verify output files are generated:
+     - `output/design_tokens.css`
+     - `output/design_tokens.json`
    - Review change comments
    - Test in preview if available
 
 3. **Common Issues**:
    - Missing token references
    - Invalid token values
-   - CSS generation errors
+   - Output file generation errors
    - Merge conflicts
-
-#### Integration Features
-
-1. **PR Comments**:
-   - Token change summary
-   - Processing results
-   - Validation status
-   - Next steps
-
-2. **Change Tracking**:
-   - Token additions/removals
-   - Value changes
-   - CSS variable updates
-   - Version history
-
-3. **Rollback Process**:
-   - Revert PR if needed
-   - Restore previous version
-   - Update Tokens Studio
-   - Create new PR with fixes
 
 #### Troubleshooting
 
 1. **Action Failures**:
-   - Check action logs
-   - Verify secrets
-   - Review token file
+   - Check action logs in GitHub
+   - Verify secrets are set
+   - Review token file format
    - Test locally
 
 2. **PR Issues**:
@@ -183,7 +167,7 @@ This approach ensures we have complete, consistent, and well-managed design toke
    # Test locally
    pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
    
-   # Check logs
+   # Check output files
    cat output/design_tokens.json
    cat output/design_tokens.css
    ```
@@ -191,29 +175,8 @@ This approach ensures we have complete, consistent, and well-managed design toke
 4. **Common Solutions**:
    - Update branch from main
    - Fix token references
-   - Adjust permissions
-   - Clear action cache
-
-#### Workflow Diagrams
-
-1. **Token Update Flow**:
-   ```mermaid
-   graph TD
-       A[Figma Tokens Studio] -->|Push Changes| B[GitHub PR]
-       B -->|Trigger| C[GitHub Action]
-       C -->|Process| D[Generate CSS]
-       D -->|Update PR| E[Review Changes]
-       E -->|Approve| F[Merge to Main]
-   ```
-
-2. **Processing Flow**:
-   ```mermaid
-   graph TD
-       A[Token File] -->|Validate| B[Check Schema]
-       B -->|Transform| C[Generate CSS]
-       C -->|Output| D[CSS Variables]
-       D -->|Update| E[PR Files]
-   ```
+   - Check file permissions
+   - Clear GitHub Actions cache
 
 ## Development
 
@@ -227,7 +190,7 @@ This approach ensures we have complete, consistent, and well-managed design toke
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-org/design-tokens.git
+   git clone https://github.com/eGovPDX/design-tokens.git
    cd design-tokens
    ```
 
@@ -249,35 +212,11 @@ This approach ensures we have complete, consistent, and well-managed design toke
    pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
    ```
 
-2. **Update Tokens**:
-   ```bash
-   pnpm run update-tokens
-   ```
-
-3. **Dry Run**:
-   ```bash
-   pnpm run update-tokens:dry-run
-   ```
+2. **Output Files**:
+   - `output/design_tokens.css`: CSS variables for use in your application
+   - `output/design_tokens.json`: Processed JSON tokens for reference
 
 ### Testing
 
 1. **Run Tests**:
-   ```bash
-   pnpm test
    ```
-
-2. **Lint Code**:
-   ```bash
-   pnpm run lint
-   ```
-
-### Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a PR
-
-### License
-
-MIT
