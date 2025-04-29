@@ -366,10 +366,6 @@
           "type": "color"
         },
         "margins": {
-          "mobile-width": {
-            "value": "{usa.spacing.2}",
-            "type": "dimension"
-          },
           "breakpoint": {
             "value": "{usa.spacing.desktop}",
             "type": "dimension"
@@ -601,6 +597,16 @@
         }
       }
     },
+    "--theme": {
+      "page": {
+        "margins": {
+          "mobile-width": {
+            "value": "{usa.spacing.2}",
+            "type": "dimension"
+          }
+        }
+      }
+    },
     "@-component": {
       "accordion": {
         "background-color": {
@@ -640,10 +646,6 @@
             "value": "{#-theme.color.ink}",
             "type": "color"
           }
-        },
-        "font-family": {
-          "value": "{!-usa.font-family.heading}",
-          "type": "text"
         },
         "font-size": {
           "value": "{#-theme.font-size.heading.sm}",
@@ -1243,10 +1245,6 @@
         },
         "padding-sm": {
           "value": "{!-usa.spacing.1}",
-          "type": "dimension"
-        },
-        "padding-md": {
-          "value": "{!-usa.spacing.2}",
           "type": "dimension"
         },
         "padding-lg": {
@@ -2173,6 +2171,20 @@
       "megamenu": {
         "columns": {
           "value": "0.188rem",
+          "type": "dimension"
+        }
+      }
+    },
+    "--component": {
+      "accordion": {
+        "font-family": {
+          "value": "{!-usa.font-family.heading}",
+          "type": "text"
+        }
+      },
+      "PGOV Footer": {
+        "padding-md": {
+          "value": "{!-usa.spacing.2}",
           "type": "dimension"
         }
       }
@@ -9947,10 +9959,6 @@
           "60v": {
             "value": "#005ea2",
             "type": "color"
-          },
-          "70v": {
-            "value": "#0b4778",
-            "type": "color"
           }
         },
         "blue-warm": {
@@ -10772,6 +10780,10 @@
             "value": "#0076d6",
             "type": "color"
           },
+          "70v": {
+            "value": "#0b4778",
+            "type": "color"
+          },
           "80v": {
             "value": "#112f4e",
             "type": "color"
@@ -10886,10 +10898,6 @@
       },
       "font-size": {
         "display": {
-          "1": {
-            "value": "0.738rem",
-            "type": "dimension"
-          },
           "2": {
             "value": "0.794rem",
             "type": "dimension"
@@ -10968,6 +10976,16 @@
           },
           "micro": {
             "value": "0.613rem",
+            "type": "dimension"
+          }
+        }
+      }
+    },
+    "--usa": {
+      "font-size": {
+        "display": {
+          "1": {
+            "value": "0.738rem",
             "type": "dimension"
           }
         }
@@ -11621,7 +11639,7 @@
             "type": "dimension"
           },
           "13": {
-            "value": "{!-usa.font-size.13}",
+            "value": "{--usa.font-size.13}",
             "type": "dimension"
           },
           "14": {
@@ -11817,7 +11835,7 @@
             "type": "dimension"
           },
           "13": {
-            "value": "{!-usa.font-size.13}",
+            "value": "{--usa.font-size.13}",
             "type": "dimension"
           },
           "14": {
@@ -12007,7 +12025,7 @@
       "font-size": {
         "body": {
           "1": {
-            "value": "{!-usa.font-size.display.1}",
+            "value": "{--usa.font-size.display.1}",
             "type": "dimension"
           },
           "2": {
@@ -12392,10 +12410,6 @@
             "value": "{#-theme.font-size.mono.sm}",
             "type": "dimension"
           },
-          "md": {
-            "value": "{#-theme.font-size.mono.md}",
-            "type": "dimension"
-          },
           "lg": {
             "value": "{#-theme.font-size.mono.lg}",
             "type": "dimension"
@@ -12410,6 +12424,16 @@
           },
           "3xl": {
             "value": "{#-theme.font-size.mono.3xl}",
+            "type": "dimension"
+          }
+        }
+      }
+    },
+    "--theme": {
+      "font-size": {
+        "code": {
+          "md": {
+            "value": "{#-theme.font-size.mono.md}",
             "type": "dimension"
           }
         }
@@ -12707,7 +12731,7 @@
       "font-size": {
         "heading": {
           "1": {
-            "value": "{!-usa.font-size.display.1}",
+            "value": "{--usa.font-size.display.1}",
             "type": "dimension"
           },
           "2": {
@@ -13127,7 +13151,7 @@
       "font-size": {
         "ui": {
           "1": {
-            "value": "{!-usa.font-size.display.1}",
+            "value": "{--usa.font-size.display.1}",
             "type": "dimension"
           },
           "2": {
@@ -13547,7 +13571,7 @@
       "font-size": {
         "alt": {
           "1": {
-            "value": "{!-usa.font-size.display.1}",
+            "value": "{--usa.font-size.display.1}",
             "type": "dimension"
           },
           "2": {
@@ -14223,10 +14247,6 @@
           "value": "2rem",
           "type": "dimension"
         },
-        "13": {
-          "value": "2.25rem",
-          "type": "dimension"
-        },
         "14": {
           "value": "2.5rem",
           "type": "dimension"
@@ -14257,6 +14277,14 @@
         },
         "micro": {
           "value": "0.625rem",
+          "type": "dimension"
+        }
+      }
+    },
+    "--usa": {
+      "font-size": {
+        "13": {
+          "value": "2.25rem",
           "type": "dimension"
         }
       }
