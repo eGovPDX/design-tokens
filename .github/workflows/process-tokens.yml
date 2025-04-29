@@ -2,8 +2,7 @@ name: Process Design Tokens
 
 on:
   pull_request:
-    branches:
-      - incoming-token-changes
+    types: [opened, synchronize, reopened]
     paths:
       - 'design-tokens.json'
 
@@ -15,11 +14,29 @@ jobs:
       pull-requests: write
 
     steps:
+      - name: Debug workflow context
+        run: |
+          echo "::group::Workflow Context"
+          echo "Event name: ${{ github.event_name }}"
+          echo "Event action: ${{ github.event.action }}"
+          echo "Base ref: ${{ github.base_ref }}"
+          echo "Head ref: ${{ github.head_ref }}"
+          echo "PR number: ${{ github.event.pull_request.number }}"
+          echo "::endgroup::"
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
+
+      - name: Debug repository state
+        run: |
+          echo "::group::Debug Repository State"
+          echo "Current branch: $(git branch --show-current)"
+          echo "Git status:"
+          git status
+          echo "::endgroup::"
 
       - name: Configure Git
         run: |
@@ -40,6 +57,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Debug file system
+        run: |
+          echo "::group::Debug File System"
+          echo "Current directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la
+          echo "::endgroup::"
+
       - name: Process tokens
         id: process-tokens
         env:
@@ -54,16 +79,22 @@ jobs:
             exit 1
           fi
           
+          echo "Found design-tokens.json"
+          echo "File contents:"
+          cat design-tokens.json
+          
           # Create output directory
           mkdir -p output
+          echo "Created output directory"
           
-          # Process tokens
-          if ! node src/cli.js --source file --input design-tokens.json --output output; then
-            echo "::error::Token processing failed"
-            exit 1
-          fi
+          # Process tokens with verbose logging
+          echo "Running token processing..."
+          node src/cli.js --source file --input design-tokens.json --output output
           
           # Check if output files were created
+          echo "Checking for output files..."
+          ls -la output/
+          
           if [ ! -f output/tokens.css ] || [ ! -f output/tokens.json ]; then
             echo "::error::Output files were not created"
             exit 1
