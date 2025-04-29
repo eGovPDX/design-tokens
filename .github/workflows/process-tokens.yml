@@ -29,11 +29,6 @@ jobs:
           git config --global user.name 'Design Tokens Bot'
           git config --global user.email 'design-tokens-bot@portland.gov'
 
-      - name: Fetch latest changes from main
-        run: |
-          git fetch origin main
-          git merge origin/main --no-edit
-
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -86,6 +81,14 @@ jobs:
             echo "TOKENS_CHANGED=false" >> $GITHUB_ENV
             echo "::notice::No changes were needed in the tokens"
           fi
+          echo "::endgroup::"
+
+      - name: Fetch and merge main
+        if: github.event_name == 'pull_request' && env.TOKENS_CHANGED == 'true'
+        run: |
+          echo "::group::Fetching and merging main"
+          git fetch origin main
+          git merge origin/main --no-edit
           echo "::endgroup::"
 
       - name: Update Pull Request
