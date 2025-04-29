@@ -9955,10 +9955,6 @@
           "70v": {
             "value": "#0b4778",
             "type": "color"
-          },
-          "80v": {
-            "value": "#112f4e",
-            "type": "color"
           }
         },
         "blue-warm": {
@@ -10786,6 +10782,10 @@
           },
           "50v": {
             "value": "#0076d6",
+            "type": "color"
+          },
+          "80v": {
+            "value": "#112f4e",
             "type": "color"
           }
         },
