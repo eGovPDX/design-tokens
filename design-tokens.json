@@ -141,7 +141,7 @@
             "type": "color"
           },
           "light": {
-            "value": "{!-usa.color.indigo.40v}",
+            "value": "{--usa.color.indigo.40v}",
             "type": "color"
           },
           "medium": {
@@ -2355,7 +2355,7 @@
             "type": "color"
           },
           "light": {
-            "value": "{!-usa.color.indigo.40v}",
+            "value": "{--usa.color.indigo.40v}",
             "type": "color"
           },
           "medium": {
@@ -4810,7 +4810,7 @@
       },
       "global": {
         "focus-color": {
-          "value": "{!-usa.color.blue.40v}",
+          "value": "{--usa.color.blue.40v}",
           "type": "color"
         },
         "focus-style": {
@@ -7024,7 +7024,7 @@
       },
       "global": {
         "focus-color": {
-          "value": "{!-usa.color.blue.40v}",
+          "value": "{--usa.color.blue.40v}",
           "type": "color"
         },
         "focus-style": {
@@ -9699,10 +9699,6 @@
           "70v": {
             "value": "#0c4e29",
             "type": "color"
-          },
-          "80v": {
-            "value": "#0d351e",
-            "type": "color"
           }
         },
         "mint-cool": {
@@ -9944,10 +9940,6 @@
             "value": "#1f303e",
             "type": "color"
           },
-          "90": {
-            "value": "#11181d",
-            "type": "color"
-          },
           "5v": {
             "value": "#e8f5ff",
             "type": "color"
@@ -9962,10 +9954,6 @@
           },
           "30v": {
             "value": "#58b4ff",
-            "type": "color"
-          },
-          "40v": {
-            "value": "#2491ff",
             "type": "color"
           },
           "60v": {
@@ -10172,10 +10160,6 @@
           },
           "30v": {
             "value": "#a3a7fa",
-            "type": "color"
-          },
-          "40v": {
-            "value": "#8289ff",
             "type": "color"
           }
         },
@@ -10755,6 +10739,10 @@
           "40v": {
             "value": "#00a871",
             "type": "color"
+          },
+          "80v": {
+            "value": "#0d351e",
+            "type": "color"
           }
         },
         "mint-cool": {
@@ -10796,6 +10784,14 @@
           }
         },
         "blue": {
+          "90": {
+            "value": "#11181d",
+            "type": "color"
+          },
+          "40v": {
+            "value": "#2491ff",
+            "type": "color"
+          },
           "50v": {
             "value": "#0076d6",
             "type": "color"
@@ -10826,6 +10822,10 @@
           }
         },
         "indigo": {
+          "40v": {
+            "value": "#8289ff",
+            "type": "color"
+          },
           "50v": {
             "value": "#656bd7",
             "type": "color"
