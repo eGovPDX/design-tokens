@@ -1,4 +1,5 @@
 :root {
+<<<<<<< HEAD
   /* Colors */
   --color-5: #757575;
   --color-10: #757575;
@@ -4835,4 +4836,6 @@
 }
 .padding-filter-only-system-tokens-with-the-character-for-example-in-an-auto-layout-padding-or-gap-selector-will-bring-up-only-the-system-spacing-tokens-omitting-any-distracting-theme-or-component-tokens {
   padding: var(--spacing-filter-only-system-tokens-with-the-character-for-example-in-an-auto-layout-padding-or-gap-selector-will-bring-up-only-the-system-spacing-tokens-omitting-any-distracting-theme-or-component-tokens);
+=======
+>>>>>>> 9fb0478be8441ccb300906ef669b06fa14f7c7f8
 }
