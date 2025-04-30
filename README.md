@@ -216,6 +216,33 @@ This approach ensures we have complete, consistent, and well-managed design toke
    - `output/design_tokens.css`: CSS variables for use in your application
    - `output/design_tokens.json`: Processed JSON tokens for reference
 
+### Token Resolution
+
+The token resolution system supports several token formats:
+
+1. **Color Tokens**:
+   - Direct values: `#RRGGBB` or `rgba(r,g,b,a)`
+   - USWDS references: `{!-usa.color.primary.vivid}` or `usa.color.base.dark`
+   - Theme references: `{#-theme.color.primary.medium}`
+
+2. **Typography Tokens**:
+   - Font sizes: 
+     - USWDS references: `{!-usa.font-size.reading.5}` or `{!-usa.font-size.display.2xl}`
+     - Theme references: `{#-theme.font-size.body.sm}`
+   - Font weights: `bold`, `regular`, `light`, etc.
+   - Font families: References to font stacks
+
+3. **Spacing Tokens**:
+   - Numeric values: `2px`, `1rem`, etc.
+   - USWDS references: `{usa.spacing.4}` or `{!-usa.spacing.md}`
+   - Theme references: `{#-theme.spacing.container}`
+
+The resolution system follows this precedence order:
+1. Direct token references (exact match)
+2. USWDS token resolution for known patterns
+3. Theme-based resolution using project/default themes
+4. Sensible fallbacks for all token types
+
 ### Testing
 
 1. **Run Tests**:
