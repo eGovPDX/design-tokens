@@ -4,6 +4,8 @@
  * This module transforms design tokens from JSON format to CSS variables.
  */
 
+import { getUSWDSFontFamily, getUSWDSTypography, getUSWDSFontWeight, getUSWDSColor, getUSWDSSpacing } from './uswdsTokenResolver.js';
+
 /**
  * Get a token value from the tokens object using a path.
  * 
@@ -11,81 +13,188 @@
  * @param {string} path - The path to the token value
  * @returns {*} - The token value or null if not found
  */
-function getTokenValue(tokens, path) {
-  // Remove any prefix markers (!-, --, etc.)
-  const cleanPath = path.replace(/^[!-]*/, '').replace(/^usa\./, '');
-  const parts = cleanPath.split('.');
+function getTokenValue(tokens, token) {
+  const value = token.value;
   
-  // Handle USWDS theme tokens
-  const themeSections = [
-    'USWDS Theme/Project theme',
-    'USWDS Theme/Default',
-    'USWDS Theme/PGOV'
-  ];
-
-  for (const section of themeSections) {
-    let current = tokens[section]?.['#-theme'];
-    if (!current) continue;
-
-    // Navigate through the token structure
-    let found = true;
-    for (const part of parts) {
-      if (!current || !current[part]) {
-        found = false;
-        break;
-      }
-      current = current[part];
+  // Handle font families
+  if (token.type === 'fontFamily') {
+    // First try to resolve USWDS token
+    const uswdsFont = getUSWDSFontFamily(tokens, value);
+    if (uswdsFont) {
+      return uswdsFont;
     }
-
-    if (found && current?.value) {
-      // Handle font weights
-      if (parts.includes('font-weight')) {
-        const weight = current.value.toLowerCase();
-        return getFallbackFontWeight(weight);
-      }
-      // Handle font sizes
-      if (parts.includes('font-size')) {
-        const type = parts[parts.length - 2];
-        const size = parts[parts.length - 1];
-        return getFallbackTypography(type, size);
-      }
-      return current.value;
-    }
+    
+    // Fallback to default values
+    return getFallbackFontFamily(value);
   }
-
-  // If not found in themes, check for direct values
-  if (parts[0] === 'color') {
-    const colorName = parts[1];
-    const variant = parts[2];
-    return getFallbackColor(colorName, variant);
-  }
-
-  // Handle font sizes
-  if (parts[0] === 'type') {
-    return getFallbackTypography(parts[1], parts[2]);
-  }
-
+  
   // Handle font weights
-  if (parts[0] === 'font' && parts[1] === 'weight') {
-    return getFallbackFontWeight(parts[2]);
+  if (token.type === 'fontWeight') {
+    // First try to resolve USWDS token
+    const uswdsWeight = getUSWDSFontWeight(tokens, value);
+    if (uswdsWeight) {
+      return uswdsWeight;
+    }
+    
+    // Fallback to default values
+    return getFallbackFontWeight(value);
   }
-
-  return null;
+  
+  // Handle font sizes
+  if (token.type === 'fontSize') {
+    console.log(`Resolving font size token: ${value}`);
+    
+    // Handle different formats of font size tokens
+    if (typeof value === 'string') {
+      // Case 1: Direct reference to theme font size
+      if (value.includes('#-theme.font-size')) {
+        const parts = value.replace(/[{}]/g, '').split('.');
+        if (parts.length >= 4) {
+          const type = parts[2];
+          const size = parts[3];
+          console.log(`Theme font size: type=${type}, size=${size}`);
+          
+          // Try to get the theme value directly from tokens
+          const themeSections = [
+            'USWDS Theme/Project theme',
+            'USWDS Theme/Default',
+            'USWDS Theme/PGOV'
+          ];
+          
+          for (const section of themeSections) {
+            const theme = tokens[section]?.['#-theme'];
+            if (theme && theme['font-size'] && theme['font-size'][type] && theme['font-size'][type][size]) {
+              const themeValue = theme['font-size'][type][size].value;
+              if (themeValue) {
+                if (themeValue.includes('{')) {
+                  // It's another reference, resolve it recursively
+                  const fontSizeToken = {
+                    value: themeValue,
+                    type: 'fontSize'
+                  };
+                  return getTokenValue(tokens, fontSizeToken);
+                }
+                console.log(`Found theme value: ${themeValue}`);
+                return themeValue;
+              }
+            }
+          }
+        }
+      }
+      
+      // Case 2: Reference to usa font size
+      if (value.includes('usa.font-size') || value.includes('!-usa.font-size')) {
+        const parts = value.replace(/[{}]/g, '').replace(/^[!-]*/, '').replace(/^usa\./, '').split('.');
+        if (parts.length >= 3) {
+          const type = parts[1];
+          const size = parts[2];
+          console.log(`USA font size: type=${type}, size=${size}`);
+          
+          const uswdsSize = getUSWDSTypography(tokens, type, size);
+          if (uswdsSize) {
+            console.log(`Found USWDS size: ${uswdsSize}`);
+            return uswdsSize;
+          }
+        }
+      }
+      
+      // Case 3: Direct type.size format
+      if (value.includes('.')) {
+        const [type, size] = value.split('.');
+        console.log(`Direct type.size: type=${type}, size=${size}`);
+        
+        const uswdsSize = getUSWDSTypography(tokens, type, size);
+        if (uswdsSize) {
+          console.log(`Found direct size: ${uswdsSize}`);
+          return uswdsSize;
+        }
+      } else if (value.includes('-')) {
+        // Case 4: type-size format
+        const [type, size] = value.split('-');
+        console.log(`Type-size: type=${type}, size=${size}`);
+        
+        const uswdsSize = getUSWDSTypography(tokens, type, size);
+        if (uswdsSize) {
+          console.log(`Found type-size: ${uswdsSize}`);
+          return uswdsSize;
+        }
+      }
+    }
+    
+    // Case 5: Use the default size map from uswdsTokenResolver
+    console.log(`Using fallback typography with type=${typeof value === 'string' ? value.split('.')[0] : 'reading'}`);
+    return getFallbackTypography(
+      typeof value === 'string' ? value.split('.')[0] : 'reading', 
+      typeof value === 'string' ? value.split('.')[1] || 'md' : 'md'
+    );
+  }
+  
+  // Handle spacing
+  if (token.type === 'spacing') {
+    // If it's a reference to another token, resolve it
+    if (typeof value === 'string' && value.includes('{')) {
+      const match = value.match(/\{([^}]+)\}/);
+      if (match) {
+        const tokenPath = match[1];
+        const uswdsSpacing = getUSWDSSpacing(tokens, tokenPath);
+        if (uswdsSpacing) {
+          return uswdsSpacing;
+        }
+      }
+    }
+    
+    // If it's a direct spacing value or path
+    if (typeof value === 'string' && (value.startsWith('!-usa') || value.startsWith('usa'))) {
+      const uswdsSpacing = getUSWDSSpacing(tokens, value);
+      if (uswdsSpacing) {
+        return uswdsSpacing;
+      }
+    }
+    
+    // Default fallback for spacing
+    return value;
+  }
+  
+  // Handle colors
+  if (token.type === 'color') {
+    // If it's a reference to another token, resolve it
+    if (typeof value === 'string' && value.includes('{')) {
+      const match = value.match(/\{([^}]+)\}/);
+      if (match) {
+        const tokenPath = match[1];
+        const uswdsColor = getUSWDSColor(tokens, tokenPath);
+        if (uswdsColor) {
+          return uswdsColor;
+        }
+      }
+    }
+    
+    // If it's a direct color value or path
+    if (typeof value === 'string' && (value.startsWith('!-usa') || value.startsWith('usa'))) {
+      const uswdsColor = getUSWDSColor(tokens, value);
+      if (uswdsColor) {
+        return uswdsColor;
+      }
+    }
+    
+    // Fallback to default values
+    return getFallbackColor(value);
+  }
+  
+  return value;
 }
 
-function resolveTokenValue(value, tokens, theme = 'default') {
+function resolveTokenValue(value, tokens) {
   if (!value) return null;
 
-  // Handle direct values
+  // Handle direct values that aren't references
   if (typeof value === 'string' && !value.includes('{')) {
-    // If it's a font weight value, process it
-    if (value.toLowerCase().includes('bold') || 
-        value.toLowerCase().includes('regular') || 
-        value.toLowerCase().includes('light') ||
-        value.toLowerCase().includes('thin') ||
-        value.toLowerCase().includes('medium') ||
-        value.toLowerCase().includes('heavy')) {
-      return getFallbackFontWeight(value);
+    // Check if it's a direct USWDS reference (e.g., "usa.spacing.4")
+    if (value.startsWith('usa.') || value.startsWith('!-usa.') || value.startsWith('--usa.')) {
+      // Determine the token type based on the path
+      const type = determineTokenType(value);
+      const token = { value, type };
+      return getTokenValue(tokens, token);
     }
     return value;
   }
@@ -96,227 +205,200 @@ function resolveTokenValue(value, tokens, theme = 'default') {
 
   const tokenPath = match[1];
   
-  // Resolve the token value
-  const resolvedValue = getTokenValue(tokens, tokenPath);
-  if (resolvedValue) {
-    // Handle nested token references
-    if (typeof resolvedValue === 'string' && resolvedValue.includes('{')) {
-      return resolveTokenValue(resolvedValue, tokens, theme);
-    }
-    return resolvedValue;
+  // Special case for font-size theme references (more detailed handling in getTokenValue)
+  if (tokenPath.includes('#-theme.font-size')) {
+    const token = {
+      value: value,
+      type: 'fontSize'
+    };
+    return getTokenValue(tokens, token);
   }
-
-  // Fallback values
-  if (tokenPath.includes('font-size')) {
-    const parts = tokenPath.split('.');
-    const type = parts[parts.length - 2];
-    const size = parts[parts.length - 1];
-    return getFallbackTypography(type, size);
-  }
-  if (tokenPath.includes('font-weight')) {
-    const parts = tokenPath.split('.');
-    const weight = parts[parts.length - 1];
-    return getFallbackFontWeight(weight);
-  }
-  if (tokenPath.includes('color')) {
-    return '#666666';
-  }
-  if (tokenPath.includes('spacing')) {
-    return '1rem';
-  }
-
-  return value;
-}
-
-function getFallbackTypography(type, size) {
-  const typographyMap = {
-    'reading': {
-      '1': '0.75rem',
-      '2': '0.875rem',
-      '3': '1rem',
-      '4': '1.125rem',
-      '5': '1.25rem',
-      '6': '1.5rem',
-      '9': '1.75rem',
-      '12': '2rem',
-      '14': '2.5rem',
-      '15': '3rem'
-    },
-    'display': {
-      '2': '0.875rem',
-      '3': '1rem',
-      '4': '1.25rem',
-      '5': '1.5rem',
-      '6': '2rem',
-      '9': '2.5rem',
-      '12': '3rem',
-      '14': '3.5rem',
-      '15': '4rem'
-    },
-    'mono': {
-      '2': '0.75rem',
-      '3': '0.875rem',
-      '4': '1rem',
-      '5': '1.125rem',
-      '6': '1.25rem',
-      '9': '1.5rem',
-      '12': '1.75rem',
-      '14': '2rem',
-      '15': '2.5rem'
-    },
-    'proto': {
-      '2': '0.75rem',
-      '3': '0.875rem',
-      '4': '1rem',
-      '5': '1.25rem',
-      '6': '1.5rem',
-      '7': '2rem',
-      '12': '2.5rem',
-      '14': '3rem',
-      '15': '3.5rem'
-    }
+  
+  // Create a token object from the path
+  const token = {
+    value: tokenPath,
+    type: determineTokenType(tokenPath)
   };
 
-  // Extract the actual type and size from the token path or value
-  const cleanType = type.toLowerCase().replace(/^[!-]*/, '').replace(/^usa\.type\./, '');
-  const cleanSize = size.toLowerCase().replace(/^[!-]*/, '');
-  return typographyMap[cleanType]?.[cleanSize] || '1rem';
+  // Use getTokenValue for resolution
+  return getTokenValue(tokens, token);
 }
 
-function getFallbackFontWeight(weight) {
-  const weightMap = {
-    'thin': '300',
+/**
+ * Determines the token type based on the path
+ * 
+ * @param {string} path - The token path
+ * @returns {string} - The token type (color, fontSize, fontFamily, etc.)
+ */
+function determineTokenType(path) {
+  if (!path) return 'unknown';
+  
+  // Clean the path for easier pattern matching
+  const cleanPath = path.replace(/[{}]/g, '')
+                        .replace(/^[!-]*/, '')
+                        .replace(/^--/, '')
+                        .toLowerCase();
+  
+  if (cleanPath.includes('color')) {
+    return 'color';
+  }
+  
+  if (cleanPath.includes('font-size') || cleanPath.match(/font-size|typography|type\.size/)) {
+    return 'fontSize';
+  }
+  
+  if (cleanPath.includes('font-family') || cleanPath.match(/family|typeface/)) {
+    return 'fontFamily';
+  }
+  
+  if (cleanPath.includes('font-weight') || cleanPath.match(/weight|[0-9]{3}|thin|light|regular|medium|bold|heavy/)) {
+    return 'fontWeight';
+  }
+  
+  if (cleanPath.includes('spacing') || cleanPath.match(/margin|padding|gap|space/)) {
+    return 'spacing';
+  }
+  
+  // Handle type.size references as font-size
+  if (cleanPath.match(/reading\.[a-z0-9]+|display\.[a-z0-9]+|mono\.[a-z0-9]+|proto\.[a-z0-9]+/)) {
+    return 'fontSize';
+  }
+  
+  return 'unknown';
+}
+
+/**
+ * Get a fallback font family based on name
+ */
+function getFallbackFontFamily(value) {
+  const families = {
+    'sans': '"Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+    'serif': 'Merriweather, Georgia, Cambria, "Times New Roman", Times, serif',
+    'mono': 'source-code-pro, Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace'
+  };
+  
+  // Handle potential naming variants
+  const name = typeof value === 'string' ? value.toLowerCase() : '';
+  
+  if (name.includes('sans')) return families.sans;
+  if (name.includes('serif')) return families.serif;
+  if (name.includes('mono')) return families.mono;
+  
+  // Default to sans
+  return families.sans;
+}
+
+/**
+ * Get a fallback font weight based on name
+ */
+function getFallbackFontWeight(value) {
+  const weights = {
+    'thin': '200',
     'light': '300',
-    'normal': '400',
     'regular': '400',
+    'normal': '400',
     'medium': '500',
     'semibold': '600',
     'bold': '700',
     'heavy': '800',
-    'extra-bold': '800',
-    'extra bold': '800',
     'black': '900'
   };
-
-  // Extract the actual weight from the token path or value
-  const actualWeight = weight.toLowerCase()
-    .replace(/^[!-]*/, '')
-    .replace(/^usa\.font\.weight\./, '')
-    .replace(/^font\.weight\./, '');
-
-  // If the weight is already a number, return it
-  if (!isNaN(actualWeight)) {
-    return actualWeight;
+  
+  // Handle numerical weights
+  if (value && !isNaN(value)) {
+    return value;
   }
-
-  return weightMap[actualWeight] || '400';
+  
+  // Handle name variants
+  const name = typeof value === 'string' ? value.toLowerCase() : '';
+  
+  for (const [key, weight] of Object.entries(weights)) {
+    if (name.includes(key)) {
+      return weight;
+    }
+  }
+  
+  // Default to regular
+  return '400';
 }
 
-function getFallbackColor(colorName, variant) {
-  const colorMap = {
-    'gray': {
-      '5': '#F0F0F0',
-      '10': '#E6E6E6',
-      '30': '#ADADAD',
-      '50': '#757575',
-      '60': '#666666',
-      '80': '#333333',
-      '90': '#1A1A1A'
-    },
-    'blue-warm': {
-      '5': '#E8F2FF',
-      '20': '#73A5E6',
-      '30v': '#4A89DA',
-      '50': '#2E5C99',
-      '50v': '#2E78D2',
-      '60': '#2E78D2',
-      '70v': '#1B4B8F',
-      '80': '#0D2B5F'
-    },
-    'gold': {
-      '5': '#FFF5E6',
-      '10': '#FFE0B3',
-      '30': '#FFBE2E',
-      '30v': '#FFB300',
-      '50': '#996B00',
-      '60': '#805700',
-      '70': '#664400',
-      '80': '#4D3300'
-    },
-    'mint': {
-      '5v': '#E0FFF2',
-      '20': '#7DDCC8',
-      '30': '#40B393',
-      '30v': '#48C0A3',
-      '50': '#2E8C73',
-      '60': '#1A5751',
-      '70': '#0D2E2C',
-      '80': '#041615'
-    },
-    'indigo': {
-      '5': '#F0F2FF',
-      '10': '#B3BCFF',
-      '40v': '#6B7FCC',
-      '50': '#4D5BBF',
-      '60v': '#5A6BBF',
-      '70v': '#3D4B99',
-      '80': '#2E3973'
-    },
-    'cyan': {
-      '5': '#E6F9FF',
-      '20': '#99E1EC',
-      '30v': '#40CCDF',
-      '50v': '#00A5C6',
-      '60v': '#0089A7',
-      '70': '#006D84',
-      '80': '#0D7EA2'
-    },
-    'red': {
-      '10': '#FFE6E6',
-      '20': '#FFB3B3',
-      '30': '#FF8080',
-      '50v': '#FF4D4D',
-      '60v': '#FF1A1A',
-      '70v': '#E60000',
-      '80v': '#B30000'
-    },
-    'yellow': {
-      '5': '#FFF9E6',
-      '20v': '#FFE066',
-      '30v': '#FFD700',
-      '50v': '#FFBE2E',
-      '60': '#B38F00',
-      '70': '#806600',
-      '80': '#4D3D00'
-    },
-    'green-cool': {
-      '5': '#E6FFF0',
-      '20v': '#70E17B',
-      '40v': '#00A91C',
-      '50v': '#008817',
-      '60v': '#216E1F',
-      '70v': '#154C21',
-      '80': '#0D3915'
-    },
-    'black-transparent': {
-      '10': 'rgba(0, 0, 0, 0.1)',
-      '20': 'rgba(0, 0, 0, 0.2)',
-      '40': 'rgba(0, 0, 0, 0.4)',
-      '50': 'rgba(0, 0, 0, 0.5)'
-    },
-    'white-transparent': {
-      '10': 'rgba(255, 255, 255, 0.1)',
-      '20': 'rgba(255, 255, 255, 0.2)',
-      '30': 'rgba(255, 255, 255, 0.3)'
-    },
-    'red-warm': {
-      '60v': '#FF4D4D',
-      '80': '#B30000'
-    },
-    'white': '#FFFFFF'
+/**
+ * Get fallback typography values
+ */
+function getFallbackTypography(type = 'reading', size = 'md') {
+  // Map size names to values
+  const sizeMap = {
+    '3xs': '0.75rem',    // 12px
+    '2xs': '0.8125rem',  // 13px
+    'xs': '0.875rem',    // 14px
+    'sm': '1rem',        // 16px
+    'md': '1.125rem',    // 18px
+    'lg': '1.25rem',     // 20px
+    'xl': '1.5rem',      // 24px
+    '2xl': '1.75rem',    // 28px
+    '3xl': '2rem',       // 32px
+    '1': '0.75rem',      // 12px 
+    '2': '0.8125rem',    // 13px
+    '3': '0.875rem',     // 14px
+    '4': '1rem',         // 16px
+    '5': '1.125rem',     // 18px
+    '6': '1.25rem',      // 20px
+    '7': '1.375rem',     // 22px
+    '8': '1.5rem',       // 24px
+    '9': '1.75rem',      // 28px
+    '10': '2rem',        // 32px
+    '11': '2.25rem',     // 36px
+    '12': '2.5rem',      // 40px 
+    '13': '2.75rem',     // 44px
+    '14': '3rem',        // 48px
+    '15': '3.5rem'       // 56px
   };
+  
+  // Return the size value, defaulting to 1rem if not found
+  return sizeMap[size] || '1rem';
+}
 
-  return colorMap[colorName]?.[variant] || '#666666';
+/**
+ * Get fallback color values
+ */
+function getFallbackColor(value) {
+  // If it's already a hex color, return it
+  if (typeof value === 'string' && (value.startsWith('#') || value.startsWith('rgb'))) {
+    return value;
+  }
+  
+  // Handle color name and variants
+  const colorName = typeof value === 'string' ? value.replace(/[{}]/g, '') : '';
+  
+  // Simple fallback color system
+  const colors = {
+    'primary': '#005ea2',
+    'secondary': '#565c65',
+    'accent': '#c05600',
+    'accent-warm': '#c05600',
+    'accent-cool': '#00bde3',
+    'success': '#00a91c',
+    'warning': '#ffbe2e',
+    'error': '#d54309',
+    'info': '#00bde3',
+    'disabled': '#c9c9c9',
+    'black': '#000000',
+    'white': '#ffffff',
+    'gray': '#71767a',
+    'blue': '#0050d8',
+    'red': '#e52207',
+    'yellow': '#fee685',
+    'green': '#008817'
+  };
+  
+  for (const [name, hex] of Object.entries(colors)) {
+    if (colorName.includes(name)) {
+      return hex;
+    }
+  }
+  
+  // Default fallback
+  return '#666666';
 }
 
 // Helper function to resolve secondary colors
