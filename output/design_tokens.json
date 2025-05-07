@@ -8908,10 +8908,6 @@
             "value": "#40282c",
             "type": "color"
           },
-          "90": {
-            "value": "#1e1517",
-            "type": "color"
-          },
           "5v": {
             "value": "#fff0f3",
             "type": "color"
@@ -10698,6 +10694,10 @@
     "--usa": {
       "color": {
         "red-cool": {
+          "90": {
+            "value": "#1e1517",
+            "type": "color"
+          },
           "80v": {
             "value": "#4f1c24",
             "type": "color"
