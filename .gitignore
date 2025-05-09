@@ -20,6 +20,9 @@ output/*
 !output/design_tokens.json
 test-output/
 
+# Figma API data
+FigmaAPI/
+
 # Logs
 logs
 *.log
