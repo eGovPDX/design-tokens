@@ -14199,18 +14199,7 @@
       "name": "Default",
       "group": "USWDS Theme",
       "selectedTokenSets": {
-        "USWDS Theme/Default": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "USWDS Theme/Default": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -14734,18 +14723,7 @@
       "name": "Project theme",
       "group": "USWDS Theme",
       "selectedTokenSets": {
-        "USWDS Theme/Project theme": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "USWDS Theme/Project theme": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -15269,18 +15247,7 @@
       "name": "Project theme dark",
       "group": "USWDS Theme",
       "selectedTokenSets": {
-        "USWDS Theme/Project theme dark": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "USWDS Theme/Project theme dark": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -15804,18 +15771,7 @@
       "name": "PGOV",
       "group": "USWDS Theme",
       "selectedTokenSets": {
-        "USWDS Theme/PGOV": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "USWDS Theme/PGOV": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -16339,17 +16295,7 @@
       "name": "Mode 1",
       "group": "Color",
       "selectedTokenSets": {
-        "Color": "enabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Color": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -16845,17 +16791,7 @@
       "name": "Mode 1",
       "group": "Spacing",
       "selectedTokenSets": {
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "enabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Spacing": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -16896,17 +16832,7 @@
       "name": "Mode 1",
       "group": "Font",
       "selectedTokenSets": {
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "enabled",
-        "Radius": "disabled"
+        "Font Size": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -16940,17 +16866,7 @@
       "name": "Merriweather",
       "group": "Font type / Display (Serif)",
       "selectedTokenSets": {
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "enabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font type / Display/Merriweather": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -16985,17 +16901,7 @@
       "name": "Georgia",
       "group": "Font type / Display (Serif)",
       "selectedTokenSets": {
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "enabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font type / Display/Georgia": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17030,17 +16936,7 @@
       "name": "Figtree",
       "group": "Font type / Display (Serif)",
       "selectedTokenSets": {
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "enabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font type / Display/Figtree": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17075,17 +16971,7 @@
       "name": "Proto",
       "group": "Font type / Display (Serif)",
       "selectedTokenSets": {
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "enabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font type / Display/Proto": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17120,18 +17006,7 @@
       "name": "Roboto Mono",
       "group": "Font type / Mono",
       "selectedTokenSets": {
-        "Font type / Mono/Roboto Mono": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font type / Mono/Roboto Mono": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17166,18 +17041,7 @@
       "name": "IBM Plex Mono",
       "group": "Font type / Mono",
       "selectedTokenSets": {
-        "Font type / Mono/IBM Plex Mono": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font type / Mono/IBM Plex Mono": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17212,18 +17076,7 @@
       "name": "Proto",
       "group": "Font type / Mono",
       "selectedTokenSets": {
-        "Font type / Mono/Proto": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font type / Mono/Proto": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17258,17 +17111,7 @@
       "name": "Public Sans",
       "group": "Font type / Reading (Sans)",
       "selectedTokenSets": {
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "enabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font type / Reading/Public Sans": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17303,17 +17146,7 @@
       "name": "Open Sans",
       "group": "Font type / Reading (Sans)",
       "selectedTokenSets": {
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "enabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font type / Reading/Open Sans": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17348,17 +17181,7 @@
       "name": "System",
       "group": "Font type / Reading (Sans)",
       "selectedTokenSets": {
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "enabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font type / Reading/System": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17393,18 +17216,7 @@
       "name": "Reading",
       "group": "Font role / Body",
       "selectedTokenSets": {
-        "Font role / Body/Reading": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / Body/Reading": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17448,18 +17260,7 @@
       "name": "Display",
       "group": "Font role / Body",
       "selectedTokenSets": {
-        "Font role / Body/Display": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / Body/Display": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17503,18 +17304,7 @@
       "name": "Proto",
       "group": "Font role / Body",
       "selectedTokenSets": {
-        "Font role / Body/Proto": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / Body/Proto": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17558,18 +17348,7 @@
       "name": "Mono",
       "group": "Font role / Code",
       "selectedTokenSets": {
-        "Font role / Code/Mono": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / Code/Mono": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17613,18 +17392,7 @@
       "name": "Proto",
       "group": "Font role / Code",
       "selectedTokenSets": {
-        "Font role / Code/Proto": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / Code/Proto": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17668,18 +17436,7 @@
       "name": "Reading",
       "group": "Font role / Heading",
       "selectedTokenSets": {
-        "Font role / Heading/Reading": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / Heading/Reading": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17723,18 +17480,7 @@
       "name": "Display",
       "group": "Font role / Heading",
       "selectedTokenSets": {
-        "Font role / Heading/Display": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / Heading/Display": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17778,18 +17524,7 @@
       "name": "Proto",
       "group": "Font role / Heading",
       "selectedTokenSets": {
-        "Font role / Heading/Proto": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / Heading/Proto": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17833,18 +17568,7 @@
       "name": "Reading",
       "group": "Font role / UI",
       "selectedTokenSets": {
-        "Font role / UI/Reading": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / UI/Reading": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17888,18 +17612,7 @@
       "name": "Mono",
       "group": "Font role / UI",
       "selectedTokenSets": {
-        "Font role / UI/Mono": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / UI/Mono": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17943,18 +17656,7 @@
       "name": "Proto",
       "group": "Font role / UI",
       "selectedTokenSets": {
-        "Font role / UI/Proto": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / UI/Proto": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -17998,16 +17700,6 @@
       "name": "Mode 1",
       "group": "Radius",
       "selectedTokenSets": {
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
         "Radius": "enabled"
       },
       "$figmaStyleReferences": {},
@@ -18023,18 +17715,7 @@
       "name": "Reading",
       "group": "Font role / Alt",
       "selectedTokenSets": {
-        "Font role / Alt/Reading": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / Alt/Reading": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -18078,18 +17759,7 @@
       "name": "Display",
       "group": "Font role / Alt",
       "selectedTokenSets": {
-        "Font role / Alt/Display": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / Alt/Display": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -18133,18 +17803,7 @@
       "name": "Mono",
       "group": "Font role / Alt",
       "selectedTokenSets": {
-        "Font role / Alt/Mono": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / Alt/Mono": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -18188,18 +17847,7 @@
       "name": "Proto",
       "group": "Font role / Alt",
       "selectedTokenSets": {
-        "Font role / Alt/Proto": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font role / Alt/Proto": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
@@ -18243,18 +17891,7 @@
       "name": "Prototype",
       "group": "Font type / Proto",
       "selectedTokenSets": {
-        "Font type / Proto/Prototype": "enabled",
-        "Color": "disabled",
-        "Font type / Display/Merriweather": "disabled",
-        "Font type / Display/Georgia": "disabled",
-        "Font type / Display/Figtree": "disabled",
-        "Font type / Display/Proto": "disabled",
-        "Font type / Reading/Public Sans": "disabled",
-        "Font type / Reading/Open Sans": "disabled",
-        "Font type / Reading/System": "disabled",
-        "Spacing": "disabled",
-        "Font Size": "disabled",
-        "Radius": "disabled"
+        "Font type / Proto/Prototype": "enabled"
       },
       "$figmaStyleReferences": {},
       "$figmaVariableReferences": {
