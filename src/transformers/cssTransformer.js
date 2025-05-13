@@ -15,18 +15,15 @@ import { getUSWDSFontFamily, getUSWDSTypography, getUSWDSFontWeight, getUSWDSCol
  * @returns {object|string|number|null} The token definition object or primitive value, or null if not found.
  */
 function getDefinitionByPath(pathString, tokensJson) {
-  if (!pathString || typeof pathString !== 'string') return null;
+  if (!pathString || typeof pathString !== 'string') {
+    return null;
+  }
 
   const parts = pathString.split('.');
   let currentContext = tokensJson;
   let partIndex = 0;
 
   // Find the correct top-level set key
-  let topLevelKey = parts[partIndex];
-  let consumedParts = 1;
-
-  // Try to match multi-segment top-level keys (e.g., "USWDS Theme/Project theme")
-  // by joining initial path parts and comparing against actual keys in tokensJson.
   let potentialKey = parts[partIndex];
   let foundTopLevel = false;
   for (let i = 1; i <= parts.length; i++) {
@@ -41,12 +38,10 @@ function getDefinitionByPath(pathString, tokensJson) {
   }
 
   if (!foundTopLevel) {
-    // If no multi-segment key matched, try the first part as a direct key
     if (tokensJson.hasOwnProperty(parts[0])) {
       currentContext = tokensJson[parts[0]];
       partIndex = 1;
     } else {
-      // console.warn(`[getDefinitionByPath] Top-level key not found for path starting with: ${parts[0]} in ${pathString}`);
       return null; // Top-level key not found
     }
   }
@@ -54,11 +49,25 @@ function getDefinitionByPath(pathString, tokensJson) {
   // Traverse remaining parts
   for (let i = partIndex; i < parts.length; i++) {
     const part = parts[i];
-    if (!currentContext || typeof currentContext !== 'object' || !currentContext.hasOwnProperty(part)) {
-      // console.warn(`[getDefinitionByPath] Path segment not found: '${part}' in ${pathString}`);
-      return null; // Path segment not found
+
+    if (currentContext && typeof currentContext === 'object') {
+      if (currentContext.hasOwnProperty(part)) {
+        currentContext = currentContext[part];
+      } else if (i + 1 < parts.length) {
+        // Try combining current part and next part with a hyphen
+        const combinedPart = `${part}-${parts[i+1]}`;
+        if (currentContext.hasOwnProperty(combinedPart)) {
+          currentContext = currentContext[combinedPart];
+          i++; // Increment i because we've consumed the next part as well
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } else {
+      return null; // Path segment not found or context is not an object
     }
-    currentContext = currentContext[part];
   }
   return currentContext; // This could be a token object {value, type} or a primitive
 }
@@ -100,7 +109,6 @@ function getTokenValue(tokens, token, visited = new Set()) {
 
   // Check if max resolutions were hit while still having an alias
   if (maxAliasResolutions <= 0 && typeof currentValue === 'string' && currentValue.includes('{')) {
-    // console.warn(`Max alias resolutions reached for ${token.value}`);
     return getFallbackValueForPath(token.value, originalType);
   }
   // After loop, currentValue is the result of alias resolution(s)
@@ -111,7 +119,7 @@ function getTokenValue(tokens, token, visited = new Set()) {
     if (originalType === 'color' && (currentValue.startsWith('#') || currentValue.startsWith('rgb'))) return currentValue;
     if ((originalType === 'dimension' || originalType === 'fontSize' || originalType === 'spacing') && (currentValue.includes('px') || currentValue.includes('rem') || currentValue.includes('em') || currentValue.includes('%'))) return currentValue;
     if (originalType === 'fontWeight' && !isNaN(parseFloat(currentValue))) return String(currentValue);
-    if (originalType === 'fontFamily' && !currentValue.includes('.') && (currentValue.includes(',') || currentValue.startsWith('\"') || currentValue.startsWith("'"))) return currentValue; 
+    if (originalType === 'fontFamily' && !currentValue.includes('.') && (currentValue.includes(',') || currentValue.startsWith('\"') || currentValue.startsWith("'"))) return currentValue;
   }
   if (typeof currentValue === 'number') {
       if (originalType === 'fontWeight') return String(currentValue);
@@ -294,7 +302,6 @@ function resolveAlias(valueWithBrace, tokens, visited = new Set()) {
 }
 
 function getFallbackValueForPath(path, type) { // Added type parameter
-    // console.warn(`Falling back for path: ${path} (type: ${type})`);
     if (type === 'color') return '#FF00FF'; 
     if (type === 'fontSize') return '1em';
     if (type === 'spacing') return '0px';
@@ -840,8 +847,6 @@ export function transformToCSS(tokens) {
                  const resolvedValue = getTokenValue(tokens, {...token, type: token.type || 'dimension' });
                 if (resolvedValue) {
                     cssParts.push(`  --theme-${varName}: ${resolvedValue};`);
-                    // Not adding to utilities for now, but could if needed:
-                    // allProcessedTokensForUtilities.radius[`theme-${radiusKey}`] = resolvedValue;
                 }
             }
         }
