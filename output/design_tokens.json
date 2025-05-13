@@ -14134,7 +14134,8 @@
         },
         "lg-max-width": {
           "value": "{--usa.spacing.tablet-lg}",
-          "type": "dimension"
+          "type": "dimension",
+          "description": "token for modal"
         }
       },
       "checkbox": {
