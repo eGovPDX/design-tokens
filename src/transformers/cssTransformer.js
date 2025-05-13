@@ -6,6 +6,63 @@
 
 import { getUSWDSFontFamily, getUSWDSTypography, getUSWDSFontWeight, getUSWDSColor, getUSWDSSpacing } from './uswdsTokenResolver.js';
 
+// New Helper Function: getDefinitionByPath
+/**
+ * Retrieves a token definition or primitive value from a tokens object using a dot-separated path.
+ * Handles top-level keys that might contain slashes by matching segments of the path.
+ * @param {string} pathString - The dot-separated path to the token (e.g., "Color.--usa.color.red.5").
+ * @param {object} tokensJson - The full tokens JSON object.
+ * @returns {object|string|number|null} The token definition object or primitive value, or null if not found.
+ */
+function getDefinitionByPath(pathString, tokensJson) {
+  if (!pathString || typeof pathString !== 'string') return null;
+
+  const parts = pathString.split('.');
+  let currentContext = tokensJson;
+  let partIndex = 0;
+
+  // Find the correct top-level set key
+  let topLevelKey = parts[partIndex];
+  let consumedParts = 1;
+
+  // Try to match multi-segment top-level keys (e.g., "USWDS Theme/Project theme")
+  // by joining initial path parts and comparing against actual keys in tokensJson.
+  let potentialKey = parts[partIndex];
+  let foundTopLevel = false;
+  for (let i = 1; i <= parts.length; i++) {
+    potentialKey = parts.slice(0, i).join('.'); // e.g., "USWDS Theme", then "USWDS Theme.Project theme"
+    const matchingTopLevelKey = Object.keys(tokensJson).find(k => k.replace(/\//g, '.') === potentialKey);
+    if (matchingTopLevelKey && tokensJson.hasOwnProperty(matchingTopLevelKey)) {
+      currentContext = tokensJson[matchingTopLevelKey];
+      partIndex = i;
+      foundTopLevel = true;
+      break;
+    }
+  }
+
+  if (!foundTopLevel) {
+    // If no multi-segment key matched, try the first part as a direct key
+    if (tokensJson.hasOwnProperty(parts[0])) {
+      currentContext = tokensJson[parts[0]];
+      partIndex = 1;
+    } else {
+      // console.warn(`[getDefinitionByPath] Top-level key not found for path starting with: ${parts[0]} in ${pathString}`);
+      return null; // Top-level key not found
+    }
+  }
+  
+  // Traverse remaining parts
+  for (let i = partIndex; i < parts.length; i++) {
+    const part = parts[i];
+    if (!currentContext || typeof currentContext !== 'object' || !currentContext.hasOwnProperty(part)) {
+      // console.warn(`[getDefinitionByPath] Path segment not found: '${part}' in ${pathString}`);
+      return null; // Path segment not found
+    }
+    currentContext = currentContext[part];
+  }
+  return currentContext; // This could be a token object {value, type} or a primitive
+}
+
 /**
  * Get a token value from the tokens object using a path.
  * 
@@ -13,215 +70,237 @@ import { getUSWDSFontFamily, getUSWDSTypography, getUSWDSFontWeight, getUSWDSCol
  * @param {string} path - The path to the token value
  * @returns {*} - The token value or null if not found
  */
-function getTokenValue(tokens, token) {
-  const value = token.value;
-  
-  // Handle font families
-  if (token.type === 'fontFamily') {
-    // First try to resolve USWDS token
-    const uswdsFont = getUSWDSFontFamily(tokens, value);
-    if (uswdsFont) {
-      return uswdsFont;
-    }
-    
-    // Fallback to default values
-    return getFallbackFontFamily(value);
+function getTokenValue(tokens, token, visited = new Set()) {
+  let currentValue = token.value;
+  const originalType = token.type;
+  let isResolvedAliasPrimitive = false; // Flag to indicate if alias resolved directly to a primitive
+
+  // 1. Resolve alias if present, and repeat if the result is another alias
+  let maxAliasResolutions = 10; 
+  let tempVisited = new Set(visited); // Each top-level getTokenValue call for an alias gets its own visited set for its chain
+
+  // Check for initial circular reference before loop
+  if (typeof currentValue === 'string' && currentValue.includes('{') && tempVisited.has(currentValue)) {
+      return getFallbackValueForPath(currentValue, originalType);
   }
-  
-  // Handle font weights
-  if (token.type === 'fontWeight') {
-    // First try to resolve USWDS token
-    const uswdsWeight = getUSWDSFontWeight(tokens, value);
-    if (uswdsWeight) {
-      return uswdsWeight;
+
+  while (typeof currentValue === 'string' && currentValue.includes('{') && maxAliasResolutions-- > 0) {
+    if (!tempVisited.has(currentValue)) { // Add to visited only if not already there for this chain
+        tempVisited.add(currentValue);
+    } else { // Already visited in this chain, implies a loop not caught by the initial check (should be rare)
+        return getFallbackValueForPath(currentValue, originalType); 
     }
-    
-    // Fallback to default values
-    return getFallbackFontWeight(value);
+
+    const resolved = resolveAlias(currentValue, tokens, tempVisited); // Pass current chain's visited set
+    if (resolved.error || resolved.value === null || resolved.value === currentValue) {
+      return getFallbackValueForPath(currentValue, originalType);
+    }
+    currentValue = resolved.value;
   }
-  
-  // Handle font sizes
-  if (token.type === 'fontSize') {
-    console.log(`Resolving font size token: ${value}`);
-    
-    // Handle different formats of font size tokens
-    if (typeof value === 'string') {
-      // Case 1: Direct reference to theme font size
-      if (value.includes('#-theme.font-size')) {
-        const parts = value.replace(/[{}]/g, '').split('.');
-        if (parts.length >= 4) {
-          const type = parts[2];
-          const size = parts[3];
-          console.log(`Theme font size: type=${type}, size=${size}`);
-          
-          // Try to get the theme value directly from tokens
-          const themeSections = [
-            'USWDS Theme/Project theme',
-            'USWDS Theme/Default',
-            'USWDS Theme/PGOV'
-          ];
-          
-          for (const section of themeSections) {
-            const theme = tokens[section]?.['#-theme'];
-            if (theme && theme['font-size'] && theme['font-size'][type] && theme['font-size'][type][size]) {
-              const themeValue = theme['font-size'][type][size].value;
-              if (themeValue) {
-                if (themeValue.includes('{')) {
-                  // It's another reference, resolve it recursively
-                  const fontSizeToken = {
-                    value: themeValue,
-                    type: 'fontSize'
-                  };
-                  return getTokenValue(tokens, fontSizeToken);
-                }
-                console.log(`Found theme value: ${themeValue}`);
-                return themeValue;
-              }
+
+  // Check if max resolutions were hit while still having an alias
+  if (maxAliasResolutions <= 0 && typeof currentValue === 'string' && currentValue.includes('{')) {
+    // console.warn(`Max alias resolutions reached for ${token.value}`);
+    return getFallbackValueForPath(token.value, originalType);
+  }
+  // After loop, currentValue is the result of alias resolution(s)
+  isResolvedAliasPrimitive = !(typeof currentValue === 'string' && currentValue.includes('.')); // Heuristic: if no dots, might be primitive or simple name
+
+  // 2. Handle direct primitive values (already resolved or never an alias)
+  if (typeof currentValue === 'string') {
+    if (originalType === 'color' && (currentValue.startsWith('#') || currentValue.startsWith('rgb'))) return currentValue;
+    if ((originalType === 'dimension' || originalType === 'fontSize' || originalType === 'spacing') && (currentValue.includes('px') || currentValue.includes('rem') || currentValue.includes('em') || currentValue.includes('%'))) return currentValue;
+    if (originalType === 'fontWeight' && !isNaN(parseFloat(currentValue))) return String(currentValue);
+    if (originalType === 'fontFamily' && !currentValue.includes('.') && (currentValue.includes(',') || currentValue.startsWith('\"') || currentValue.startsWith("'"))) return currentValue; 
+  }
+  if (typeof currentValue === 'number') {
+      if (originalType === 'fontWeight') return String(currentValue);
+      if ((originalType === 'dimension' || originalType === 'fontSize' || originalType === 'spacing') && !String(currentValue).match(/px|rem|em|%/)) {
+          return String(currentValue) + 'px'; 
+      }
+      return String(currentValue); 
+  }
+
+  // 3. If 'currentValue' is a path string, use type-specific USWDS/fallback resolvers
+  if (typeof currentValue === 'string') { 
+      let resultFromResolver;
+      if (originalType === 'fontFamily' || (originalType === 'text' && (currentValue.toLowerCase().includes('sans') || currentValue.toLowerCase().includes('serif') || currentValue.toLowerCase().includes('mono')))) {
+        resultFromResolver = getUSWDSFontFamily(tokens, currentValue);
+        if (resultFromResolver) return resultFromResolver;
+        return getFallbackFontFamily(currentValue);
+      }
+      
+      if (originalType === 'fontWeight') {
+        resultFromResolver = getUSWDSFontWeight(tokens, currentValue);
+        if (resultFromResolver && typeof resultFromResolver.value !== 'undefined') resultFromResolver = resultFromResolver.value; // Extract primitive
+        else if (resultFromResolver && (typeof resultFromResolver === 'string' || typeof resultFromResolver === 'number')) { /* no-op */ } 
+        else resultFromResolver = null; // Not a primitive or token object
+        if (resultFromResolver) return String(resultFromResolver); // Ensure string for weights like 400
+        return getFallbackFontWeight(currentValue);
+      }
+      
+      if (originalType === 'fontSize' || (originalType === 'dimension' && (currentValue.includes('font-size') || currentValue.match(/reading\.|display\.|mono\.|proto\.|body\.|heading\.|ui\.|alt\.|fontSiz/i) ))) { // Added fontSize to regex
+        const parts = currentValue.replace(/^--theme\.font-size\.|^--usa\.font-size\.|^font-size\./i, '').split('.');
+        let fontType = 'reading';
+        let fontSizeName = 'md';
+        if (parts.length === 1) {
+            fontSizeName = parts[0];
+            if (['reading', 'display', 'mono', 'proto', 'body', 'heading', 'ui', 'alt'].includes(fontSizeName.toLowerCase())){
+                fontType = fontSizeName.toLowerCase();
+                fontSizeName = 'md'; 
             }
-          }
+        } else if (parts.length > 1) {
+            fontType = parts[0];
+            fontSizeName = parts.slice(1).join('.'); 
         }
+        resultFromResolver = getUSWDSTypography(tokens, fontType, fontSizeName);
+        if (resultFromResolver && typeof resultFromResolver.value !== 'undefined') resultFromResolver = resultFromResolver.value;
+        else if (resultFromResolver && typeof resultFromResolver === 'string') { /* no-op */ } 
+        else resultFromResolver = null;
+        if (resultFromResolver) return resultFromResolver;
+        return getFallbackTypography(fontType, fontSizeName);
       }
       
-      // Case 2: Reference to usa font size
-      if (value.includes('usa.font-size') || value.includes('!-usa.font-size')) {
-        const parts = value.replace(/[{}]/g, '').replace(/^[!-]*/, '').replace(/^usa\./, '').split('.');
-        if (parts.length >= 3) {
-          const type = parts[1];
-          const size = parts[2];
-          console.log(`USA font size: type=${type}, size=${size}`);
-          
-          const uswdsSize = getUSWDSTypography(tokens, type, size);
-          if (uswdsSize) {
-            console.log(`Found USWDS size: ${uswdsSize}`);
-            return uswdsSize;
-          }
-        }
+      if (originalType === 'spacing' || (originalType === 'dimension' && currentValue.includes('spacing'))) {
+        resultFromResolver = getUSWDSSpacing(tokens, currentValue); 
+        if (resultFromResolver && typeof resultFromResolver.value !== 'undefined') resultFromResolver = resultFromResolver.value;
+        else if (resultFromResolver && typeof resultFromResolver === 'string') { /* no-op */ } 
+        else resultFromResolver = null;
+        if (resultFromResolver) return resultFromResolver;
+        return getFallbackValueForPath(currentValue, originalType);
       }
       
-      // Case 3: Direct type.size format
-      if (value.includes('.')) {
-        const [type, size] = value.split('.');
-        console.log(`Direct type.size: type=${type}, size=${size}`);
-        
-        const uswdsSize = getUSWDSTypography(tokens, type, size);
-        if (uswdsSize) {
-          console.log(`Found direct size: ${uswdsSize}`);
-          return uswdsSize;
-        }
-      } else if (value.includes('-')) {
-        // Case 4: type-size format
-        const [type, size] = value.split('-');
-        console.log(`Type-size: type=${type}, size=${size}`);
-        
-        const uswdsSize = getUSWDSTypography(tokens, type, size);
-        if (uswdsSize) {
-          console.log(`Found type-size: ${uswdsSize}`);
-          return uswdsSize;
-        }
+      if (originalType === 'color') {
+        resultFromResolver = getUSWDSColor(tokens, currentValue); 
+        if (resultFromResolver && typeof resultFromResolver.value !== 'undefined') resultFromResolver = resultFromResolver.value;
+        else if (resultFromResolver && typeof resultFromResolver === 'string' && (resultFromResolver.startsWith('#') || resultFromResolver.startsWith('rgb'))) { /* no-op */ } 
+        else resultFromResolver = null;
+        if (resultFromResolver) return resultFromResolver;
+        return getFallbackColor(currentValue);
       }
-    }
-    
-    // Case 5: Use the default size map from uswdsTokenResolver
-    console.log(`Using fallback typography with type=${typeof value === 'string' ? value.split('.')[0] : 'reading'}`);
-    return getFallbackTypography(
-      typeof value === 'string' ? value.split('.')[0] : 'reading', 
-      typeof value === 'string' ? value.split('.')[1] || 'md' : 'md'
-    );
+      // If it's a string but did not match any specific type resolver logic above, it might be a direct value or an unhandled path.
+      // If it was an alias that resolved to a primitive, it should have been caught in section 2.
+      return currentValue; 
   }
-  
-  // Handle spacing
-  if (token.type === 'spacing') {
-    // If it's a reference to another token, resolve it
-    if (typeof value === 'string' && value.includes('{')) {
-      const match = value.match(/\{([^}]+)\}/);
-      if (match) {
-        const tokenPath = match[1];
-        const uswdsSpacing = getUSWDSSpacing(tokens, tokenPath);
-        if (uswdsSpacing) {
-          return uswdsSpacing;
-        }
-      }
-    }
-    
-    // If it's a direct spacing value or path
-    if (typeof value === 'string' && (value.startsWith('!-usa') || value.startsWith('usa'))) {
-      const uswdsSpacing = getUSWDSSpacing(tokens, value);
-      if (uswdsSpacing) {
-        return uswdsSpacing;
-      }
-    }
-    
-    // Default fallback for spacing
-    return value;
-  }
-  
-  // Handle colors
-  if (token.type === 'color') {
-    // If it's a reference to another token, resolve it
-    if (typeof value === 'string' && value.includes('{')) {
-      const match = value.match(/\{([^}]+)\}/);
-      if (match) {
-        const tokenPath = match[1];
-        const uswdsColor = getUSWDSColor(tokens, tokenPath);
-        if (uswdsColor) {
-          return uswdsColor;
-        }
-      }
-    }
-    
-    // If it's a direct color value or path
-    if (typeof value === 'string' && (value.startsWith('!-usa') || value.startsWith('usa'))) {
-      const uswdsColor = getUSWDSColor(tokens, value);
-      if (uswdsColor) {
-        return uswdsColor;
-      }
-    }
-    
-    // Fallback to default values
-    return getFallbackColor(value);
-  }
-  
-  return value;
+
+  return getFallbackValueForPath(token.value, originalType); 
 }
 
-function resolveTokenValue(value, tokens) {
-  if (!value) return null;
+// Renamed resolveTokenValue to resolveAlias, focused on returning primitive or next alias path
+function resolveAlias(valueWithBrace, tokens, visited = new Set()) { 
+  if (!valueWithBrace || typeof valueWithBrace !== 'string' || !valueWithBrace.includes('{')) {
+    return { value: valueWithBrace }; // Not an alias, return as is for getTokenValue to handle.
+  }
 
-  // Handle direct values that aren't references
-  if (typeof value === 'string' && !value.includes('{')) {
-    // Check if it's a direct USWDS reference (e.g., "usa.spacing.4")
-    if (value.startsWith('usa.') || value.startsWith('!-usa.') || value.startsWith('--usa.')) {
-      // Determine the token type based on the path
-      const type = determineTokenType(value);
-      const token = { value, type };
-      return getTokenValue(tokens, token);
+  const match = valueWithBrace.match(/\{([^}]+)\}/);
+  if (!match) return { value: valueWithBrace }; 
+
+  const tokenPathFromAlias = match[1].trim(); // e.g. --usa.color.red.5 or --theme.color.primary.light
+
+  if (visited.has(tokenPathFromAlias)) {
+    return { value: getFallbackValueForPath(tokenPathFromAlias, determineTokenType(tokenPathFromAlias)), error: 'Circular dependency' };
+  }
+  visited.add(tokenPathFromAlias);
+
+  // Construct the full path for getDefinitionByPath
+  // This requires knowing which top-level set (--usa or --theme) the alias refers to,
+  // and then finding the appropriate root key for that set.
+  const parts = tokenPathFromAlias.replace(/^--/, '').split('.'); // -> ["usa", "color", "red", "5"] or ["theme", "color", "primary"]
+  const scopeType = parts[0]; // "usa" or "theme"
+  let fullPathForLookup = tokenPathFromAlias; // Default to the original path if we can't prefix it
+
+  if (scopeType === 'usa') {
+    // Need to find which top-level set contains this --usa path.
+    // For example, if path is usa.color.red.5, we need to find "Color.--usa.color.red.5"
+    // by checking which set's --usa contains "color".
+    const category = parts[1]; // e.g., "color", "spacing", "font-size"
+    for (const setName in tokens) {
+      if (setName.startsWith('$')) continue;
+      if (tokens[setName] && tokens[setName]['--usa'] && tokens[setName]['--usa'][category]) {
+        // Check if the start of the path matches this category within this set's --usa scope
+        let current = tokens[setName]['--usa'];
+        let valid = true;
+        for(let i=1; i<parts.length; ++i) { // Start from parts[1] as parts[0] is 'usa'
+            if(current && current.hasOwnProperty(parts[i])) {
+                current = current[parts[i]];
+            } else {
+                valid = false;
+                break;
+            }
+        }
+        if(valid){
+            fullPathForLookup = `${setName}.${tokenPathFromAlias}`;
+            break;
+        }
+      }
     }
-    return value;
+  } else if (scopeType === 'theme') {
+    // Path is like "theme.color.primary.light"
+    // We need to find "USWDS Theme/Project theme.--theme.color.primary.light"
+    const category = parts[1];
+    for (const setName in tokens) {
+      if (setName.startsWith('$')) continue;
+      if (tokens[setName] && tokens[setName]['--theme'] && tokens[setName]['--theme'][category]) {
+         let current = tokens[setName]['--theme'];
+        let valid = true;
+        for(let i=1; i<parts.length; ++i) { // Start from parts[1] as parts[0] is 'theme'
+            if(current && current.hasOwnProperty(parts[i])) {
+                current = current[parts[i]];
+            } else {
+                valid = false;
+                break;
+            }
+        }
+        if(valid){
+            fullPathForLookup = `${setName}.${tokenPathFromAlias}`;
+            break;
+        }
+      }
+    }
+  } else {
+     // Path doesn't start with --usa or --theme. It might be a direct reference within a set that needs to be prefixed.
+     // Example: alias is {color.red.5} inside the "Color" set context.
+     // This case is harder to generalize here without knowing current processing context.
+     // getDefinitionByPath is designed to handle full paths from root, so we try to form one.
+     // For now, if no scope, we assume it might be an older direct path or needs to be found by getDefinitionByPath's own logic.
+     // This might lead to getDefinitionByPath searching from root if fullPathForLookup isn't prefixed.
+  }
+  
+  const definition = getDefinitionByPath(fullPathForLookup, tokens);
+
+  visited.delete(tokenPathFromAlias);
+
+  if (definition === null || typeof definition === 'undefined') {
+    return { value: getFallbackValueForPath(tokenPathFromAlias, determineTokenType(tokenPathFromAlias)), error: `Definition not found for ${fullPathForLookup}` };
   }
 
-  // Extract token reference
-  const match = value.match(/\{([^}]+)\}/);
-  if (!match) return value;
+  if (definition && typeof definition.value !== 'undefined') {
+    // If the .value is another alias, recurse to resolve it fully.
+    if (typeof definition.value === 'string' && definition.value.includes('{')) {
+      return resolveAlias(definition.value, tokens, visited); 
+    }
+    return { value: definition.value }; // Resolved to a token object, return its primitive value
+  }
 
-  const tokenPath = match[1];
-  
-  // Special case for font-size theme references (more detailed handling in getTokenValue)
-  if (tokenPath.includes('#-theme.font-size')) {
-    const token = {
-      value: value,
-      type: 'fontSize'
-    };
-    return getTokenValue(tokens, token);
+  // If definition is already a primitive value (string, number) or another alias string
+  if (typeof definition === 'string' || typeof definition === 'number') {
+     if (typeof definition === 'string' && definition.includes('{')) { 
+        return resolveAlias(definition, tokens, visited);
+     }
+    return { value: definition }; 
   }
   
-  // Create a token object from the path
-  const token = {
-    value: tokenPath,
-    type: determineTokenType(tokenPath)
-  };
+  return { value: getFallbackValueForPath(tokenPathFromAlias, determineTokenType(tokenPathFromAlias)), error: 'Resolution failed, unexpected definition structure' };
+}
 
-  // Use getTokenValue for resolution
-  return getTokenValue(tokens, token);
+function getFallbackValueForPath(path, type) { // Added type parameter
+    // console.warn(`Falling back for path: ${path} (type: ${type})`);
+    if (type === 'color') return '#FF00FF'; 
+    if (type === 'fontSize') return '1em';
+    if (type === 'spacing') return '0px';
+    if (type === 'fontWeight') return '400';
+    if (type === 'fontFamily') return 'sans-serif';
+    return path; 
 }
 
 /**
@@ -574,143 +653,276 @@ function darkenColor(color, amount = 20) {
 
 export function transformToCSS(tokens) {
   const cssParts = [':root {'];
-  
-  // Extract tokens from the nested structure
-  const themeTokens = tokens['USWDS Theme/Project theme']?.['#-theme'] || {};
-  
-  // Transform colors
-  if (themeTokens.color) {
-    cssParts.push('\n  /* Colors */');
-    for (const [category, variants] of Object.entries(themeTokens.color)) {
-      if (typeof variants === 'object' && variants.value) {
-        // Handle direct color values
-        const varName = toKebabCase(category);
-        cssParts.push(`  --color-${varName}: ${resolveTokenValue(variants.value, tokens)};`);
-      } else {
-        // Handle nested color variants
-        for (const [variant, token] of Object.entries(variants)) {
-          if (token.value) {
-            const varName = toKebabCase(`${category}-${variant}`);
-            cssParts.push(`  --color-${varName}: ${resolveTokenValue(token.value, tokens)};`);
-          }
-        }
-      }
+  const allProcessedTokensForUtilities = {
+    color: {},
+    "font-size": {},
+    "font-weight": {},
+    spacing: {},
+    radius: {} // Added radius for utilities if needed later
+  };
+
+  for (const [setName, setData] of Object.entries(tokens)) {
+    if (setName === '$themes' || setName === '$metadata') {
+      continue;
     }
-  }
-  
-  // Transform font sizes
-  if (themeTokens['font-size']) {
-    cssParts.push('\n  /* Font Sizes */');
-    for (const [category, sizes] of Object.entries(themeTokens['font-size'])) {
-      for (const [size, token] of Object.entries(sizes)) {
-        if (token.value) {
-          const varName = toKebabCase(`${category}-${size}`);
-          cssParts.push(`  --font-size-${varName}: ${resolveTokenValue(token.value, tokens)};`);
-        }
-      }
-    }
-  }
-  
-  // Transform font weights
-  if (themeTokens['font-weight']) {
-    cssParts.push('\n  /* Font Weights */');
-    for (const [weight, token] of Object.entries(themeTokens['font-weight'])) {
-      if (token.value) {
-        const varName = toKebabCase(weight);
-        cssParts.push(`  --font-weight-${varName}: ${resolveTokenValue(token.value, tokens)};`);
-      }
-    }
-  }
-  
-  // Transform spacing
-  if (themeTokens.page?.margins) {
-    cssParts.push('\n  /* Spacing */');
-    for (const [name, token] of Object.entries(themeTokens.page.margins)) {
-      if (token.value) {
-        const varName = toKebabCase(name);
-        cssParts.push(`  --spacing-${varName}: ${resolveTokenValue(token.value, tokens)};`);
-      }
-    }
-  }
-  
-  cssParts.push('}');
-  
-  // Add utility classes for colors
-  if (themeTokens.color) {
-    cssParts.push('\n/* Color Utility Classes */');
-    for (const [category, variants] of Object.entries(themeTokens.color)) {
-      if (typeof variants === 'object' && variants.value) {
-        // Handle direct color values
-        const varName = toKebabCase(category);
-        cssParts.push(`.color-${varName} { color: var(--color-${varName}); }`);
-        cssParts.push(`.bg-${varName} { background-color: var(--color-${varName}); }`);
-        
-        // Add vivid variants if applicable
-        if (variants.value.includes('vivid') || variants.value.endsWith('v')) {
-          cssParts.push(`.color-${varName}-vivid { color: var(--color-${varName}-vivid); }`);
-          cssParts.push(`.bg-${varName}-vivid { background-color: var(--color-${varName}-vivid); }`);
-        }
-      } else {
-        // Handle nested color variants
-        for (const [variant, token] of Object.entries(variants)) {
-          if (token.value) {
-            const varName = toKebabCase(`${category}-${variant}`);
-            cssParts.push(`.color-${varName} { color: var(--color-${varName}); }`);
-            cssParts.push(`.bg-${varName} { background-color: var(--color-${varName}); }`);
-            
-            // Add vivid variants if applicable
-            if (token.value.includes('vivid') || token.value.endsWith('v')) {
-              cssParts.push(`.color-${varName}-vivid { color: var(--color-${varName}-vivid); }`);
-              cssParts.push(`.bg-${varName}-vivid { background-color: var(--color-${varName}-vivid); }`);
+
+    const usaTokens = setData['--usa'];
+    const themeData = setData['--theme'];
+
+    cssParts.push(`\n  /* Tokens from ${setName} */`);
+
+    if (usaTokens) { // Handling system token sets (e.g., "Color", "Spacing", "Font Size", "Font type / ...")
+      // System Colors
+      if (usaTokens.color) {
+        for (const [category, variants] of Object.entries(usaTokens.color)) {
+          if (typeof variants === 'object' && variants.value && variants.type === 'color') {
+            const varName = toKebabCase(category);
+            const resolvedValue = getTokenValue(tokens, {...variants, type: variants.type || 'color' });
+            if (resolvedValue) {
+              cssParts.push(`  --color-${varName}: ${resolvedValue};`);
+              allProcessedTokensForUtilities.color[varName] = resolvedValue;
+            }
+          } else if (typeof variants === 'object') {
+            for (const [variantKey, token] of Object.entries(variants)) {
+              if (token && token.value && token.type === 'color') {
+                const varName = toKebabCase(`${category}-${variantKey}`);
+                const resolvedValue = getTokenValue(tokens, {...token, type: token.type || 'color' });
+                if (resolvedValue) {
+                  cssParts.push(`  --color-${varName}: ${resolvedValue};`);
+                  allProcessedTokensForUtilities.color[varName] = resolvedValue;
+                }
+              }
             }
           }
         }
       }
-    }
-  }
-  
-  // Add utility classes for font sizes
-  if (themeTokens['font-size']) {
-    cssParts.push('\n/* Font Size Utility Classes */');
-    for (const [category, sizes] of Object.entries(themeTokens['font-size'])) {
-      for (const [size, token] of Object.entries(sizes)) {
-        if (token.value) {
-          const varName = toKebabCase(`${category}-${size}`);
-          cssParts.push(`.font-size-${varName} {`);
-          cssParts.push(`  font-size: var(--font-size-${varName});`);
-          cssParts.push('}');
+      // System Spacing
+      if (usaTokens.spacing) {
+        for (const [spacingKey, token] of Object.entries(usaTokens.spacing)) {
+          if (token && token.value && token.type === 'dimension') {
+            const varName = toKebabCase(`spacing-${spacingKey}`);
+            const resolvedValue = getTokenValue(tokens, {...token, type: token.type || 'dimension' });
+            if (resolvedValue) {
+              cssParts.push(`  --${varName}: ${resolvedValue};`);
+              allProcessedTokensForUtilities.spacing[spacingKey] = resolvedValue; // Store with original key for utility
+            }
+          }
         }
       }
-    }
-  }
-  
-  // Add utility classes for font weights
-  if (themeTokens['font-weight']) {
-    cssParts.push('\n/* Font Weight Utility Classes */');
-    for (const [weight, token] of Object.entries(themeTokens['font-weight'])) {
-      if (token.value) {
-        const varName = toKebabCase(weight);
-        cssParts.push(`.font-weight-${varName} {`);
-        cssParts.push(`  font-weight: var(--font-weight-${varName});`);
-        cssParts.push('}');
+      // System Font Size (from "Font Size" set itself)
+      if (setName === "Font Size" && usaTokens['font-size']) {
+         for (const [sizeKey, token] of Object.entries(usaTokens['font-size'])) {
+            if (token && token.value && token.type === 'dimension') {
+                const varName = toKebabCase(`font-size-${sizeKey}`);
+                const resolvedValue = getTokenValue(tokens, {...token, type: token.type || 'dimension' });
+                if (resolvedValue) {
+                    cssParts.push(`  --${varName}: ${resolvedValue};`);
+                    allProcessedTokensForUtilities['font-size'][sizeKey] = resolvedValue; // Store with original key
+                }
+            }
+         }
+      }
+      // System Font Family & Font Sizes (from "Font type / ..." sets)
+      if (usaTokens['font-family'] && usaTokens['font-size']) { // Typically for sets like "Font type / Reading/Public Sans"
+        for (const [fontCategory, familyToken] of Object.entries(usaTokens['font-family'])) {
+            if (familyToken && familyToken.value && (familyToken.type === 'text' || familyToken.type === 'fontFamily')) { // type can be 'text'
+                const familyVarName = toKebabCase(`font-family-${fontCategory}`);
+                const resolvedFamily = getTokenValue(tokens, {...familyToken, type: familyToken.type || 'fontFamily' });
+                if (resolvedFamily) {
+                    cssParts.push(`  --${familyVarName}: ${resolvedFamily};`);
+                }
+            }
+            if (usaTokens['font-size'][fontCategory]) {
+                for (const [sizeKey, sizeToken] of Object.entries(usaTokens['font-size'][fontCategory])) {
+                    if (sizeToken && sizeToken.value && sizeToken.type === 'dimension') {
+                        const sizeVarName = toKebabCase(`font-size-${fontCategory}-${sizeKey}`);
+                        const resolvedSize = getTokenValue(tokens, {...sizeToken, type: sizeToken.type || 'dimension' });
+                        if (resolvedSize) {
+                           cssParts.push(`  --${sizeVarName}: ${resolvedSize};`);
+                           allProcessedTokensForUtilities['font-size'][`${fontCategory}-${sizeKey}`] = resolvedSize;
+                        }
+                    }
+                }
+            }
+        }
+      }
+      // System Radius
+      if (usaTokens.radius) {
+        for (const [radiusKey, token] of Object.entries(usaTokens.radius)) {
+            if (token && token.value && token.type === 'dimension') {
+                const varName = toKebabCase(`radius-${radiusKey}`);
+                const resolvedValue = getTokenValue(tokens, {...token, type: token.type || 'dimension' });
+                if (resolvedValue) {
+                    cssParts.push(`  --${varName}: ${resolvedValue};`);
+                    allProcessedTokensForUtilities.radius[radiusKey] = resolvedValue;
+                }
+            }
+        }
+      }
+    } else if (themeData) { // Handling theme token sets (e.g., "USWDS Theme/Project theme")
+      // Theme Colors
+      if (themeData.color) {
+        for (const [category, variants] of Object.entries(themeData.color)) {
+          if (variants && typeof variants === 'object') {
+            if (variants.value && variants.type === 'color') { // e.g. ink, ink-reverse
+              const varName = toKebabCase(category);
+              const resolvedValue = getTokenValue(tokens, {...variants, type: variants.type || 'color' });
+              if (resolvedValue) {
+                cssParts.push(`  --theme-color-${varName}: ${resolvedValue};`);
+                allProcessedTokensForUtilities.color[`${category}`] = resolvedValue; // Use simple key for utilities
+              }
+            } else {
+              for (const [variantKey, token] of Object.entries(variants)) {
+                if (token && token.value && token.type === 'color') {
+                  const varName = toKebabCase(`${category}-${variantKey}`);
+                  const resolvedValue = getTokenValue(tokens, {...token, type: token.type || 'color' });
+                  if (resolvedValue) {
+                    cssParts.push(`  --theme-color-${varName}: ${resolvedValue};`);
+                     allProcessedTokensForUtilities.color[`${category}-${variantKey}`] = resolvedValue;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      // Theme Font Sizes
+      if (themeData['font-size']) {
+        for (const [category, sizes] of Object.entries(themeData['font-size'])) {
+          if (sizes && typeof sizes === 'object') {
+            for (const [sizeKey, token] of Object.entries(sizes)) {
+              if (token && token.value && token.type === 'dimension') {
+                const varName = toKebabCase(`${category}-${sizeKey}`);
+                const resolvedValue = getTokenValue(tokens, {...token, type: token.type || 'dimension' });
+                if (resolvedValue) {
+                  cssParts.push(`  --theme-font-size-${varName}: ${resolvedValue};`);
+                  allProcessedTokensForUtilities['font-size'][`${category}-${sizeKey}`] = resolvedValue;
+                }
+              }
+            }
+          }
+        }
+      }
+      // Theme Font Weights
+      if (themeData['font-weight']) {
+        for (const [weightKey, token] of Object.entries(themeData['font-weight'])) {
+          if (token && token.value && (token.type === 'text' || token.type === 'fontWeight')) {
+            const varName = toKebabCase(weightKey);
+            const resolvedValue = getTokenValue(tokens, {...token, type: token.type || 'fontWeight' });
+            if (resolvedValue) {
+              cssParts.push(`  --theme-font-weight-${varName}: ${resolvedValue};`);
+              allProcessedTokensForUtilities['font-weight'][varName] = resolvedValue;
+            }
+          }
+        }
+      }
+      // Theme Spacing (e.g., page.margins, site.margins)
+      const spacingSections = ['page', 'site'];
+      for (const sectionName of spacingSections) {
+        if (themeData[sectionName] && themeData[sectionName].margins) {
+          for (const [marginName, token] of Object.entries(themeData[sectionName].margins)) {
+            if (token && token.value && token.type === 'dimension') {
+              const varName = toKebabCase(`${sectionName}-margin-${marginName}`);
+              const resolvedValue = getTokenValue(tokens, {...token, type: token.type || 'dimension' });
+              if (resolvedValue) {
+                cssParts.push(`  --theme-spacing-${varName}: ${resolvedValue};`);
+                allProcessedTokensForUtilities.spacing[`${sectionName}-margin-${marginName}`] = resolvedValue;
+              }
+            }
+          }
+        }
+      }
+       // Theme Border Radius
+      if (themeData['border-radius']) {
+        for (const [radiusKey, token] of Object.entries(themeData['border-radius'])) {
+            if (token && token.value && token.type === 'dimension') {
+                const varName = toKebabCase(`radius-${radiusKey}`);
+                 const resolvedValue = getTokenValue(tokens, {...token, type: token.type || 'dimension' });
+                if (resolvedValue) {
+                    cssParts.push(`  --theme-${varName}: ${resolvedValue};`);
+                    // Not adding to utilities for now, but could if needed:
+                    // allProcessedTokensForUtilities.radius[`theme-${radiusKey}`] = resolvedValue;
+                }
+            }
+        }
+      }
+      // Process component tokens if they are meant to be global CSS vars
+      if (themeData['component']) {
+        // This part would need more specific logic based on how component tokens should map to global CSS vars
+        // For now, we're focusing on the primary token types (color, font, spacing)
       }
     }
   }
-  
-  // Add utility classes for spacing
-  if (themeTokens.page?.margins) {
-    cssParts.push('\n/* Spacing Utility Classes */');
-    for (const [name, token] of Object.entries(themeTokens.page.margins)) {
-      if (token.value) {
-        const varName = toKebabCase(name);
-        cssParts.push(`.margin-${varName} {`);
-        cssParts.push(`  margin: var(--spacing-${varName});`);
-        cssParts.push('}');
-        cssParts.push(`.padding-${varName} {`);
-        cssParts.push(`  padding: var(--spacing-${varName});`);
-        cssParts.push('}');
-      }
+  cssParts.push('}');
+
+  // Utility classes generation
+  cssParts.push('\n/* Color Utility Classes */');
+  for (const [key, value] of Object.entries(allProcessedTokensForUtilities.color)) {
+    // Check if this key corresponds to a theme definition
+    let isThemeColor = false;
+    for (const setName in tokens) {
+        if (setName.startsWith('$')) continue;
+        const themeColors = tokens[setName]?.['--theme']?.color;
+        if (themeColors) {
+            if (themeColors[key]) { // Direct match like 'ink'
+                isThemeColor = true; break;
+            }
+            const keyParts = key.split('-');
+            if (keyParts.length > 1 && themeColors[keyParts[0]] && themeColors[keyParts[0]][key.substring(keyParts[0].length + 1)]) {
+                 isThemeColor = true; break;
+            }
+        }
     }
+    const varNamePrefix = isThemeColor ? 'theme-color' : 'color';
+    const cssVarName = `--${varNamePrefix}-${toKebabCase(key)}`;
+    cssParts.push(`.${toKebabCase(`color-${key}`)} { color: var(${cssVarName}); }`);
+    cssParts.push(`.bg-${toKebabCase(key)} { background-color: var(${cssVarName}); }`);
+  }
+
+  cssParts.push('\n/* Font Size Utility Classes */');
+  for (const [key, value] of Object.entries(allProcessedTokensForUtilities['font-size'])) {
+    let isThemeFontSize = false;
+    for (const setName in tokens) {
+        if (setName.startsWith('$')) continue;
+        const themeFontSizes = tokens[setName]?.['--theme']?.['font-size'];
+        if (themeFontSizes) {
+            const keyParts = key.split('-'); // key might be 'reading-sm' or 'body-md'
+            if (keyParts.length > 1 && themeFontSizes[keyParts[0]] && themeFontSizes[keyParts[0]][keyParts.slice(1).join('-')]) {
+                isThemeFontSize = true; break;
+            }
+        }
+    }
+    const varNamePrefix = isThemeFontSize ? 'theme-font-size' : 'font-size';
+    const cssVarName = `--${varNamePrefix}-${toKebabCase(key)}`;
+    cssParts.push(`.font-size-${toKebabCase(key)} { font-size: var(${cssVarName}); }`);
+  }
+  
+  cssParts.push('\n/* Font Weight Utility Classes */');
+  for (const [key, value] of Object.entries(allProcessedTokensForUtilities['font-weight'])) {
+     let isThemeFontWeight = false;
+     for (const setName in tokens) {
+        if (setName.startsWith('$')) continue;
+        const themeFontWeights = tokens[setName]?.['--theme']?.['font-weight'];
+        if (themeFontWeights && themeFontWeights[key]) {
+            isThemeFontWeight = true; break;
+        }
+     }
+    const varNamePrefix = isThemeFontWeight ? 'theme-font-weight' : 'font-weight';
+    const cssVarName = `--${varNamePrefix}-${toKebabCase(key)}`;
+    cssParts.push(`.font-weight-${toKebabCase(key)} { font-weight: var(${cssVarName}); }`);
+  }
+
+  cssParts.push('\n/* Spacing Utility Classes */');
+  for (const [key, value] of Object.entries(allProcessedTokensForUtilities.spacing)) {
+    const isThemeSpacing = key.includes('-margin-') || key.includes('-padding-') || key.includes('breakpoint') || key.includes('site') || key.includes('mobile');
+    let cssVarName;
+    if (isThemeSpacing) {
+        cssVarName = `--theme-spacing-${toKebabCase(key)}`;
+    } else {
+        cssVarName = `--spacing-${key}`; // System spacing keys are typically simple like "1", "05", "1px"
+    }
+    cssParts.push(`.margin-${toKebabCase(key)} { margin: var(${cssVarName}); }`);
+    cssParts.push(`.padding-${toKebabCase(key)} { padding: var(${cssVarName}); }`);
   }
   
   return cssParts.join('\n');

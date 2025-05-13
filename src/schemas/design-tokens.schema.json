@@ -8,9 +8,9 @@
     },
     "USWDS Theme/Project theme": {
       "type": "object",
-      "required": ["#-theme"],
+      "required": ["--theme"],
       "properties": {
-        "#-theme": {
+        "--theme": {
           "type": "object",
           "required": ["color"],
           "properties": {
