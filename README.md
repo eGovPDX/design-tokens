@@ -84,6 +84,14 @@ This approach ensures we have complete, consistent, and well-managed design toke
      - `output/design_tokens.json` (processed version)
      - `output/design_tokens.css` (CSS variables)
 
+#### GitHub Pages Deployment
+
+In addition to committing the processed files back to the pull request, the workflow also deploys the `output/design_tokens.css` and `output/design_tokens.json` files to GitHub Pages.
+
+- **Branch**: The files are pushed to the `gh-pages` branch.
+- **Folder**: The files are placed in the `/docs` folder on the `gh-pages` branch.
+- **Access**: This makes the latest processed tokens available via GitHub Pages, typically at a URL like `https://<your-username>.github.io/<your-repository>/docs/design_tokens.css`. The `design_tokens.json` file will be available at a similar URL.
+
 #### Branch Management
 
 1. **Branch Structure**:
