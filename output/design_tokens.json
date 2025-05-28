@@ -9880,10 +9880,6 @@
           "lightest": {
             "value": "{--usa.color.none}",
             "type": "color"
-          },
-          "darkest": {
-            "value": "{--usa.color.none}",
-            "type": "color"
           }
         },
         "secondary": {
@@ -10416,6 +10412,16 @@
           "mobile-width": {
             "value": "{--usa.spacing.2}",
             "type": "dimension"
+          }
+        }
+      }
+    },
+    "---theme": {
+      "color": {
+        "primary": {
+          "darkest": {
+            "value": "{--usa.color.none}",
+            "type": "color"
           }
         }
       }
@@ -14303,7 +14309,6 @@
         "--theme.color.secondary.darkest": "4ed9b6a294642fc18ea71201165a2b3a5dd9d40c",
         "--theme.color.secondary.lightest": "6b6e3e2d24fa8ccf0befd74b8cdea28ea75336c8",
         "--theme.color.primary.lightest": "850737a698289ea862ed99d1da14a2038c282dab",
-        "--theme.color.primary.darkest": "0c8eac671593c6d0ab52b89d5405bb6e135c59c1",
         "--theme.color.accent-warm.lightest": "8b0c496dd05a3ddb16130d29b1c7bea7bffa91b3",
         "--theme.color.accent-warm.darkest": "e221e8d9a0d1db6db302eb42e892cd8a9b46b13e",
         "--theme.color.accent-warm.vivid": "a9b1cd474a9ac88ffe378c815085162dc7564102",
@@ -14714,7 +14719,8 @@
         "--component.PGOV Side Navigation.border-color-selected": "4b8737e0c5b6a945920e95693b8b9a28d4173829",
         "--component.PGOV Side Navigation.text-color-default": "95a7f38ac79c8e2fb49a7aba511f0ad7eab774d1",
         "--component.PGOV Side Navigation.border-radius-sm": "c6b0c62190c47b401f73e3bf24d5512841c69392",
-        "--component.PGOV Side Navigation.border-radius-lg": "09930e59343b5c4cb26823652d35475e03a69749"
+        "--component.PGOV Side Navigation.border-radius-lg": "09930e59343b5c4cb26823652d35475e03a69749",
+        "---theme.color.primary.darkest": "0c8eac671593c6d0ab52b89d5405bb6e135c59c1"
       },
       "$figmaModeId": "2082:1",
       "$figmaCollectionId": "VariableCollectionId:2082:2349"
@@ -14827,7 +14833,6 @@
         "--theme.color.secondary.darkest": "4ed9b6a294642fc18ea71201165a2b3a5dd9d40c",
         "--theme.color.secondary.lightest": "6b6e3e2d24fa8ccf0befd74b8cdea28ea75336c8",
         "--theme.color.primary.lightest": "850737a698289ea862ed99d1da14a2038c282dab",
-        "--theme.color.primary.darkest": "0c8eac671593c6d0ab52b89d5405bb6e135c59c1",
         "--theme.color.accent-warm.lightest": "8b0c496dd05a3ddb16130d29b1c7bea7bffa91b3",
         "--theme.color.accent-warm.darkest": "e221e8d9a0d1db6db302eb42e892cd8a9b46b13e",
         "--theme.color.accent-warm.vivid": "a9b1cd474a9ac88ffe378c815085162dc7564102",
@@ -15238,7 +15243,8 @@
         "--component.PGOV Side Navigation.border-color-selected": "4b8737e0c5b6a945920e95693b8b9a28d4173829",
         "--component.PGOV Side Navigation.text-color-default": "95a7f38ac79c8e2fb49a7aba511f0ad7eab774d1",
         "--component.PGOV Side Navigation.border-radius-sm": "c6b0c62190c47b401f73e3bf24d5512841c69392",
-        "--component.PGOV Side Navigation.border-radius-lg": "09930e59343b5c4cb26823652d35475e03a69749"
+        "--component.PGOV Side Navigation.border-radius-lg": "09930e59343b5c4cb26823652d35475e03a69749",
+        "---theme.color.primary.darkest": "0c8eac671593c6d0ab52b89d5405bb6e135c59c1"
       },
       "$figmaModeId": "115:0",
       "$figmaCollectionId": "VariableCollectionId:2082:2349"
@@ -15351,7 +15357,6 @@
         "--theme.color.secondary.darkest": "4ed9b6a294642fc18ea71201165a2b3a5dd9d40c",
         "--theme.color.secondary.lightest": "6b6e3e2d24fa8ccf0befd74b8cdea28ea75336c8",
         "--theme.color.primary.lightest": "850737a698289ea862ed99d1da14a2038c282dab",
-        "--theme.color.primary.darkest": "0c8eac671593c6d0ab52b89d5405bb6e135c59c1",
         "--theme.color.accent-warm.lightest": "8b0c496dd05a3ddb16130d29b1c7bea7bffa91b3",
         "--theme.color.accent-warm.darkest": "e221e8d9a0d1db6db302eb42e892cd8a9b46b13e",
         "--theme.color.accent-warm.vivid": "a9b1cd474a9ac88ffe378c815085162dc7564102",
@@ -15762,7 +15767,8 @@
         "--component.PGOV Side Navigation.border-color-selected": "4b8737e0c5b6a945920e95693b8b9a28d4173829",
         "--component.PGOV Side Navigation.text-color-default": "95a7f38ac79c8e2fb49a7aba511f0ad7eab774d1",
         "--component.PGOV Side Navigation.border-radius-sm": "c6b0c62190c47b401f73e3bf24d5512841c69392",
-        "--component.PGOV Side Navigation.border-radius-lg": "09930e59343b5c4cb26823652d35475e03a69749"
+        "--component.PGOV Side Navigation.border-radius-lg": "09930e59343b5c4cb26823652d35475e03a69749",
+        "---theme.color.primary.darkest": "0c8eac671593c6d0ab52b89d5405bb6e135c59c1"
       },
       "$figmaModeId": "115:1",
       "$figmaCollectionId": "VariableCollectionId:2082:2349"
@@ -15875,7 +15881,6 @@
         "--theme.color.secondary.darkest": "4ed9b6a294642fc18ea71201165a2b3a5dd9d40c",
         "--theme.color.secondary.lightest": "6b6e3e2d24fa8ccf0befd74b8cdea28ea75336c8",
         "--theme.color.primary.lightest": "850737a698289ea862ed99d1da14a2038c282dab",
-        "--theme.color.primary.darkest": "0c8eac671593c6d0ab52b89d5405bb6e135c59c1",
         "--theme.color.accent-warm.lightest": "8b0c496dd05a3ddb16130d29b1c7bea7bffa91b3",
         "--theme.color.accent-warm.darkest": "e221e8d9a0d1db6db302eb42e892cd8a9b46b13e",
         "--theme.color.accent-warm.vivid": "a9b1cd474a9ac88ffe378c815085162dc7564102",
@@ -16286,7 +16291,8 @@
         "--component.PGOV Side Navigation.border-color-selected": "4b8737e0c5b6a945920e95693b8b9a28d4173829",
         "--component.PGOV Side Navigation.text-color-default": "95a7f38ac79c8e2fb49a7aba511f0ad7eab774d1",
         "--component.PGOV Side Navigation.border-radius-sm": "c6b0c62190c47b401f73e3bf24d5512841c69392",
-        "--component.PGOV Side Navigation.border-radius-lg": "09930e59343b5c4cb26823652d35475e03a69749"
+        "--component.PGOV Side Navigation.border-radius-lg": "09930e59343b5c4cb26823652d35475e03a69749",
+        "---theme.color.primary.darkest": "0c8eac671593c6d0ab52b89d5405bb6e135c59c1"
       },
       "$figmaModeId": "3052:1",
       "$figmaCollectionId": "VariableCollectionId:2082:2349"
