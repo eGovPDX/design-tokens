@@ -2505,6 +2505,11 @@
           }
         }
       }
+    },
+    "--test-token": {
+      "value": "\"test token\"",
+      "type": "other",
+      "description": "This token is for testing the GIthub workflow"
     }
   },
   "Font type / Display/Merriweather": {

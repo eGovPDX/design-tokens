@@ -514,6 +514,34 @@
   --spacing-widescreen: 87.5rem;
   --spacing-touch-minimum: 3rem;
   --spacing-pointer-minimum: 1.5rem;
+  --spacing-0: 0rem;
+  --spacing-1: 0.5rem;
+  --spacing-2: 1rem;
+  --spacing-3: 1.5rem;
+  --spacing-4: 2rem;
+  --spacing-5: 2.5rem;
+  --spacing-6: 3rem;
+  --spacing-7: 3.5rem;
+  --spacing-8: 4rem;
+  --spacing-9: 4.5rem;
+  --spacing-10: 5rem;
+  --spacing-15: 7.5rem;
+  --spacing-105: 0.75rem;
+  --spacing-205: 1.25rem;
+  --spacing-1px: 0.062rem;
+  --spacing-2px: 0.125rem;
+  --spacing-05: 0.25rem;
+  --spacing-card: 9.281rem;
+  --spacing-card-lg: 15rem;
+  --spacing-mobile: 20rem;
+  --spacing-mobile-lg: 30rem;
+  --spacing-tablet: 40rem;
+  --spacing-tablet-lg: 55rem;
+  --spacing-desktop: 64rem;
+  --spacing-desktop-lg: 75rem;
+  --spacing-widescreen: 87.5rem;
+  --spacing-touch-minimum: 3rem;
+  --spacing-pointer-minimum: 1.5rem;
 
   /* Tokens from Radius */
   --radius-pill: 62.5rem;
@@ -543,628 +571,628 @@
   --font-size-micro: 0.625rem;
 
   /* Tokens from Font type / Reading/Public Sans */
-  --font-family-reading: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-reading-1: 0.75rem;
-  --font-size-reading-2: 0.812rem;
-  --font-size-reading-3: 0.875rem;
-  --font-size-reading-4: 0.938rem;
-  --font-size-reading-5: 1rem;
-  --font-size-reading-6: 1.062rem;
-  --font-size-reading-7: 1.125rem;
-  --font-size-reading-8: 1.25rem;
-  --font-size-reading-9: 1.375rem;
-  --font-size-reading-10: 1.5rem;
-  --font-size-reading-11: 1.75rem;
-  --font-size-reading-12: 2rem;
-  --font-size-reading-13: 2.25rem;
-  --font-size-reading-14: 2.5rem;
-  --font-size-reading-15: 3rem;
-  --font-size-reading-16: 3.5rem;
-  --font-size-reading-17: 4rem;
-  --font-size-reading-18: 5rem;
-  --font-size-reading-19: 7.5rem;
-  --font-size-reading-20: 8.75rem;
-  --font-size-reading-micro: 0.625rem;
+  --font-family-reading-public-sans: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-reading-public-sans-1: 0.75rem;
+  --font-size-reading-public-sans-2: 0.812rem;
+  --font-size-reading-public-sans-3: 0.875rem;
+  --font-size-reading-public-sans-4: 0.938rem;
+  --font-size-reading-public-sans-5: 1rem;
+  --font-size-reading-public-sans-6: 1.062rem;
+  --font-size-reading-public-sans-7: 1.125rem;
+  --font-size-reading-public-sans-8: 1.25rem;
+  --font-size-reading-public-sans-9: 1.375rem;
+  --font-size-reading-public-sans-10: 1.5rem;
+  --font-size-reading-public-sans-11: 1.75rem;
+  --font-size-reading-public-sans-12: 2rem;
+  --font-size-reading-public-sans-13: 2.25rem;
+  --font-size-reading-public-sans-14: 2.5rem;
+  --font-size-reading-public-sans-15: 3rem;
+  --font-size-reading-public-sans-16: 3.5rem;
+  --font-size-reading-public-sans-17: 4rem;
+  --font-size-reading-public-sans-18: 5rem;
+  --font-size-reading-public-sans-19: 7.5rem;
+  --font-size-reading-public-sans-20: 8.75rem;
+  --font-size-reading-public-sans-micro: 0.625rem;
 
   /* Tokens from Font type / Reading/Open Sans */
-  --font-family-reading: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-reading-1: 0.731rem;
-  --font-size-reading-2: 0.794rem;
-  --font-size-reading-3: 0.856rem;
-  --font-size-reading-4: 0.919rem;
-  --font-size-reading-5: 0.977rem;
-  --font-size-reading-6: 1.038rem;
-  --font-size-reading-7: 1.094rem;
-  --font-size-reading-8: 1.225rem;
-  --font-size-reading-9: 1.344rem;
-  --font-size-reading-10: 1.469rem;
-  --font-size-reading-11: 1.709rem;
-  --font-size-reading-12: 1.956rem;
-  --font-size-reading-13: 2.2rem;
-  --font-size-reading-14: 2.444rem;
-  --font-size-reading-15: 2.931rem;
-  --font-size-reading-16: 3.406rem;
-  --font-size-reading-17: 3.912rem;
-  --font-size-reading-18: 4.887rem;
-  --font-size-reading-19: 7.335rem;
-  --font-size-reading-20: 8.556rem;
-  --font-size-reading-micro: 0.613rem;
+  --font-family-reading-open-sans: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-reading-open-sans-1: 0.731rem;
+  --font-size-reading-open-sans-2: 0.794rem;
+  --font-size-reading-open-sans-3: 0.856rem;
+  --font-size-reading-open-sans-4: 0.919rem;
+  --font-size-reading-open-sans-5: 0.977rem;
+  --font-size-reading-open-sans-6: 1.038rem;
+  --font-size-reading-open-sans-7: 1.094rem;
+  --font-size-reading-open-sans-8: 1.225rem;
+  --font-size-reading-open-sans-9: 1.344rem;
+  --font-size-reading-open-sans-10: 1.469rem;
+  --font-size-reading-open-sans-11: 1.709rem;
+  --font-size-reading-open-sans-12: 1.956rem;
+  --font-size-reading-open-sans-13: 2.2rem;
+  --font-size-reading-open-sans-14: 2.444rem;
+  --font-size-reading-open-sans-15: 2.931rem;
+  --font-size-reading-open-sans-16: 3.406rem;
+  --font-size-reading-open-sans-17: 3.912rem;
+  --font-size-reading-open-sans-18: 4.887rem;
+  --font-size-reading-open-sans-19: 7.335rem;
+  --font-size-reading-open-sans-20: 8.556rem;
+  --font-size-reading-open-sans-micro: 0.613rem;
 
   /* Tokens from Font type / Reading/System */
-  --font-family-reading: Inter;
-  --font-size-reading-1: 0.75rem;
-  --font-size-reading-2: 0.812rem;
-  --font-size-reading-3: 0.875rem;
-  --font-size-reading-4: 0.938rem;
-  --font-size-reading-5: 1rem;
-  --font-size-reading-6: 1.062rem;
-  --font-size-reading-7: 1.125rem;
-  --font-size-reading-8: 1.25rem;
-  --font-size-reading-9: 1.375rem;
-  --font-size-reading-10: 1.5rem;
-  --font-size-reading-11: 1.75rem;
-  --font-size-reading-12: 2rem;
-  --font-size-reading-13: 2.25rem;
-  --font-size-reading-14: 2.5rem;
-  --font-size-reading-15: 3rem;
-  --font-size-reading-16: 3.5rem;
-  --font-size-reading-17: 4rem;
-  --font-size-reading-18: 5rem;
-  --font-size-reading-19: 7.5rem;
-  --font-size-reading-20: 8.75rem;
-  --font-size-reading-micro: 0.625rem;
+  --font-family-reading-system: Inter;
+  --font-size-reading-system-1: 0.75rem;
+  --font-size-reading-system-2: 0.812rem;
+  --font-size-reading-system-3: 0.875rem;
+  --font-size-reading-system-4: 0.938rem;
+  --font-size-reading-system-5: 1rem;
+  --font-size-reading-system-6: 1.062rem;
+  --font-size-reading-system-7: 1.125rem;
+  --font-size-reading-system-8: 1.25rem;
+  --font-size-reading-system-9: 1.375rem;
+  --font-size-reading-system-10: 1.5rem;
+  --font-size-reading-system-11: 1.75rem;
+  --font-size-reading-system-12: 2rem;
+  --font-size-reading-system-13: 2.25rem;
+  --font-size-reading-system-14: 2.5rem;
+  --font-size-reading-system-15: 3rem;
+  --font-size-reading-system-16: 3.5rem;
+  --font-size-reading-system-17: 4rem;
+  --font-size-reading-system-18: 5rem;
+  --font-size-reading-system-19: 7.5rem;
+  --font-size-reading-system-20: 8.75rem;
+  --font-size-reading-system-micro: 0.625rem;
 
   /* Tokens from Font type / Display/Merriweather */
-  --font-family-display: Merriweather;
-  --font-size-display-1: 0.738rem;
-  --font-size-display-2: 0.794rem;
-  --font-size-display-3: 0.856rem;
-  --font-size-display-4: 0.919rem;
-  --font-size-display-5: 0.981rem;
-  --font-size-display-6: 1.044rem;
-  --font-size-display-7: 1.1rem;
-  --font-size-display-8: 1.225rem;
-  --font-size-display-9: 1.35rem;
-  --font-size-display-10: 1.469rem;
-  --font-size-display-11: 1.712rem;
-  --font-size-display-12: 1.962rem;
-  --font-size-display-13: 2.206rem;
-  --font-size-display-14: 2.45rem;
-  --font-size-display-15: 2.938rem;
-  --font-size-display-16: 3.431rem;
-  --font-size-display-17: 3.919rem;
-  --font-size-display-18: 4.9rem;
-  --font-size-display-19: 7.35rem;
-  --font-size-display-20: 8.575rem;
-  --font-size-display-micro: 0.613rem;
+  --font-family-display-merriweather: Merriweather;
+  --font-size-display-merriweather-1: 0.738rem;
+  --font-size-display-merriweather-2: 0.794rem;
+  --font-size-display-merriweather-3: 0.856rem;
+  --font-size-display-merriweather-4: 0.919rem;
+  --font-size-display-merriweather-5: 0.981rem;
+  --font-size-display-merriweather-6: 1.044rem;
+  --font-size-display-merriweather-7: 1.1rem;
+  --font-size-display-merriweather-8: 1.225rem;
+  --font-size-display-merriweather-9: 1.35rem;
+  --font-size-display-merriweather-10: 1.469rem;
+  --font-size-display-merriweather-11: 1.712rem;
+  --font-size-display-merriweather-12: 1.962rem;
+  --font-size-display-merriweather-13: 2.206rem;
+  --font-size-display-merriweather-14: 2.45rem;
+  --font-size-display-merriweather-15: 2.938rem;
+  --font-size-display-merriweather-16: 3.431rem;
+  --font-size-display-merriweather-17: 3.919rem;
+  --font-size-display-merriweather-18: 4.9rem;
+  --font-size-display-merriweather-19: 7.35rem;
+  --font-size-display-merriweather-20: 8.575rem;
+  --font-size-display-merriweather-micro: 0.613rem;
 
   /* Tokens from Font type / Display/Georgia */
-  --font-family-display: Georgia;
-  --font-size-display-1: 0.788rem;
-  --font-size-display-2: 0.856rem;
-  --font-size-display-3: 0.919rem;
-  --font-size-display-4: 0.988rem;
-  --font-size-display-5: 1.05rem;
-  --font-size-display-6: 1.119rem;
-  --font-size-display-7: 1.181rem;
-  --font-size-display-8: 1.312rem;
-  --font-size-display-9: 1.444rem;
-  --font-size-display-10: 1.575rem;
-  --font-size-display-11: 1.837rem;
-  --font-size-display-12: 2.1rem;
-  --font-size-display-13: 2.362rem;
-  --font-size-display-14: 2.625rem;
-  --font-size-display-15: 3.15rem;
-  --font-size-display-16: 3.675rem;
-  --font-size-display-17: 4.2rem;
-  --font-size-display-18: 5.25rem;
-  --font-size-display-19: 7.875rem;
-  --font-size-display-20: 9.188rem;
-  --font-size-display-micro: 0.656rem;
+  --font-family-display-georgia: Georgia;
+  --font-size-display-georgia-1: 0.788rem;
+  --font-size-display-georgia-2: 0.856rem;
+  --font-size-display-georgia-3: 0.919rem;
+  --font-size-display-georgia-4: 0.988rem;
+  --font-size-display-georgia-5: 1.05rem;
+  --font-size-display-georgia-6: 1.119rem;
+  --font-size-display-georgia-7: 1.181rem;
+  --font-size-display-georgia-8: 1.312rem;
+  --font-size-display-georgia-9: 1.444rem;
+  --font-size-display-georgia-10: 1.575rem;
+  --font-size-display-georgia-11: 1.837rem;
+  --font-size-display-georgia-12: 2.1rem;
+  --font-size-display-georgia-13: 2.362rem;
+  --font-size-display-georgia-14: 2.625rem;
+  --font-size-display-georgia-15: 3.15rem;
+  --font-size-display-georgia-16: 3.675rem;
+  --font-size-display-georgia-17: 4.2rem;
+  --font-size-display-georgia-18: 5.25rem;
+  --font-size-display-georgia-19: 7.875rem;
+  --font-size-display-georgia-20: 9.188rem;
+  --font-size-display-georgia-micro: 0.656rem;
 
   /* Tokens from Font type / Display/Figtree */
-  --font-family-display: Figtree;
-  --font-size-display-1: 0.788rem;
-  --font-size-display-2: 0.856rem;
-  --font-size-display-3: 0.919rem;
-  --font-size-display-4: 0.988rem;
-  --font-size-display-5: 1.05rem;
-  --font-size-display-6: 1.119rem;
-  --font-size-display-7: 1.181rem;
-  --font-size-display-8: 1.312rem;
-  --font-size-display-9: 1.444rem;
-  --font-size-display-10: 1.575rem;
-  --font-size-display-11: 1.837rem;
-  --font-size-display-12: 2.1rem;
-  --font-size-display-13: 2.362rem;
-  --font-size-display-14: 2.625rem;
-  --font-size-display-15: 3.15rem;
-  --font-size-display-16: 3.675rem;
-  --font-size-display-17: 4.2rem;
-  --font-size-display-18: 5.25rem;
-  --font-size-display-19: 7.875rem;
-  --font-size-display-20: 9.188rem;
-  --font-size-display-micro: 0.656rem;
+  --font-family-display-figtree: Figtree;
+  --font-size-display-figtree-1: 0.788rem;
+  --font-size-display-figtree-2: 0.856rem;
+  --font-size-display-figtree-3: 0.919rem;
+  --font-size-display-figtree-4: 0.988rem;
+  --font-size-display-figtree-5: 1.05rem;
+  --font-size-display-figtree-6: 1.119rem;
+  --font-size-display-figtree-7: 1.181rem;
+  --font-size-display-figtree-8: 1.312rem;
+  --font-size-display-figtree-9: 1.444rem;
+  --font-size-display-figtree-10: 1.575rem;
+  --font-size-display-figtree-11: 1.837rem;
+  --font-size-display-figtree-12: 2.1rem;
+  --font-size-display-figtree-13: 2.362rem;
+  --font-size-display-figtree-14: 2.625rem;
+  --font-size-display-figtree-15: 3.15rem;
+  --font-size-display-figtree-16: 3.675rem;
+  --font-size-display-figtree-17: 4.2rem;
+  --font-size-display-figtree-18: 5.25rem;
+  --font-size-display-figtree-19: 7.875rem;
+  --font-size-display-figtree-20: 9.188rem;
+  --font-size-display-figtree-micro: 0.656rem;
 
   /* Tokens from Font type / Display/Proto */
-  --font-family-display: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-display-1: 0.712rem;
-  --font-size-display-2: 0.775rem;
-  --font-size-display-3: 0.831rem;
-  --font-size-display-4: 0.894rem;
-  --font-size-display-5: 0.95rem;
-  --font-size-display-6: 1.013rem;
-  --font-size-display-7: 1.069rem;
-  --font-size-display-8: 1.188rem;
-  --font-size-display-9: 1.306rem;
-  --font-size-display-10: 1.425rem;
-  --font-size-display-11: 1.663rem;
-  --font-size-display-12: 1.9rem;
-  --font-size-display-13: 2.138rem;
-  --font-size-display-14: 2.375rem;
-  --font-size-display-15: 2.85rem;
-  --font-size-display-16: 3.325rem;
-  --font-size-display-17: 3.8rem;
-  --font-size-display-18: 4.75rem;
-  --font-size-display-19: 7.125rem;
-  --font-size-display-20: 8.312rem;
-  --font-size-display-micro: 0.594rem;
+  --font-family-display-proto: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-display-proto-1: 0.712rem;
+  --font-size-display-proto-2: 0.775rem;
+  --font-size-display-proto-3: 0.831rem;
+  --font-size-display-proto-4: 0.894rem;
+  --font-size-display-proto-5: 0.95rem;
+  --font-size-display-proto-6: 1.013rem;
+  --font-size-display-proto-7: 1.069rem;
+  --font-size-display-proto-8: 1.188rem;
+  --font-size-display-proto-9: 1.306rem;
+  --font-size-display-proto-10: 1.425rem;
+  --font-size-display-proto-11: 1.663rem;
+  --font-size-display-proto-12: 1.9rem;
+  --font-size-display-proto-13: 2.138rem;
+  --font-size-display-proto-14: 2.375rem;
+  --font-size-display-proto-15: 2.85rem;
+  --font-size-display-proto-16: 3.325rem;
+  --font-size-display-proto-17: 3.8rem;
+  --font-size-display-proto-18: 4.75rem;
+  --font-size-display-proto-19: 7.125rem;
+  --font-size-display-proto-20: 8.312rem;
+  --font-size-display-proto-micro: 0.594rem;
 
   /* Tokens from Font type / Mono/Roboto Mono */
-  --font-family-mono: source-code-pro, Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  --font-size-mono-1: 0.712rem;
-  --font-size-mono-2: 0.775rem;
-  --font-size-mono-3: 0.831rem;
-  --font-size-mono-4: 0.894rem;
-  --font-size-mono-5: 0.95rem;
-  --font-size-mono-6: 1.013rem;
-  --font-size-mono-7: 1.069rem;
-  --font-size-mono-8: 1.188rem;
-  --font-size-mono-9: 1.306rem;
-  --font-size-mono-10: 1.425rem;
-  --font-size-mono-11: 1.663rem;
-  --font-size-mono-12: 1.9rem;
-  --font-size-mono-13: 2.138rem;
-  --font-size-mono-14: 2.375rem;
-  --font-size-mono-15: 2.85rem;
-  --font-size-mono-16: 3.325rem;
-  --font-size-mono-17: 3.8rem;
-  --font-size-mono-18: 4.75rem;
-  --font-size-mono-19: 7.125rem;
-  --font-size-mono-20: 8.312rem;
-  --font-size-mono-micro: 0.594rem;
+  --font-family-mono-roboto-mono: source-code-pro, Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  --font-size-mono-roboto-mono-1: 0.712rem;
+  --font-size-mono-roboto-mono-2: 0.775rem;
+  --font-size-mono-roboto-mono-3: 0.831rem;
+  --font-size-mono-roboto-mono-4: 0.894rem;
+  --font-size-mono-roboto-mono-5: 0.95rem;
+  --font-size-mono-roboto-mono-6: 1.013rem;
+  --font-size-mono-roboto-mono-7: 1.069rem;
+  --font-size-mono-roboto-mono-8: 1.188rem;
+  --font-size-mono-roboto-mono-9: 1.306rem;
+  --font-size-mono-roboto-mono-10: 1.425rem;
+  --font-size-mono-roboto-mono-11: 1.663rem;
+  --font-size-mono-roboto-mono-12: 1.9rem;
+  --font-size-mono-roboto-mono-13: 2.138rem;
+  --font-size-mono-roboto-mono-14: 2.375rem;
+  --font-size-mono-roboto-mono-15: 2.85rem;
+  --font-size-mono-roboto-mono-16: 3.325rem;
+  --font-size-mono-roboto-mono-17: 3.8rem;
+  --font-size-mono-roboto-mono-18: 4.75rem;
+  --font-size-mono-roboto-mono-19: 7.125rem;
+  --font-size-mono-roboto-mono-20: 8.312rem;
+  --font-size-mono-roboto-mono-micro: 0.594rem;
 
   /* Tokens from Font type / Mono/IBM Plex Mono */
-  --font-family-mono: source-code-pro, Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  --font-size-mono-1: 0.712rem;
-  --font-size-mono-2: 0.775rem;
-  --font-size-mono-3: 0.831rem;
-  --font-size-mono-4: 0.894rem;
-  --font-size-mono-5: 0.95rem;
-  --font-size-mono-6: 1.013rem;
-  --font-size-mono-7: 1.069rem;
-  --font-size-mono-8: 1.188rem;
-  --font-size-mono-9: 1.306rem;
-  --font-size-mono-10: 1.425rem;
-  --font-size-mono-11: 1.663rem;
-  --font-size-mono-12: 1.9rem;
-  --font-size-mono-13: 2.138rem;
-  --font-size-mono-14: 2.375rem;
-  --font-size-mono-15: 2.85rem;
-  --font-size-mono-16: 3.325rem;
-  --font-size-mono-17: 3.8rem;
-  --font-size-mono-18: 4.75rem;
-  --font-size-mono-19: 7.125rem;
-  --font-size-mono-20: 8.312rem;
-  --font-size-mono-micro: 0.594rem;
+  --font-family-mono-ibm-plex-mono: source-code-pro, Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  --font-size-mono-ibm-plex-mono-1: 0.712rem;
+  --font-size-mono-ibm-plex-mono-2: 0.775rem;
+  --font-size-mono-ibm-plex-mono-3: 0.831rem;
+  --font-size-mono-ibm-plex-mono-4: 0.894rem;
+  --font-size-mono-ibm-plex-mono-5: 0.95rem;
+  --font-size-mono-ibm-plex-mono-6: 1.013rem;
+  --font-size-mono-ibm-plex-mono-7: 1.069rem;
+  --font-size-mono-ibm-plex-mono-8: 1.188rem;
+  --font-size-mono-ibm-plex-mono-9: 1.306rem;
+  --font-size-mono-ibm-plex-mono-10: 1.425rem;
+  --font-size-mono-ibm-plex-mono-11: 1.663rem;
+  --font-size-mono-ibm-plex-mono-12: 1.9rem;
+  --font-size-mono-ibm-plex-mono-13: 2.138rem;
+  --font-size-mono-ibm-plex-mono-14: 2.375rem;
+  --font-size-mono-ibm-plex-mono-15: 2.85rem;
+  --font-size-mono-ibm-plex-mono-16: 3.325rem;
+  --font-size-mono-ibm-plex-mono-17: 3.8rem;
+  --font-size-mono-ibm-plex-mono-18: 4.75rem;
+  --font-size-mono-ibm-plex-mono-19: 7.125rem;
+  --font-size-mono-ibm-plex-mono-20: 8.312rem;
+  --font-size-mono-ibm-plex-mono-micro: 0.594rem;
 
   /* Tokens from Font type / Mono/Proto */
-  --font-family-mono: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-mono-1: 0.712rem;
-  --font-size-mono-2: 0.775rem;
-  --font-size-mono-3: 0.831rem;
-  --font-size-mono-4: 0.894rem;
-  --font-size-mono-5: 0.95rem;
-  --font-size-mono-6: 1.013rem;
-  --font-size-mono-7: 1.069rem;
-  --font-size-mono-8: 1.188rem;
-  --font-size-mono-9: 1.306rem;
-  --font-size-mono-10: 1.425rem;
-  --font-size-mono-11: 1.663rem;
-  --font-size-mono-12: 1.9rem;
-  --font-size-mono-13: 2.138rem;
-  --font-size-mono-14: 2.375rem;
-  --font-size-mono-15: 2.85rem;
-  --font-size-mono-16: 3.325rem;
-  --font-size-mono-17: 3.8rem;
-  --font-size-mono-18: 4.75rem;
-  --font-size-mono-19: 7.125rem;
-  --font-size-mono-20: 8.312rem;
-  --font-size-mono-micro: 0.594rem;
+  --font-family-mono-proto: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-mono-proto-1: 0.712rem;
+  --font-size-mono-proto-2: 0.775rem;
+  --font-size-mono-proto-3: 0.831rem;
+  --font-size-mono-proto-4: 0.894rem;
+  --font-size-mono-proto-5: 0.95rem;
+  --font-size-mono-proto-6: 1.013rem;
+  --font-size-mono-proto-7: 1.069rem;
+  --font-size-mono-proto-8: 1.188rem;
+  --font-size-mono-proto-9: 1.306rem;
+  --font-size-mono-proto-10: 1.425rem;
+  --font-size-mono-proto-11: 1.663rem;
+  --font-size-mono-proto-12: 1.9rem;
+  --font-size-mono-proto-13: 2.138rem;
+  --font-size-mono-proto-14: 2.375rem;
+  --font-size-mono-proto-15: 2.85rem;
+  --font-size-mono-proto-16: 3.325rem;
+  --font-size-mono-proto-17: 3.8rem;
+  --font-size-mono-proto-18: 4.75rem;
+  --font-size-mono-proto-19: 7.125rem;
+  --font-size-mono-proto-20: 8.312rem;
+  --font-size-mono-proto-micro: 0.594rem;
 
   /* Tokens from Font type / Proto/Prototype */
-  --font-family-proto: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-proto-1: 0.712rem;
-  --font-size-proto-2: 0.775rem;
-  --font-size-proto-3: 0.831rem;
-  --font-size-proto-4: 0.894rem;
-  --font-size-proto-5: 0.95rem;
-  --font-size-proto-6: 1.013rem;
-  --font-size-proto-7: 1.069rem;
-  --font-size-proto-8: 1.188rem;
-  --font-size-proto-9: 1.306rem;
-  --font-size-proto-10: 1.425rem;
-  --font-size-proto-11: 1.663rem;
-  --font-size-proto-12: 1.9rem;
-  --font-size-proto-13: 2.138rem;
-  --font-size-proto-14: 2.375rem;
-  --font-size-proto-15: 2.85rem;
-  --font-size-proto-16: 3.325rem;
-  --font-size-proto-17: 3.8rem;
-  --font-size-proto-18: 4.75rem;
-  --font-size-proto-19: 7.125rem;
-  --font-size-proto-20: 8.312rem;
-  --font-size-proto-micro: 0.594rem;
+  --font-family-proto-prototype: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-proto-prototype-1: 0.712rem;
+  --font-size-proto-prototype-2: 0.775rem;
+  --font-size-proto-prototype-3: 0.831rem;
+  --font-size-proto-prototype-4: 0.894rem;
+  --font-size-proto-prototype-5: 0.95rem;
+  --font-size-proto-prototype-6: 1.013rem;
+  --font-size-proto-prototype-7: 1.069rem;
+  --font-size-proto-prototype-8: 1.188rem;
+  --font-size-proto-prototype-9: 1.306rem;
+  --font-size-proto-prototype-10: 1.425rem;
+  --font-size-proto-prototype-11: 1.663rem;
+  --font-size-proto-prototype-12: 1.9rem;
+  --font-size-proto-prototype-13: 2.138rem;
+  --font-size-proto-prototype-14: 2.375rem;
+  --font-size-proto-prototype-15: 2.85rem;
+  --font-size-proto-prototype-16: 3.325rem;
+  --font-size-proto-prototype-17: 3.8rem;
+  --font-size-proto-prototype-18: 4.75rem;
+  --font-size-proto-prototype-19: 7.125rem;
+  --font-size-proto-prototype-20: 8.312rem;
+  --font-size-proto-prototype-micro: 0.594rem;
 
   /* Tokens from Font role / Body/Reading */
-  --font-family-body: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-body-1: 0.75rem;
-  --font-size-body-2: 0.812rem;
-  --font-size-body-3: 0.875rem;
-  --font-size-body-4: 0.938rem;
-  --font-size-body-5: 1rem;
-  --font-size-body-6: 1.062rem;
-  --font-size-body-7: 1.125rem;
-  --font-size-body-8: 1.25rem;
-  --font-size-body-9: 1.375rem;
-  --font-size-body-10: 1.5rem;
-  --font-size-body-11: 1.75rem;
-  --font-size-body-12: 2rem;
-  --font-size-body-13: 2.25rem;
-  --font-size-body-14: 2.5rem;
-  --font-size-body-15: 3rem;
-  --font-size-body-16: 3.5rem;
-  --font-size-body-17: 4rem;
-  --font-size-body-18: 5rem;
-  --font-size-body-19: 7.5rem;
-  --font-size-body-20: 8.75rem;
-  --font-size-body-micro: 0.625rem;
+  --font-family-body-font-role-body-reading: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-body-font-role-body-reading-1: 0.75rem;
+  --font-size-body-font-role-body-reading-2: 0.812rem;
+  --font-size-body-font-role-body-reading-3: 0.875rem;
+  --font-size-body-font-role-body-reading-4: 0.938rem;
+  --font-size-body-font-role-body-reading-5: 1rem;
+  --font-size-body-font-role-body-reading-6: 1.062rem;
+  --font-size-body-font-role-body-reading-7: 1.125rem;
+  --font-size-body-font-role-body-reading-8: 1.25rem;
+  --font-size-body-font-role-body-reading-9: 1.375rem;
+  --font-size-body-font-role-body-reading-10: 1.5rem;
+  --font-size-body-font-role-body-reading-11: 1.75rem;
+  --font-size-body-font-role-body-reading-12: 2rem;
+  --font-size-body-font-role-body-reading-13: 2.25rem;
+  --font-size-body-font-role-body-reading-14: 2.5rem;
+  --font-size-body-font-role-body-reading-15: 3rem;
+  --font-size-body-font-role-body-reading-16: 3.5rem;
+  --font-size-body-font-role-body-reading-17: 4rem;
+  --font-size-body-font-role-body-reading-18: 5rem;
+  --font-size-body-font-role-body-reading-19: 7.5rem;
+  --font-size-body-font-role-body-reading-20: 8.75rem;
+  --font-size-body-font-role-body-reading-micro: 0.625rem;
 
   /* Tokens from Font role / Body/Display */
-  --font-family-body: Merriweather;
-  --font-size-body-1: 0.738rem;
-  --font-size-body-2: 0.794rem;
-  --font-size-body-3: 0.856rem;
-  --font-size-body-4: 0.919rem;
-  --font-size-body-5: 0.981rem;
-  --font-size-body-6: 1.044rem;
-  --font-size-body-7: 1.1rem;
-  --font-size-body-8: 1.225rem;
-  --font-size-body-9: 1.35rem;
-  --font-size-body-10: 1.469rem;
-  --font-size-body-11: 1.712rem;
-  --font-size-body-12: 1.962rem;
-  --font-size-body-13: 2.206rem;
-  --font-size-body-14: 2.45rem;
-  --font-size-body-15: 2.938rem;
-  --font-size-body-16: 3.431rem;
-  --font-size-body-17: 3.919rem;
-  --font-size-body-18: 4.9rem;
-  --font-size-body-19: 7.35rem;
-  --font-size-body-20: 8.575rem;
-  --font-size-body-micro: 0.613rem;
+  --font-family-body-font-role-body-display: Merriweather;
+  --font-size-body-font-role-body-display-1: 0.738rem;
+  --font-size-body-font-role-body-display-2: 0.794rem;
+  --font-size-body-font-role-body-display-3: 0.856rem;
+  --font-size-body-font-role-body-display-4: 0.919rem;
+  --font-size-body-font-role-body-display-5: 0.981rem;
+  --font-size-body-font-role-body-display-6: 1.044rem;
+  --font-size-body-font-role-body-display-7: 1.1rem;
+  --font-size-body-font-role-body-display-8: 1.225rem;
+  --font-size-body-font-role-body-display-9: 1.35rem;
+  --font-size-body-font-role-body-display-10: 1.469rem;
+  --font-size-body-font-role-body-display-11: 1.712rem;
+  --font-size-body-font-role-body-display-12: 1.962rem;
+  --font-size-body-font-role-body-display-13: 2.206rem;
+  --font-size-body-font-role-body-display-14: 2.45rem;
+  --font-size-body-font-role-body-display-15: 2.938rem;
+  --font-size-body-font-role-body-display-16: 3.431rem;
+  --font-size-body-font-role-body-display-17: 3.919rem;
+  --font-size-body-font-role-body-display-18: 4.9rem;
+  --font-size-body-font-role-body-display-19: 7.35rem;
+  --font-size-body-font-role-body-display-20: 8.575rem;
+  --font-size-body-font-role-body-display-micro: 0.613rem;
 
   /* Tokens from Font role / Body/Proto */
-  --font-family-body: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-body-1: 0.712rem;
-  --font-size-body-2: 0.775rem;
-  --font-size-body-3: 0.831rem;
-  --font-size-body-4: 0.894rem;
-  --font-size-body-5: 0.95rem;
-  --font-size-body-6: 1.013rem;
-  --font-size-body-7: 1.069rem;
-  --font-size-body-8: 1.188rem;
-  --font-size-body-9: 1.306rem;
-  --font-size-body-10: 1.425rem;
-  --font-size-body-11: 1.663rem;
-  --font-size-body-12: 1.9rem;
-  --font-size-body-13: 2.138rem;
-  --font-size-body-14: 2.375rem;
-  --font-size-body-15: 2.85rem;
-  --font-size-body-16: 3.325rem;
-  --font-size-body-17: 3.8rem;
-  --font-size-body-18: 4.75rem;
-  --font-size-body-19: 7.125rem;
-  --font-size-body-20: 8.312rem;
-  --font-size-body-micro: 0.594rem;
+  --font-family-body-font-role-body-proto: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-body-font-role-body-proto-1: 0.712rem;
+  --font-size-body-font-role-body-proto-2: 0.775rem;
+  --font-size-body-font-role-body-proto-3: 0.831rem;
+  --font-size-body-font-role-body-proto-4: 0.894rem;
+  --font-size-body-font-role-body-proto-5: 0.95rem;
+  --font-size-body-font-role-body-proto-6: 1.013rem;
+  --font-size-body-font-role-body-proto-7: 1.069rem;
+  --font-size-body-font-role-body-proto-8: 1.188rem;
+  --font-size-body-font-role-body-proto-9: 1.306rem;
+  --font-size-body-font-role-body-proto-10: 1.425rem;
+  --font-size-body-font-role-body-proto-11: 1.663rem;
+  --font-size-body-font-role-body-proto-12: 1.9rem;
+  --font-size-body-font-role-body-proto-13: 2.138rem;
+  --font-size-body-font-role-body-proto-14: 2.375rem;
+  --font-size-body-font-role-body-proto-15: 2.85rem;
+  --font-size-body-font-role-body-proto-16: 3.325rem;
+  --font-size-body-font-role-body-proto-17: 3.8rem;
+  --font-size-body-font-role-body-proto-18: 4.75rem;
+  --font-size-body-font-role-body-proto-19: 7.125rem;
+  --font-size-body-font-role-body-proto-20: 8.312rem;
+  --font-size-body-font-role-body-proto-micro: 0.594rem;
 
   /* Tokens from Font role / Code/Mono */
-  --font-family-code: source-code-pro, Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  --font-size-code-1: 0.712rem;
-  --font-size-code-2: 0.775rem;
-  --font-size-code-3: 0.831rem;
-  --font-size-code-4: 0.894rem;
-  --font-size-code-5: 0.95rem;
-  --font-size-code-6: 1.013rem;
-  --font-size-code-7: 1.069rem;
-  --font-size-code-8: 1.188rem;
-  --font-size-code-9: 1.425rem;
-  --font-size-code-10: 1.306rem;
-  --font-size-code-11: 1.663rem;
-  --font-size-code-12: 1.9rem;
-  --font-size-code-13: 2.138rem;
-  --font-size-code-14: 2.375rem;
-  --font-size-code-15: 2.85rem;
-  --font-size-code-16: 3.325rem;
-  --font-size-code-17: 3.8rem;
-  --font-size-code-18: 4.75rem;
-  --font-size-code-19: 7.125rem;
-  --font-size-code-20: 8.312rem;
-  --font-size-code-micro: 0.594rem;
+  --font-family-code-font-role-code-mono: source-code-pro, Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  --font-size-code-font-role-code-mono-1: 0.712rem;
+  --font-size-code-font-role-code-mono-2: 0.775rem;
+  --font-size-code-font-role-code-mono-3: 0.831rem;
+  --font-size-code-font-role-code-mono-4: 0.894rem;
+  --font-size-code-font-role-code-mono-5: 0.95rem;
+  --font-size-code-font-role-code-mono-6: 1.013rem;
+  --font-size-code-font-role-code-mono-7: 1.069rem;
+  --font-size-code-font-role-code-mono-8: 1.188rem;
+  --font-size-code-font-role-code-mono-9: 1.425rem;
+  --font-size-code-font-role-code-mono-10: 1.306rem;
+  --font-size-code-font-role-code-mono-11: 1.663rem;
+  --font-size-code-font-role-code-mono-12: 1.9rem;
+  --font-size-code-font-role-code-mono-13: 2.138rem;
+  --font-size-code-font-role-code-mono-14: 2.375rem;
+  --font-size-code-font-role-code-mono-15: 2.85rem;
+  --font-size-code-font-role-code-mono-16: 3.325rem;
+  --font-size-code-font-role-code-mono-17: 3.8rem;
+  --font-size-code-font-role-code-mono-18: 4.75rem;
+  --font-size-code-font-role-code-mono-19: 7.125rem;
+  --font-size-code-font-role-code-mono-20: 8.312rem;
+  --font-size-code-font-role-code-mono-micro: 0.594rem;
 
   /* Tokens from Font role / Code/Proto */
-  --font-family-code: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-code-1: 0.712rem;
-  --font-size-code-2: 0.775rem;
-  --font-size-code-3: 0.831rem;
-  --font-size-code-4: 0.894rem;
-  --font-size-code-5: 0.95rem;
-  --font-size-code-6: 1.013rem;
-  --font-size-code-7: 1.069rem;
-  --font-size-code-8: 1.188rem;
-  --font-size-code-9: 1.425rem;
-  --font-size-code-10: 1.306rem;
-  --font-size-code-11: 1.663rem;
-  --font-size-code-12: 1.9rem;
-  --font-size-code-13: 2.138rem;
-  --font-size-code-14: 2.375rem;
-  --font-size-code-15: 2.85rem;
-  --font-size-code-16: 3.325rem;
-  --font-size-code-17: 3.8rem;
-  --font-size-code-18: 4.75rem;
-  --font-size-code-19: 7.125rem;
-  --font-size-code-20: 8.312rem;
-  --font-size-code-micro: 0.594rem;
+  --font-family-code-font-role-code-proto: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-code-font-role-code-proto-1: 0.712rem;
+  --font-size-code-font-role-code-proto-2: 0.775rem;
+  --font-size-code-font-role-code-proto-3: 0.831rem;
+  --font-size-code-font-role-code-proto-4: 0.894rem;
+  --font-size-code-font-role-code-proto-5: 0.95rem;
+  --font-size-code-font-role-code-proto-6: 1.013rem;
+  --font-size-code-font-role-code-proto-7: 1.069rem;
+  --font-size-code-font-role-code-proto-8: 1.188rem;
+  --font-size-code-font-role-code-proto-9: 1.425rem;
+  --font-size-code-font-role-code-proto-10: 1.306rem;
+  --font-size-code-font-role-code-proto-11: 1.663rem;
+  --font-size-code-font-role-code-proto-12: 1.9rem;
+  --font-size-code-font-role-code-proto-13: 2.138rem;
+  --font-size-code-font-role-code-proto-14: 2.375rem;
+  --font-size-code-font-role-code-proto-15: 2.85rem;
+  --font-size-code-font-role-code-proto-16: 3.325rem;
+  --font-size-code-font-role-code-proto-17: 3.8rem;
+  --font-size-code-font-role-code-proto-18: 4.75rem;
+  --font-size-code-font-role-code-proto-19: 7.125rem;
+  --font-size-code-font-role-code-proto-20: 8.312rem;
+  --font-size-code-font-role-code-proto-micro: 0.594rem;
 
   /* Tokens from Font role / Heading/Reading */
-  --font-family-heading: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-heading-1: 0.75rem;
-  --font-size-heading-2: 0.812rem;
-  --font-size-heading-3: 0.875rem;
-  --font-size-heading-4: 0.938rem;
-  --font-size-heading-5: 1rem;
-  --font-size-heading-6: 1.062rem;
-  --font-size-heading-7: 1.125rem;
-  --font-size-heading-8: 1.25rem;
-  --font-size-heading-9: 1.375rem;
-  --font-size-heading-10: 1.5rem;
-  --font-size-heading-11: 1.75rem;
-  --font-size-heading-12: 2rem;
-  --font-size-heading-13: 2.25rem;
-  --font-size-heading-14: 2.5rem;
-  --font-size-heading-15: 3rem;
-  --font-size-heading-16: 3.5rem;
-  --font-size-heading-17: 4rem;
-  --font-size-heading-18: 5rem;
-  --font-size-heading-19: 7.5rem;
-  --font-size-heading-20: 8.75rem;
-  --font-size-heading-micro: 0.625rem;
+  --font-family-heading-font-role-heading-reading: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-heading-font-role-heading-reading-1: 0.75rem;
+  --font-size-heading-font-role-heading-reading-2: 0.812rem;
+  --font-size-heading-font-role-heading-reading-3: 0.875rem;
+  --font-size-heading-font-role-heading-reading-4: 0.938rem;
+  --font-size-heading-font-role-heading-reading-5: 1rem;
+  --font-size-heading-font-role-heading-reading-6: 1.062rem;
+  --font-size-heading-font-role-heading-reading-7: 1.125rem;
+  --font-size-heading-font-role-heading-reading-8: 1.25rem;
+  --font-size-heading-font-role-heading-reading-9: 1.375rem;
+  --font-size-heading-font-role-heading-reading-10: 1.5rem;
+  --font-size-heading-font-role-heading-reading-11: 1.75rem;
+  --font-size-heading-font-role-heading-reading-12: 2rem;
+  --font-size-heading-font-role-heading-reading-13: 2.25rem;
+  --font-size-heading-font-role-heading-reading-14: 2.5rem;
+  --font-size-heading-font-role-heading-reading-15: 3rem;
+  --font-size-heading-font-role-heading-reading-16: 3.5rem;
+  --font-size-heading-font-role-heading-reading-17: 4rem;
+  --font-size-heading-font-role-heading-reading-18: 5rem;
+  --font-size-heading-font-role-heading-reading-19: 7.5rem;
+  --font-size-heading-font-role-heading-reading-20: 8.75rem;
+  --font-size-heading-font-role-heading-reading-micro: 0.625rem;
 
   /* Tokens from Font role / Heading/Display */
-  --font-family-heading: Merriweather;
-  --font-size-heading-1: 0.738rem;
-  --font-size-heading-2: 0.794rem;
-  --font-size-heading-3: 0.856rem;
-  --font-size-heading-4: 0.919rem;
-  --font-size-heading-5: 0.981rem;
-  --font-size-heading-6: 1.044rem;
-  --font-size-heading-7: 1.1rem;
-  --font-size-heading-8: 1.225rem;
-  --font-size-heading-9: 1.35rem;
-  --font-size-heading-10: 1.469rem;
-  --font-size-heading-11: 1.712rem;
-  --font-size-heading-12: 1.962rem;
-  --font-size-heading-13: 2.206rem;
-  --font-size-heading-14: 2.45rem;
-  --font-size-heading-15: 2.938rem;
-  --font-size-heading-16: 3.431rem;
-  --font-size-heading-17: 3.919rem;
-  --font-size-heading-18: 4.9rem;
-  --font-size-heading-19: 7.35rem;
-  --font-size-heading-20: 8.575rem;
-  --font-size-heading-micro: 0.613rem;
+  --font-family-heading-font-role-heading-display: Merriweather;
+  --font-size-heading-font-role-heading-display-1: 0.738rem;
+  --font-size-heading-font-role-heading-display-2: 0.794rem;
+  --font-size-heading-font-role-heading-display-3: 0.856rem;
+  --font-size-heading-font-role-heading-display-4: 0.919rem;
+  --font-size-heading-font-role-heading-display-5: 0.981rem;
+  --font-size-heading-font-role-heading-display-6: 1.044rem;
+  --font-size-heading-font-role-heading-display-7: 1.1rem;
+  --font-size-heading-font-role-heading-display-8: 1.225rem;
+  --font-size-heading-font-role-heading-display-9: 1.35rem;
+  --font-size-heading-font-role-heading-display-10: 1.469rem;
+  --font-size-heading-font-role-heading-display-11: 1.712rem;
+  --font-size-heading-font-role-heading-display-12: 1.962rem;
+  --font-size-heading-font-role-heading-display-13: 2.206rem;
+  --font-size-heading-font-role-heading-display-14: 2.45rem;
+  --font-size-heading-font-role-heading-display-15: 2.938rem;
+  --font-size-heading-font-role-heading-display-16: 3.431rem;
+  --font-size-heading-font-role-heading-display-17: 3.919rem;
+  --font-size-heading-font-role-heading-display-18: 4.9rem;
+  --font-size-heading-font-role-heading-display-19: 7.35rem;
+  --font-size-heading-font-role-heading-display-20: 8.575rem;
+  --font-size-heading-font-role-heading-display-micro: 0.613rem;
 
   /* Tokens from Font role / Heading/Proto */
-  --font-family-heading: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-heading-1: 0.712rem;
-  --font-size-heading-2: 0.775rem;
-  --font-size-heading-3: 0.831rem;
-  --font-size-heading-4: 0.894rem;
-  --font-size-heading-5: 0.95rem;
-  --font-size-heading-6: 1.013rem;
-  --font-size-heading-7: 1.069rem;
-  --font-size-heading-8: 1.188rem;
-  --font-size-heading-9: 1.306rem;
-  --font-size-heading-10: 1.425rem;
-  --font-size-heading-11: 1.663rem;
-  --font-size-heading-12: 1.9rem;
-  --font-size-heading-13: 2.138rem;
-  --font-size-heading-14: 2.375rem;
-  --font-size-heading-15: 2.85rem;
-  --font-size-heading-16: 3.325rem;
-  --font-size-heading-17: 3.8rem;
-  --font-size-heading-18: 4.75rem;
-  --font-size-heading-19: 7.125rem;
-  --font-size-heading-20: 8.312rem;
-  --font-size-heading-micro: 0.594rem;
+  --font-family-heading-font-role-heading-proto: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-heading-font-role-heading-proto-1: 0.712rem;
+  --font-size-heading-font-role-heading-proto-2: 0.775rem;
+  --font-size-heading-font-role-heading-proto-3: 0.831rem;
+  --font-size-heading-font-role-heading-proto-4: 0.894rem;
+  --font-size-heading-font-role-heading-proto-5: 0.95rem;
+  --font-size-heading-font-role-heading-proto-6: 1.013rem;
+  --font-size-heading-font-role-heading-proto-7: 1.069rem;
+  --font-size-heading-font-role-heading-proto-8: 1.188rem;
+  --font-size-heading-font-role-heading-proto-9: 1.306rem;
+  --font-size-heading-font-role-heading-proto-10: 1.425rem;
+  --font-size-heading-font-role-heading-proto-11: 1.663rem;
+  --font-size-heading-font-role-heading-proto-12: 1.9rem;
+  --font-size-heading-font-role-heading-proto-13: 2.138rem;
+  --font-size-heading-font-role-heading-proto-14: 2.375rem;
+  --font-size-heading-font-role-heading-proto-15: 2.85rem;
+  --font-size-heading-font-role-heading-proto-16: 3.325rem;
+  --font-size-heading-font-role-heading-proto-17: 3.8rem;
+  --font-size-heading-font-role-heading-proto-18: 4.75rem;
+  --font-size-heading-font-role-heading-proto-19: 7.125rem;
+  --font-size-heading-font-role-heading-proto-20: 8.312rem;
+  --font-size-heading-font-role-heading-proto-micro: 0.594rem;
 
   /* Tokens from Font role / UI/Reading */
-  --font-family-ui: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-ui-1: 0.75rem;
-  --font-size-ui-2: 0.812rem;
-  --font-size-ui-3: 0.875rem;
-  --font-size-ui-4: 0.938rem;
-  --font-size-ui-5: 1rem;
-  --font-size-ui-6: 1.062rem;
-  --font-size-ui-7: 1.125rem;
-  --font-size-ui-8: 1.25rem;
-  --font-size-ui-9: 1.375rem;
-  --font-size-ui-10: 1.5rem;
-  --font-size-ui-11: 1.75rem;
-  --font-size-ui-12: 2rem;
-  --font-size-ui-13: 2.25rem;
-  --font-size-ui-14: 2.5rem;
-  --font-size-ui-15: 3rem;
-  --font-size-ui-16: 3.5rem;
-  --font-size-ui-17: 4rem;
-  --font-size-ui-18: 5rem;
-  --font-size-ui-19: 7.5rem;
-  --font-size-ui-20: 8.75rem;
-  --font-size-ui-micro: 0.625rem;
+  --font-family-ui-font-role-ui-reading: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-ui-font-role-ui-reading-1: 0.75rem;
+  --font-size-ui-font-role-ui-reading-2: 0.812rem;
+  --font-size-ui-font-role-ui-reading-3: 0.875rem;
+  --font-size-ui-font-role-ui-reading-4: 0.938rem;
+  --font-size-ui-font-role-ui-reading-5: 1rem;
+  --font-size-ui-font-role-ui-reading-6: 1.062rem;
+  --font-size-ui-font-role-ui-reading-7: 1.125rem;
+  --font-size-ui-font-role-ui-reading-8: 1.25rem;
+  --font-size-ui-font-role-ui-reading-9: 1.375rem;
+  --font-size-ui-font-role-ui-reading-10: 1.5rem;
+  --font-size-ui-font-role-ui-reading-11: 1.75rem;
+  --font-size-ui-font-role-ui-reading-12: 2rem;
+  --font-size-ui-font-role-ui-reading-13: 2.25rem;
+  --font-size-ui-font-role-ui-reading-14: 2.5rem;
+  --font-size-ui-font-role-ui-reading-15: 3rem;
+  --font-size-ui-font-role-ui-reading-16: 3.5rem;
+  --font-size-ui-font-role-ui-reading-17: 4rem;
+  --font-size-ui-font-role-ui-reading-18: 5rem;
+  --font-size-ui-font-role-ui-reading-19: 7.5rem;
+  --font-size-ui-font-role-ui-reading-20: 8.75rem;
+  --font-size-ui-font-role-ui-reading-micro: 0.625rem;
 
   /* Tokens from Font role / UI/Mono */
-  --font-family-ui: source-code-pro, Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  --font-size-ui-1: 0.738rem;
-  --font-size-ui-2: 0.794rem;
-  --font-size-ui-3: 0.856rem;
-  --font-size-ui-4: 0.919rem;
-  --font-size-ui-5: 0.981rem;
-  --font-size-ui-6: 1.044rem;
-  --font-size-ui-7: 1.1rem;
-  --font-size-ui-8: 1.225rem;
-  --font-size-ui-9: 1.35rem;
-  --font-size-ui-10: 1.469rem;
-  --font-size-ui-11: 1.712rem;
-  --font-size-ui-12: 1.962rem;
-  --font-size-ui-13: 2.206rem;
-  --font-size-ui-14: 2.45rem;
-  --font-size-ui-15: 2.938rem;
-  --font-size-ui-16: 3.431rem;
-  --font-size-ui-17: 3.919rem;
-  --font-size-ui-18: 4.9rem;
-  --font-size-ui-19: 7.35rem;
-  --font-size-ui-20: 8.575rem;
-  --font-size-ui-micro: 0.613rem;
+  --font-family-ui-font-role-ui-mono: source-code-pro, Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  --font-size-ui-font-role-ui-mono-1: 0.738rem;
+  --font-size-ui-font-role-ui-mono-2: 0.794rem;
+  --font-size-ui-font-role-ui-mono-3: 0.856rem;
+  --font-size-ui-font-role-ui-mono-4: 0.919rem;
+  --font-size-ui-font-role-ui-mono-5: 0.981rem;
+  --font-size-ui-font-role-ui-mono-6: 1.044rem;
+  --font-size-ui-font-role-ui-mono-7: 1.1rem;
+  --font-size-ui-font-role-ui-mono-8: 1.225rem;
+  --font-size-ui-font-role-ui-mono-9: 1.35rem;
+  --font-size-ui-font-role-ui-mono-10: 1.469rem;
+  --font-size-ui-font-role-ui-mono-11: 1.712rem;
+  --font-size-ui-font-role-ui-mono-12: 1.962rem;
+  --font-size-ui-font-role-ui-mono-13: 2.206rem;
+  --font-size-ui-font-role-ui-mono-14: 2.45rem;
+  --font-size-ui-font-role-ui-mono-15: 2.938rem;
+  --font-size-ui-font-role-ui-mono-16: 3.431rem;
+  --font-size-ui-font-role-ui-mono-17: 3.919rem;
+  --font-size-ui-font-role-ui-mono-18: 4.9rem;
+  --font-size-ui-font-role-ui-mono-19: 7.35rem;
+  --font-size-ui-font-role-ui-mono-20: 8.575rem;
+  --font-size-ui-font-role-ui-mono-micro: 0.613rem;
 
   /* Tokens from Font role / UI/Proto */
-  --font-family-ui: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-ui-1: 0.712rem;
-  --font-size-ui-2: 0.775rem;
-  --font-size-ui-3: 0.831rem;
-  --font-size-ui-4: 0.894rem;
-  --font-size-ui-5: 0.95rem;
-  --font-size-ui-6: 1.013rem;
-  --font-size-ui-7: 1.069rem;
-  --font-size-ui-8: 1.188rem;
-  --font-size-ui-9: 1.306rem;
-  --font-size-ui-10: 1.425rem;
-  --font-size-ui-11: 1.663rem;
-  --font-size-ui-12: 1.9rem;
-  --font-size-ui-13: 2.138rem;
-  --font-size-ui-14: 2.375rem;
-  --font-size-ui-15: 2.85rem;
-  --font-size-ui-16: 3.325rem;
-  --font-size-ui-17: 3.8rem;
-  --font-size-ui-18: 4.75rem;
-  --font-size-ui-19: 7.125rem;
-  --font-size-ui-20: 8.312rem;
-  --font-size-ui-micro: 0.594rem;
+  --font-family-ui-font-role-ui-proto: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-ui-font-role-ui-proto-1: 0.712rem;
+  --font-size-ui-font-role-ui-proto-2: 0.775rem;
+  --font-size-ui-font-role-ui-proto-3: 0.831rem;
+  --font-size-ui-font-role-ui-proto-4: 0.894rem;
+  --font-size-ui-font-role-ui-proto-5: 0.95rem;
+  --font-size-ui-font-role-ui-proto-6: 1.013rem;
+  --font-size-ui-font-role-ui-proto-7: 1.069rem;
+  --font-size-ui-font-role-ui-proto-8: 1.188rem;
+  --font-size-ui-font-role-ui-proto-9: 1.306rem;
+  --font-size-ui-font-role-ui-proto-10: 1.425rem;
+  --font-size-ui-font-role-ui-proto-11: 1.663rem;
+  --font-size-ui-font-role-ui-proto-12: 1.9rem;
+  --font-size-ui-font-role-ui-proto-13: 2.138rem;
+  --font-size-ui-font-role-ui-proto-14: 2.375rem;
+  --font-size-ui-font-role-ui-proto-15: 2.85rem;
+  --font-size-ui-font-role-ui-proto-16: 3.325rem;
+  --font-size-ui-font-role-ui-proto-17: 3.8rem;
+  --font-size-ui-font-role-ui-proto-18: 4.75rem;
+  --font-size-ui-font-role-ui-proto-19: 7.125rem;
+  --font-size-ui-font-role-ui-proto-20: 8.312rem;
+  --font-size-ui-font-role-ui-proto-micro: 0.594rem;
 
   /* Tokens from Font role / Alt/Reading */
-  --font-family-alt: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-alt-1: 0.75rem;
-  --font-size-alt-2: 0.812rem;
-  --font-size-alt-3: 0.875rem;
-  --font-size-alt-4: 0.938rem;
-  --font-size-alt-5: 1rem;
-  --font-size-alt-6: 1.062rem;
-  --font-size-alt-7: 1.125rem;
-  --font-size-alt-8: 1.25rem;
-  --font-size-alt-9: 1.375rem;
-  --font-size-alt-10: 1.5rem;
-  --font-size-alt-11: 1.75rem;
-  --font-size-alt-12: 2rem;
-  --font-size-alt-13: 2.25rem;
-  --font-size-alt-14: 2.5rem;
-  --font-size-alt-15: 3rem;
-  --font-size-alt-16: 3.5rem;
-  --font-size-alt-17: 4rem;
-  --font-size-alt-18: 5rem;
-  --font-size-alt-19: 7.5rem;
-  --font-size-alt-20: 8.75rem;
-  --font-size-alt-micro: 0.625rem;
+  --font-family-alt-font-role-alt-reading: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-alt-font-role-alt-reading-1: 0.75rem;
+  --font-size-alt-font-role-alt-reading-2: 0.812rem;
+  --font-size-alt-font-role-alt-reading-3: 0.875rem;
+  --font-size-alt-font-role-alt-reading-4: 0.938rem;
+  --font-size-alt-font-role-alt-reading-5: 1rem;
+  --font-size-alt-font-role-alt-reading-6: 1.062rem;
+  --font-size-alt-font-role-alt-reading-7: 1.125rem;
+  --font-size-alt-font-role-alt-reading-8: 1.25rem;
+  --font-size-alt-font-role-alt-reading-9: 1.375rem;
+  --font-size-alt-font-role-alt-reading-10: 1.5rem;
+  --font-size-alt-font-role-alt-reading-11: 1.75rem;
+  --font-size-alt-font-role-alt-reading-12: 2rem;
+  --font-size-alt-font-role-alt-reading-13: 2.25rem;
+  --font-size-alt-font-role-alt-reading-14: 2.5rem;
+  --font-size-alt-font-role-alt-reading-15: 3rem;
+  --font-size-alt-font-role-alt-reading-16: 3.5rem;
+  --font-size-alt-font-role-alt-reading-17: 4rem;
+  --font-size-alt-font-role-alt-reading-18: 5rem;
+  --font-size-alt-font-role-alt-reading-19: 7.5rem;
+  --font-size-alt-font-role-alt-reading-20: 8.75rem;
+  --font-size-alt-font-role-alt-reading-micro: 0.625rem;
 
   /* Tokens from Font role / Alt/Display */
-  --font-family-alt: Merriweather;
-  --font-size-alt-1: 0.738rem;
-  --font-size-alt-2: 0.794rem;
-  --font-size-alt-3: 0.856rem;
-  --font-size-alt-4: 0.919rem;
-  --font-size-alt-5: 0.981rem;
-  --font-size-alt-6: 1.044rem;
-  --font-size-alt-7: 1.1rem;
-  --font-size-alt-8: 1.225rem;
-  --font-size-alt-9: 1.35rem;
-  --font-size-alt-10: 1.469rem;
-  --font-size-alt-11: 1.712rem;
-  --font-size-alt-12: 1.962rem;
-  --font-size-alt-13: 2.206rem;
-  --font-size-alt-14: 2.45rem;
-  --font-size-alt-15: 2.938rem;
-  --font-size-alt-16: 3.431rem;
-  --font-size-alt-17: 3.919rem;
-  --font-size-alt-18: 4.9rem;
-  --font-size-alt-19: 7.35rem;
-  --font-size-alt-20: 8.575rem;
-  --font-size-alt-micro: 0.613rem;
+  --font-family-alt-font-role-alt-display: Merriweather;
+  --font-size-alt-font-role-alt-display-1: 0.738rem;
+  --font-size-alt-font-role-alt-display-2: 0.794rem;
+  --font-size-alt-font-role-alt-display-3: 0.856rem;
+  --font-size-alt-font-role-alt-display-4: 0.919rem;
+  --font-size-alt-font-role-alt-display-5: 0.981rem;
+  --font-size-alt-font-role-alt-display-6: 1.044rem;
+  --font-size-alt-font-role-alt-display-7: 1.1rem;
+  --font-size-alt-font-role-alt-display-8: 1.225rem;
+  --font-size-alt-font-role-alt-display-9: 1.35rem;
+  --font-size-alt-font-role-alt-display-10: 1.469rem;
+  --font-size-alt-font-role-alt-display-11: 1.712rem;
+  --font-size-alt-font-role-alt-display-12: 1.962rem;
+  --font-size-alt-font-role-alt-display-13: 2.206rem;
+  --font-size-alt-font-role-alt-display-14: 2.45rem;
+  --font-size-alt-font-role-alt-display-15: 2.938rem;
+  --font-size-alt-font-role-alt-display-16: 3.431rem;
+  --font-size-alt-font-role-alt-display-17: 3.919rem;
+  --font-size-alt-font-role-alt-display-18: 4.9rem;
+  --font-size-alt-font-role-alt-display-19: 7.35rem;
+  --font-size-alt-font-role-alt-display-20: 8.575rem;
+  --font-size-alt-font-role-alt-display-micro: 0.613rem;
 
   /* Tokens from Font role / Alt/Mono */
-  --font-family-alt: source-code-pro, Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  --font-size-alt-1: 0.712rem;
-  --font-size-alt-2: 0.775rem;
-  --font-size-alt-3: 0.831rem;
-  --font-size-alt-4: 0.894rem;
-  --font-size-alt-5: 0.95rem;
-  --font-size-alt-6: 1.013rem;
-  --font-size-alt-7: 1.069rem;
-  --font-size-alt-8: 1.188rem;
-  --font-size-alt-9: 1.306rem;
-  --font-size-alt-10: 1.425rem;
-  --font-size-alt-11: 1.663rem;
-  --font-size-alt-12: 1.9rem;
-  --font-size-alt-13: 2.138rem;
-  --font-size-alt-14: 2.375rem;
-  --font-size-alt-15: 2.85rem;
-  --font-size-alt-16: 3.325rem;
-  --font-size-alt-17: 3.8rem;
-  --font-size-alt-18: 4.75rem;
-  --font-size-alt-19: 7.125rem;
-  --font-size-alt-20: 8.312rem;
-  --font-size-alt-micro: 0.594rem;
+  --font-family-alt-font-role-alt-mono: source-code-pro, Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  --font-size-alt-font-role-alt-mono-1: 0.712rem;
+  --font-size-alt-font-role-alt-mono-2: 0.775rem;
+  --font-size-alt-font-role-alt-mono-3: 0.831rem;
+  --font-size-alt-font-role-alt-mono-4: 0.894rem;
+  --font-size-alt-font-role-alt-mono-5: 0.95rem;
+  --font-size-alt-font-role-alt-mono-6: 1.013rem;
+  --font-size-alt-font-role-alt-mono-7: 1.069rem;
+  --font-size-alt-font-role-alt-mono-8: 1.188rem;
+  --font-size-alt-font-role-alt-mono-9: 1.306rem;
+  --font-size-alt-font-role-alt-mono-10: 1.425rem;
+  --font-size-alt-font-role-alt-mono-11: 1.663rem;
+  --font-size-alt-font-role-alt-mono-12: 1.9rem;
+  --font-size-alt-font-role-alt-mono-13: 2.138rem;
+  --font-size-alt-font-role-alt-mono-14: 2.375rem;
+  --font-size-alt-font-role-alt-mono-15: 2.85rem;
+  --font-size-alt-font-role-alt-mono-16: 3.325rem;
+  --font-size-alt-font-role-alt-mono-17: 3.8rem;
+  --font-size-alt-font-role-alt-mono-18: 4.75rem;
+  --font-size-alt-font-role-alt-mono-19: 7.125rem;
+  --font-size-alt-font-role-alt-mono-20: 8.312rem;
+  --font-size-alt-font-role-alt-mono-micro: 0.594rem;
 
   /* Tokens from Font role / Alt/Proto */
-  --font-family-alt: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-size-alt-1: 0.712rem;
-  --font-size-alt-2: 0.775rem;
-  --font-size-alt-3: 0.831rem;
-  --font-size-alt-4: 0.894rem;
-  --font-size-alt-5: 0.95rem;
-  --font-size-alt-6: 1.013rem;
-  --font-size-alt-7: 1.069rem;
-  --font-size-alt-8: 1.188rem;
-  --font-size-alt-9: 1.306rem;
-  --font-size-alt-10: 1.425rem;
-  --font-size-alt-11: 1.663rem;
-  --font-size-alt-12: 1.9rem;
-  --font-size-alt-13: 2.138rem;
-  --font-size-alt-14: 2.375rem;
-  --font-size-alt-15: 2.85rem;
-  --font-size-alt-16: 3.325rem;
-  --font-size-alt-17: 3.8rem;
-  --font-size-alt-18: 4.75rem;
-  --font-size-alt-19: 7.125rem;
-  --font-size-alt-20: 8.312rem;
-  --font-size-alt-micro: 0.594rem;
+  --font-family-alt-font-role-alt-proto: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-alt-font-role-alt-proto-1: 0.712rem;
+  --font-size-alt-font-role-alt-proto-2: 0.775rem;
+  --font-size-alt-font-role-alt-proto-3: 0.831rem;
+  --font-size-alt-font-role-alt-proto-4: 0.894rem;
+  --font-size-alt-font-role-alt-proto-5: 0.95rem;
+  --font-size-alt-font-role-alt-proto-6: 1.013rem;
+  --font-size-alt-font-role-alt-proto-7: 1.069rem;
+  --font-size-alt-font-role-alt-proto-8: 1.188rem;
+  --font-size-alt-font-role-alt-proto-9: 1.306rem;
+  --font-size-alt-font-role-alt-proto-10: 1.425rem;
+  --font-size-alt-font-role-alt-proto-11: 1.663rem;
+  --font-size-alt-font-role-alt-proto-12: 1.9rem;
+  --font-size-alt-font-role-alt-proto-13: 2.138rem;
+  --font-size-alt-font-role-alt-proto-14: 2.375rem;
+  --font-size-alt-font-role-alt-proto-15: 2.85rem;
+  --font-size-alt-font-role-alt-proto-16: 3.325rem;
+  --font-size-alt-font-role-alt-proto-17: 3.8rem;
+  --font-size-alt-font-role-alt-proto-18: 4.75rem;
+  --font-size-alt-font-role-alt-proto-19: 7.125rem;
+  --font-size-alt-font-role-alt-proto-20: 8.312rem;
+  --font-size-alt-font-role-alt-proto-micro: 0.594rem;
 
   /* Tokens from USWDS Theme/Project theme */
   --theme-color-base-lightest: #f0f0f0;
@@ -2832,195 +2860,552 @@
 .font-size-19 { font-size: var(--font-size-19); }
 .font-size-20 { font-size: var(--font-size-20); }
 .font-size-micro { font-size: var(--font-size-micro); }
-.font-size-reading-1 { font-size: var(--font-size-reading-1); }
-.font-size-reading-2 { font-size: var(--font-size-reading-2); }
-.font-size-reading-3 { font-size: var(--font-size-reading-3); }
-.font-size-reading-4 { font-size: var(--font-size-reading-4); }
-.font-size-reading-5 { font-size: var(--font-size-reading-5); }
-.font-size-reading-6 { font-size: var(--font-size-reading-6); }
-.font-size-reading-7 { font-size: var(--font-size-reading-7); }
-.font-size-reading-8 { font-size: var(--font-size-reading-8); }
-.font-size-reading-9 { font-size: var(--font-size-reading-9); }
-.font-size-reading-10 { font-size: var(--font-size-reading-10); }
-.font-size-reading-11 { font-size: var(--font-size-reading-11); }
-.font-size-reading-12 { font-size: var(--font-size-reading-12); }
-.font-size-reading-13 { font-size: var(--font-size-reading-13); }
-.font-size-reading-14 { font-size: var(--font-size-reading-14); }
-.font-size-reading-15 { font-size: var(--font-size-reading-15); }
-.font-size-reading-16 { font-size: var(--font-size-reading-16); }
-.font-size-reading-17 { font-size: var(--font-size-reading-17); }
-.font-size-reading-18 { font-size: var(--font-size-reading-18); }
-.font-size-reading-19 { font-size: var(--font-size-reading-19); }
-.font-size-reading-20 { font-size: var(--font-size-reading-20); }
-.font-size-reading-micro { font-size: var(--font-size-reading-micro); }
-.font-size-display-1 { font-size: var(--font-size-display-1); }
-.font-size-display-2 { font-size: var(--font-size-display-2); }
-.font-size-display-3 { font-size: var(--font-size-display-3); }
-.font-size-display-4 { font-size: var(--font-size-display-4); }
-.font-size-display-5 { font-size: var(--font-size-display-5); }
-.font-size-display-6 { font-size: var(--font-size-display-6); }
-.font-size-display-7 { font-size: var(--font-size-display-7); }
-.font-size-display-8 { font-size: var(--font-size-display-8); }
-.font-size-display-9 { font-size: var(--font-size-display-9); }
-.font-size-display-10 { font-size: var(--font-size-display-10); }
-.font-size-display-11 { font-size: var(--font-size-display-11); }
-.font-size-display-12 { font-size: var(--font-size-display-12); }
-.font-size-display-13 { font-size: var(--font-size-display-13); }
-.font-size-display-14 { font-size: var(--font-size-display-14); }
-.font-size-display-15 { font-size: var(--font-size-display-15); }
-.font-size-display-16 { font-size: var(--font-size-display-16); }
-.font-size-display-17 { font-size: var(--font-size-display-17); }
-.font-size-display-18 { font-size: var(--font-size-display-18); }
-.font-size-display-19 { font-size: var(--font-size-display-19); }
-.font-size-display-20 { font-size: var(--font-size-display-20); }
-.font-size-display-micro { font-size: var(--font-size-display-micro); }
-.font-size-mono-1 { font-size: var(--font-size-mono-1); }
-.font-size-mono-2 { font-size: var(--font-size-mono-2); }
-.font-size-mono-3 { font-size: var(--font-size-mono-3); }
-.font-size-mono-4 { font-size: var(--font-size-mono-4); }
-.font-size-mono-5 { font-size: var(--font-size-mono-5); }
-.font-size-mono-6 { font-size: var(--font-size-mono-6); }
-.font-size-mono-7 { font-size: var(--font-size-mono-7); }
-.font-size-mono-8 { font-size: var(--font-size-mono-8); }
-.font-size-mono-9 { font-size: var(--font-size-mono-9); }
-.font-size-mono-10 { font-size: var(--font-size-mono-10); }
-.font-size-mono-11 { font-size: var(--font-size-mono-11); }
-.font-size-mono-12 { font-size: var(--font-size-mono-12); }
-.font-size-mono-13 { font-size: var(--font-size-mono-13); }
-.font-size-mono-14 { font-size: var(--font-size-mono-14); }
-.font-size-mono-15 { font-size: var(--font-size-mono-15); }
-.font-size-mono-16 { font-size: var(--font-size-mono-16); }
-.font-size-mono-17 { font-size: var(--font-size-mono-17); }
-.font-size-mono-18 { font-size: var(--font-size-mono-18); }
-.font-size-mono-19 { font-size: var(--font-size-mono-19); }
-.font-size-mono-20 { font-size: var(--font-size-mono-20); }
-.font-size-mono-micro { font-size: var(--font-size-mono-micro); }
-.font-size-proto-1 { font-size: var(--font-size-proto-1); }
-.font-size-proto-2 { font-size: var(--font-size-proto-2); }
-.font-size-proto-3 { font-size: var(--font-size-proto-3); }
-.font-size-proto-4 { font-size: var(--font-size-proto-4); }
-.font-size-proto-5 { font-size: var(--font-size-proto-5); }
-.font-size-proto-6 { font-size: var(--font-size-proto-6); }
-.font-size-proto-7 { font-size: var(--font-size-proto-7); }
-.font-size-proto-8 { font-size: var(--font-size-proto-8); }
-.font-size-proto-9 { font-size: var(--font-size-proto-9); }
-.font-size-proto-10 { font-size: var(--font-size-proto-10); }
-.font-size-proto-11 { font-size: var(--font-size-proto-11); }
-.font-size-proto-12 { font-size: var(--font-size-proto-12); }
-.font-size-proto-13 { font-size: var(--font-size-proto-13); }
-.font-size-proto-14 { font-size: var(--font-size-proto-14); }
-.font-size-proto-15 { font-size: var(--font-size-proto-15); }
-.font-size-proto-16 { font-size: var(--font-size-proto-16); }
-.font-size-proto-17 { font-size: var(--font-size-proto-17); }
-.font-size-proto-18 { font-size: var(--font-size-proto-18); }
-.font-size-proto-19 { font-size: var(--font-size-proto-19); }
-.font-size-proto-20 { font-size: var(--font-size-proto-20); }
-.font-size-proto-micro { font-size: var(--font-size-proto-micro); }
-.font-size-body-1 { font-size: var(--font-size-body-1); }
-.font-size-body-2 { font-size: var(--font-size-body-2); }
-.font-size-body-3 { font-size: var(--font-size-body-3); }
-.font-size-body-4 { font-size: var(--font-size-body-4); }
-.font-size-body-5 { font-size: var(--font-size-body-5); }
-.font-size-body-6 { font-size: var(--font-size-body-6); }
-.font-size-body-7 { font-size: var(--font-size-body-7); }
-.font-size-body-8 { font-size: var(--font-size-body-8); }
-.font-size-body-9 { font-size: var(--font-size-body-9); }
-.font-size-body-10 { font-size: var(--font-size-body-10); }
-.font-size-body-11 { font-size: var(--font-size-body-11); }
-.font-size-body-12 { font-size: var(--font-size-body-12); }
-.font-size-body-13 { font-size: var(--font-size-body-13); }
-.font-size-body-14 { font-size: var(--font-size-body-14); }
-.font-size-body-15 { font-size: var(--font-size-body-15); }
-.font-size-body-16 { font-size: var(--font-size-body-16); }
-.font-size-body-17 { font-size: var(--font-size-body-17); }
-.font-size-body-18 { font-size: var(--font-size-body-18); }
-.font-size-body-19 { font-size: var(--font-size-body-19); }
-.font-size-body-20 { font-size: var(--font-size-body-20); }
-.font-size-body-micro { font-size: var(--font-size-body-micro); }
-.font-size-code-1 { font-size: var(--font-size-code-1); }
-.font-size-code-2 { font-size: var(--font-size-code-2); }
-.font-size-code-3 { font-size: var(--font-size-code-3); }
-.font-size-code-4 { font-size: var(--font-size-code-4); }
-.font-size-code-5 { font-size: var(--font-size-code-5); }
-.font-size-code-6 { font-size: var(--font-size-code-6); }
-.font-size-code-7 { font-size: var(--font-size-code-7); }
-.font-size-code-8 { font-size: var(--font-size-code-8); }
-.font-size-code-9 { font-size: var(--font-size-code-9); }
-.font-size-code-10 { font-size: var(--font-size-code-10); }
-.font-size-code-11 { font-size: var(--font-size-code-11); }
-.font-size-code-12 { font-size: var(--font-size-code-12); }
-.font-size-code-13 { font-size: var(--font-size-code-13); }
-.font-size-code-14 { font-size: var(--font-size-code-14); }
-.font-size-code-15 { font-size: var(--font-size-code-15); }
-.font-size-code-16 { font-size: var(--font-size-code-16); }
-.font-size-code-17 { font-size: var(--font-size-code-17); }
-.font-size-code-18 { font-size: var(--font-size-code-18); }
-.font-size-code-19 { font-size: var(--font-size-code-19); }
-.font-size-code-20 { font-size: var(--font-size-code-20); }
-.font-size-code-micro { font-size: var(--font-size-code-micro); }
-.font-size-heading-1 { font-size: var(--font-size-heading-1); }
-.font-size-heading-2 { font-size: var(--font-size-heading-2); }
-.font-size-heading-3 { font-size: var(--font-size-heading-3); }
-.font-size-heading-4 { font-size: var(--font-size-heading-4); }
-.font-size-heading-5 { font-size: var(--font-size-heading-5); }
-.font-size-heading-6 { font-size: var(--font-size-heading-6); }
-.font-size-heading-7 { font-size: var(--font-size-heading-7); }
-.font-size-heading-8 { font-size: var(--font-size-heading-8); }
-.font-size-heading-9 { font-size: var(--font-size-heading-9); }
-.font-size-heading-10 { font-size: var(--font-size-heading-10); }
-.font-size-heading-11 { font-size: var(--font-size-heading-11); }
-.font-size-heading-12 { font-size: var(--font-size-heading-12); }
-.font-size-heading-13 { font-size: var(--font-size-heading-13); }
-.font-size-heading-14 { font-size: var(--font-size-heading-14); }
-.font-size-heading-15 { font-size: var(--font-size-heading-15); }
-.font-size-heading-16 { font-size: var(--font-size-heading-16); }
-.font-size-heading-17 { font-size: var(--font-size-heading-17); }
-.font-size-heading-18 { font-size: var(--font-size-heading-18); }
-.font-size-heading-19 { font-size: var(--font-size-heading-19); }
-.font-size-heading-20 { font-size: var(--font-size-heading-20); }
-.font-size-heading-micro { font-size: var(--font-size-heading-micro); }
-.font-size-ui-1 { font-size: var(--font-size-ui-1); }
-.font-size-ui-2 { font-size: var(--font-size-ui-2); }
-.font-size-ui-3 { font-size: var(--font-size-ui-3); }
-.font-size-ui-4 { font-size: var(--font-size-ui-4); }
-.font-size-ui-5 { font-size: var(--font-size-ui-5); }
-.font-size-ui-6 { font-size: var(--font-size-ui-6); }
-.font-size-ui-7 { font-size: var(--font-size-ui-7); }
-.font-size-ui-8 { font-size: var(--font-size-ui-8); }
-.font-size-ui-9 { font-size: var(--font-size-ui-9); }
-.font-size-ui-10 { font-size: var(--font-size-ui-10); }
-.font-size-ui-11 { font-size: var(--font-size-ui-11); }
-.font-size-ui-12 { font-size: var(--font-size-ui-12); }
-.font-size-ui-13 { font-size: var(--font-size-ui-13); }
-.font-size-ui-14 { font-size: var(--font-size-ui-14); }
-.font-size-ui-15 { font-size: var(--font-size-ui-15); }
-.font-size-ui-16 { font-size: var(--font-size-ui-16); }
-.font-size-ui-17 { font-size: var(--font-size-ui-17); }
-.font-size-ui-18 { font-size: var(--font-size-ui-18); }
-.font-size-ui-19 { font-size: var(--font-size-ui-19); }
-.font-size-ui-20 { font-size: var(--font-size-ui-20); }
-.font-size-ui-micro { font-size: var(--font-size-ui-micro); }
-.font-size-alt-1 { font-size: var(--font-size-alt-1); }
-.font-size-alt-2 { font-size: var(--font-size-alt-2); }
-.font-size-alt-3 { font-size: var(--font-size-alt-3); }
-.font-size-alt-4 { font-size: var(--font-size-alt-4); }
-.font-size-alt-5 { font-size: var(--font-size-alt-5); }
-.font-size-alt-6 { font-size: var(--font-size-alt-6); }
-.font-size-alt-7 { font-size: var(--font-size-alt-7); }
-.font-size-alt-8 { font-size: var(--font-size-alt-8); }
-.font-size-alt-9 { font-size: var(--font-size-alt-9); }
-.font-size-alt-10 { font-size: var(--font-size-alt-10); }
-.font-size-alt-11 { font-size: var(--font-size-alt-11); }
-.font-size-alt-12 { font-size: var(--font-size-alt-12); }
-.font-size-alt-13 { font-size: var(--font-size-alt-13); }
-.font-size-alt-14 { font-size: var(--font-size-alt-14); }
-.font-size-alt-15 { font-size: var(--font-size-alt-15); }
-.font-size-alt-16 { font-size: var(--font-size-alt-16); }
-.font-size-alt-17 { font-size: var(--font-size-alt-17); }
-.font-size-alt-18 { font-size: var(--font-size-alt-18); }
-.font-size-alt-19 { font-size: var(--font-size-alt-19); }
-.font-size-alt-20 { font-size: var(--font-size-alt-20); }
-.font-size-alt-micro { font-size: var(--font-size-alt-micro); }
+.font-size-reading-public-sans-1 { font-size: var(--font-size-reading-public-sans-1); }
+.font-size-reading-public-sans-2 { font-size: var(--font-size-reading-public-sans-2); }
+.font-size-reading-public-sans-3 { font-size: var(--font-size-reading-public-sans-3); }
+.font-size-reading-public-sans-4 { font-size: var(--font-size-reading-public-sans-4); }
+.font-size-reading-public-sans-5 { font-size: var(--font-size-reading-public-sans-5); }
+.font-size-reading-public-sans-6 { font-size: var(--font-size-reading-public-sans-6); }
+.font-size-reading-public-sans-7 { font-size: var(--font-size-reading-public-sans-7); }
+.font-size-reading-public-sans-8 { font-size: var(--font-size-reading-public-sans-8); }
+.font-size-reading-public-sans-9 { font-size: var(--font-size-reading-public-sans-9); }
+.font-size-reading-public-sans-10 { font-size: var(--font-size-reading-public-sans-10); }
+.font-size-reading-public-sans-11 { font-size: var(--font-size-reading-public-sans-11); }
+.font-size-reading-public-sans-12 { font-size: var(--font-size-reading-public-sans-12); }
+.font-size-reading-public-sans-13 { font-size: var(--font-size-reading-public-sans-13); }
+.font-size-reading-public-sans-14 { font-size: var(--font-size-reading-public-sans-14); }
+.font-size-reading-public-sans-15 { font-size: var(--font-size-reading-public-sans-15); }
+.font-size-reading-public-sans-16 { font-size: var(--font-size-reading-public-sans-16); }
+.font-size-reading-public-sans-17 { font-size: var(--font-size-reading-public-sans-17); }
+.font-size-reading-public-sans-18 { font-size: var(--font-size-reading-public-sans-18); }
+.font-size-reading-public-sans-19 { font-size: var(--font-size-reading-public-sans-19); }
+.font-size-reading-public-sans-20 { font-size: var(--font-size-reading-public-sans-20); }
+.font-size-reading-public-sans-micro { font-size: var(--font-size-reading-public-sans-micro); }
+.font-size-reading-open-sans-1 { font-size: var(--font-size-reading-open-sans-1); }
+.font-size-reading-open-sans-2 { font-size: var(--font-size-reading-open-sans-2); }
+.font-size-reading-open-sans-3 { font-size: var(--font-size-reading-open-sans-3); }
+.font-size-reading-open-sans-4 { font-size: var(--font-size-reading-open-sans-4); }
+.font-size-reading-open-sans-5 { font-size: var(--font-size-reading-open-sans-5); }
+.font-size-reading-open-sans-6 { font-size: var(--font-size-reading-open-sans-6); }
+.font-size-reading-open-sans-7 { font-size: var(--font-size-reading-open-sans-7); }
+.font-size-reading-open-sans-8 { font-size: var(--font-size-reading-open-sans-8); }
+.font-size-reading-open-sans-9 { font-size: var(--font-size-reading-open-sans-9); }
+.font-size-reading-open-sans-10 { font-size: var(--font-size-reading-open-sans-10); }
+.font-size-reading-open-sans-11 { font-size: var(--font-size-reading-open-sans-11); }
+.font-size-reading-open-sans-12 { font-size: var(--font-size-reading-open-sans-12); }
+.font-size-reading-open-sans-13 { font-size: var(--font-size-reading-open-sans-13); }
+.font-size-reading-open-sans-14 { font-size: var(--font-size-reading-open-sans-14); }
+.font-size-reading-open-sans-15 { font-size: var(--font-size-reading-open-sans-15); }
+.font-size-reading-open-sans-16 { font-size: var(--font-size-reading-open-sans-16); }
+.font-size-reading-open-sans-17 { font-size: var(--font-size-reading-open-sans-17); }
+.font-size-reading-open-sans-18 { font-size: var(--font-size-reading-open-sans-18); }
+.font-size-reading-open-sans-19 { font-size: var(--font-size-reading-open-sans-19); }
+.font-size-reading-open-sans-20 { font-size: var(--font-size-reading-open-sans-20); }
+.font-size-reading-open-sans-micro { font-size: var(--font-size-reading-open-sans-micro); }
+.font-size-reading-system-1 { font-size: var(--font-size-reading-system-1); }
+.font-size-reading-system-2 { font-size: var(--font-size-reading-system-2); }
+.font-size-reading-system-3 { font-size: var(--font-size-reading-system-3); }
+.font-size-reading-system-4 { font-size: var(--font-size-reading-system-4); }
+.font-size-reading-system-5 { font-size: var(--font-size-reading-system-5); }
+.font-size-reading-system-6 { font-size: var(--font-size-reading-system-6); }
+.font-size-reading-system-7 { font-size: var(--font-size-reading-system-7); }
+.font-size-reading-system-8 { font-size: var(--font-size-reading-system-8); }
+.font-size-reading-system-9 { font-size: var(--font-size-reading-system-9); }
+.font-size-reading-system-10 { font-size: var(--font-size-reading-system-10); }
+.font-size-reading-system-11 { font-size: var(--font-size-reading-system-11); }
+.font-size-reading-system-12 { font-size: var(--font-size-reading-system-12); }
+.font-size-reading-system-13 { font-size: var(--font-size-reading-system-13); }
+.font-size-reading-system-14 { font-size: var(--font-size-reading-system-14); }
+.font-size-reading-system-15 { font-size: var(--font-size-reading-system-15); }
+.font-size-reading-system-16 { font-size: var(--font-size-reading-system-16); }
+.font-size-reading-system-17 { font-size: var(--font-size-reading-system-17); }
+.font-size-reading-system-18 { font-size: var(--font-size-reading-system-18); }
+.font-size-reading-system-19 { font-size: var(--font-size-reading-system-19); }
+.font-size-reading-system-20 { font-size: var(--font-size-reading-system-20); }
+.font-size-reading-system-micro { font-size: var(--font-size-reading-system-micro); }
+.font-size-display-merriweather-1 { font-size: var(--font-size-display-merriweather-1); }
+.font-size-display-merriweather-2 { font-size: var(--font-size-display-merriweather-2); }
+.font-size-display-merriweather-3 { font-size: var(--font-size-display-merriweather-3); }
+.font-size-display-merriweather-4 { font-size: var(--font-size-display-merriweather-4); }
+.font-size-display-merriweather-5 { font-size: var(--font-size-display-merriweather-5); }
+.font-size-display-merriweather-6 { font-size: var(--font-size-display-merriweather-6); }
+.font-size-display-merriweather-7 { font-size: var(--font-size-display-merriweather-7); }
+.font-size-display-merriweather-8 { font-size: var(--font-size-display-merriweather-8); }
+.font-size-display-merriweather-9 { font-size: var(--font-size-display-merriweather-9); }
+.font-size-display-merriweather-10 { font-size: var(--font-size-display-merriweather-10); }
+.font-size-display-merriweather-11 { font-size: var(--font-size-display-merriweather-11); }
+.font-size-display-merriweather-12 { font-size: var(--font-size-display-merriweather-12); }
+.font-size-display-merriweather-13 { font-size: var(--font-size-display-merriweather-13); }
+.font-size-display-merriweather-14 { font-size: var(--font-size-display-merriweather-14); }
+.font-size-display-merriweather-15 { font-size: var(--font-size-display-merriweather-15); }
+.font-size-display-merriweather-16 { font-size: var(--font-size-display-merriweather-16); }
+.font-size-display-merriweather-17 { font-size: var(--font-size-display-merriweather-17); }
+.font-size-display-merriweather-18 { font-size: var(--font-size-display-merriweather-18); }
+.font-size-display-merriweather-19 { font-size: var(--font-size-display-merriweather-19); }
+.font-size-display-merriweather-20 { font-size: var(--font-size-display-merriweather-20); }
+.font-size-display-merriweather-micro { font-size: var(--font-size-display-merriweather-micro); }
+.font-size-display-georgia-1 { font-size: var(--font-size-display-georgia-1); }
+.font-size-display-georgia-2 { font-size: var(--font-size-display-georgia-2); }
+.font-size-display-georgia-3 { font-size: var(--font-size-display-georgia-3); }
+.font-size-display-georgia-4 { font-size: var(--font-size-display-georgia-4); }
+.font-size-display-georgia-5 { font-size: var(--font-size-display-georgia-5); }
+.font-size-display-georgia-6 { font-size: var(--font-size-display-georgia-6); }
+.font-size-display-georgia-7 { font-size: var(--font-size-display-georgia-7); }
+.font-size-display-georgia-8 { font-size: var(--font-size-display-georgia-8); }
+.font-size-display-georgia-9 { font-size: var(--font-size-display-georgia-9); }
+.font-size-display-georgia-10 { font-size: var(--font-size-display-georgia-10); }
+.font-size-display-georgia-11 { font-size: var(--font-size-display-georgia-11); }
+.font-size-display-georgia-12 { font-size: var(--font-size-display-georgia-12); }
+.font-size-display-georgia-13 { font-size: var(--font-size-display-georgia-13); }
+.font-size-display-georgia-14 { font-size: var(--font-size-display-georgia-14); }
+.font-size-display-georgia-15 { font-size: var(--font-size-display-georgia-15); }
+.font-size-display-georgia-16 { font-size: var(--font-size-display-georgia-16); }
+.font-size-display-georgia-17 { font-size: var(--font-size-display-georgia-17); }
+.font-size-display-georgia-18 { font-size: var(--font-size-display-georgia-18); }
+.font-size-display-georgia-19 { font-size: var(--font-size-display-georgia-19); }
+.font-size-display-georgia-20 { font-size: var(--font-size-display-georgia-20); }
+.font-size-display-georgia-micro { font-size: var(--font-size-display-georgia-micro); }
+.font-size-display-figtree-1 { font-size: var(--font-size-display-figtree-1); }
+.font-size-display-figtree-2 { font-size: var(--font-size-display-figtree-2); }
+.font-size-display-figtree-3 { font-size: var(--font-size-display-figtree-3); }
+.font-size-display-figtree-4 { font-size: var(--font-size-display-figtree-4); }
+.font-size-display-figtree-5 { font-size: var(--font-size-display-figtree-5); }
+.font-size-display-figtree-6 { font-size: var(--font-size-display-figtree-6); }
+.font-size-display-figtree-7 { font-size: var(--font-size-display-figtree-7); }
+.font-size-display-figtree-8 { font-size: var(--font-size-display-figtree-8); }
+.font-size-display-figtree-9 { font-size: var(--font-size-display-figtree-9); }
+.font-size-display-figtree-10 { font-size: var(--font-size-display-figtree-10); }
+.font-size-display-figtree-11 { font-size: var(--font-size-display-figtree-11); }
+.font-size-display-figtree-12 { font-size: var(--font-size-display-figtree-12); }
+.font-size-display-figtree-13 { font-size: var(--font-size-display-figtree-13); }
+.font-size-display-figtree-14 { font-size: var(--font-size-display-figtree-14); }
+.font-size-display-figtree-15 { font-size: var(--font-size-display-figtree-15); }
+.font-size-display-figtree-16 { font-size: var(--font-size-display-figtree-16); }
+.font-size-display-figtree-17 { font-size: var(--font-size-display-figtree-17); }
+.font-size-display-figtree-18 { font-size: var(--font-size-display-figtree-18); }
+.font-size-display-figtree-19 { font-size: var(--font-size-display-figtree-19); }
+.font-size-display-figtree-20 { font-size: var(--font-size-display-figtree-20); }
+.font-size-display-figtree-micro { font-size: var(--font-size-display-figtree-micro); }
+.font-size-display-proto-1 { font-size: var(--font-size-display-proto-1); }
+.font-size-display-proto-2 { font-size: var(--font-size-display-proto-2); }
+.font-size-display-proto-3 { font-size: var(--font-size-display-proto-3); }
+.font-size-display-proto-4 { font-size: var(--font-size-display-proto-4); }
+.font-size-display-proto-5 { font-size: var(--font-size-display-proto-5); }
+.font-size-display-proto-6 { font-size: var(--font-size-display-proto-6); }
+.font-size-display-proto-7 { font-size: var(--font-size-display-proto-7); }
+.font-size-display-proto-8 { font-size: var(--font-size-display-proto-8); }
+.font-size-display-proto-9 { font-size: var(--font-size-display-proto-9); }
+.font-size-display-proto-10 { font-size: var(--font-size-display-proto-10); }
+.font-size-display-proto-11 { font-size: var(--font-size-display-proto-11); }
+.font-size-display-proto-12 { font-size: var(--font-size-display-proto-12); }
+.font-size-display-proto-13 { font-size: var(--font-size-display-proto-13); }
+.font-size-display-proto-14 { font-size: var(--font-size-display-proto-14); }
+.font-size-display-proto-15 { font-size: var(--font-size-display-proto-15); }
+.font-size-display-proto-16 { font-size: var(--font-size-display-proto-16); }
+.font-size-display-proto-17 { font-size: var(--font-size-display-proto-17); }
+.font-size-display-proto-18 { font-size: var(--font-size-display-proto-18); }
+.font-size-display-proto-19 { font-size: var(--font-size-display-proto-19); }
+.font-size-display-proto-20 { font-size: var(--font-size-display-proto-20); }
+.font-size-display-proto-micro { font-size: var(--font-size-display-proto-micro); }
+.font-size-mono-roboto-mono-1 { font-size: var(--font-size-mono-roboto-mono-1); }
+.font-size-mono-roboto-mono-2 { font-size: var(--font-size-mono-roboto-mono-2); }
+.font-size-mono-roboto-mono-3 { font-size: var(--font-size-mono-roboto-mono-3); }
+.font-size-mono-roboto-mono-4 { font-size: var(--font-size-mono-roboto-mono-4); }
+.font-size-mono-roboto-mono-5 { font-size: var(--font-size-mono-roboto-mono-5); }
+.font-size-mono-roboto-mono-6 { font-size: var(--font-size-mono-roboto-mono-6); }
+.font-size-mono-roboto-mono-7 { font-size: var(--font-size-mono-roboto-mono-7); }
+.font-size-mono-roboto-mono-8 { font-size: var(--font-size-mono-roboto-mono-8); }
+.font-size-mono-roboto-mono-9 { font-size: var(--font-size-mono-roboto-mono-9); }
+.font-size-mono-roboto-mono-10 { font-size: var(--font-size-mono-roboto-mono-10); }
+.font-size-mono-roboto-mono-11 { font-size: var(--font-size-mono-roboto-mono-11); }
+.font-size-mono-roboto-mono-12 { font-size: var(--font-size-mono-roboto-mono-12); }
+.font-size-mono-roboto-mono-13 { font-size: var(--font-size-mono-roboto-mono-13); }
+.font-size-mono-roboto-mono-14 { font-size: var(--font-size-mono-roboto-mono-14); }
+.font-size-mono-roboto-mono-15 { font-size: var(--font-size-mono-roboto-mono-15); }
+.font-size-mono-roboto-mono-16 { font-size: var(--font-size-mono-roboto-mono-16); }
+.font-size-mono-roboto-mono-17 { font-size: var(--font-size-mono-roboto-mono-17); }
+.font-size-mono-roboto-mono-18 { font-size: var(--font-size-mono-roboto-mono-18); }
+.font-size-mono-roboto-mono-19 { font-size: var(--font-size-mono-roboto-mono-19); }
+.font-size-mono-roboto-mono-20 { font-size: var(--font-size-mono-roboto-mono-20); }
+.font-size-mono-roboto-mono-micro { font-size: var(--font-size-mono-roboto-mono-micro); }
+.font-size-mono-ibm-plex-mono-1 { font-size: var(--font-size-mono-ibm-plex-mono-1); }
+.font-size-mono-ibm-plex-mono-2 { font-size: var(--font-size-mono-ibm-plex-mono-2); }
+.font-size-mono-ibm-plex-mono-3 { font-size: var(--font-size-mono-ibm-plex-mono-3); }
+.font-size-mono-ibm-plex-mono-4 { font-size: var(--font-size-mono-ibm-plex-mono-4); }
+.font-size-mono-ibm-plex-mono-5 { font-size: var(--font-size-mono-ibm-plex-mono-5); }
+.font-size-mono-ibm-plex-mono-6 { font-size: var(--font-size-mono-ibm-plex-mono-6); }
+.font-size-mono-ibm-plex-mono-7 { font-size: var(--font-size-mono-ibm-plex-mono-7); }
+.font-size-mono-ibm-plex-mono-8 { font-size: var(--font-size-mono-ibm-plex-mono-8); }
+.font-size-mono-ibm-plex-mono-9 { font-size: var(--font-size-mono-ibm-plex-mono-9); }
+.font-size-mono-ibm-plex-mono-10 { font-size: var(--font-size-mono-ibm-plex-mono-10); }
+.font-size-mono-ibm-plex-mono-11 { font-size: var(--font-size-mono-ibm-plex-mono-11); }
+.font-size-mono-ibm-plex-mono-12 { font-size: var(--font-size-mono-ibm-plex-mono-12); }
+.font-size-mono-ibm-plex-mono-13 { font-size: var(--font-size-mono-ibm-plex-mono-13); }
+.font-size-mono-ibm-plex-mono-14 { font-size: var(--font-size-mono-ibm-plex-mono-14); }
+.font-size-mono-ibm-plex-mono-15 { font-size: var(--font-size-mono-ibm-plex-mono-15); }
+.font-size-mono-ibm-plex-mono-16 { font-size: var(--font-size-mono-ibm-plex-mono-16); }
+.font-size-mono-ibm-plex-mono-17 { font-size: var(--font-size-mono-ibm-plex-mono-17); }
+.font-size-mono-ibm-plex-mono-18 { font-size: var(--font-size-mono-ibm-plex-mono-18); }
+.font-size-mono-ibm-plex-mono-19 { font-size: var(--font-size-mono-ibm-plex-mono-19); }
+.font-size-mono-ibm-plex-mono-20 { font-size: var(--font-size-mono-ibm-plex-mono-20); }
+.font-size-mono-ibm-plex-mono-micro { font-size: var(--font-size-mono-ibm-plex-mono-micro); }
+.font-size-mono-proto-1 { font-size: var(--font-size-mono-proto-1); }
+.font-size-mono-proto-2 { font-size: var(--font-size-mono-proto-2); }
+.font-size-mono-proto-3 { font-size: var(--font-size-mono-proto-3); }
+.font-size-mono-proto-4 { font-size: var(--font-size-mono-proto-4); }
+.font-size-mono-proto-5 { font-size: var(--font-size-mono-proto-5); }
+.font-size-mono-proto-6 { font-size: var(--font-size-mono-proto-6); }
+.font-size-mono-proto-7 { font-size: var(--font-size-mono-proto-7); }
+.font-size-mono-proto-8 { font-size: var(--font-size-mono-proto-8); }
+.font-size-mono-proto-9 { font-size: var(--font-size-mono-proto-9); }
+.font-size-mono-proto-10 { font-size: var(--font-size-mono-proto-10); }
+.font-size-mono-proto-11 { font-size: var(--font-size-mono-proto-11); }
+.font-size-mono-proto-12 { font-size: var(--font-size-mono-proto-12); }
+.font-size-mono-proto-13 { font-size: var(--font-size-mono-proto-13); }
+.font-size-mono-proto-14 { font-size: var(--font-size-mono-proto-14); }
+.font-size-mono-proto-15 { font-size: var(--font-size-mono-proto-15); }
+.font-size-mono-proto-16 { font-size: var(--font-size-mono-proto-16); }
+.font-size-mono-proto-17 { font-size: var(--font-size-mono-proto-17); }
+.font-size-mono-proto-18 { font-size: var(--font-size-mono-proto-18); }
+.font-size-mono-proto-19 { font-size: var(--font-size-mono-proto-19); }
+.font-size-mono-proto-20 { font-size: var(--font-size-mono-proto-20); }
+.font-size-mono-proto-micro { font-size: var(--font-size-mono-proto-micro); }
+.font-size-proto-prototype-1 { font-size: var(--font-size-proto-prototype-1); }
+.font-size-proto-prototype-2 { font-size: var(--font-size-proto-prototype-2); }
+.font-size-proto-prototype-3 { font-size: var(--font-size-proto-prototype-3); }
+.font-size-proto-prototype-4 { font-size: var(--font-size-proto-prototype-4); }
+.font-size-proto-prototype-5 { font-size: var(--font-size-proto-prototype-5); }
+.font-size-proto-prototype-6 { font-size: var(--font-size-proto-prototype-6); }
+.font-size-proto-prototype-7 { font-size: var(--font-size-proto-prototype-7); }
+.font-size-proto-prototype-8 { font-size: var(--font-size-proto-prototype-8); }
+.font-size-proto-prototype-9 { font-size: var(--font-size-proto-prototype-9); }
+.font-size-proto-prototype-10 { font-size: var(--font-size-proto-prototype-10); }
+.font-size-proto-prototype-11 { font-size: var(--font-size-proto-prototype-11); }
+.font-size-proto-prototype-12 { font-size: var(--font-size-proto-prototype-12); }
+.font-size-proto-prototype-13 { font-size: var(--font-size-proto-prototype-13); }
+.font-size-proto-prototype-14 { font-size: var(--font-size-proto-prototype-14); }
+.font-size-proto-prototype-15 { font-size: var(--font-size-proto-prototype-15); }
+.font-size-proto-prototype-16 { font-size: var(--font-size-proto-prototype-16); }
+.font-size-proto-prototype-17 { font-size: var(--font-size-proto-prototype-17); }
+.font-size-proto-prototype-18 { font-size: var(--font-size-proto-prototype-18); }
+.font-size-proto-prototype-19 { font-size: var(--font-size-proto-prototype-19); }
+.font-size-proto-prototype-20 { font-size: var(--font-size-proto-prototype-20); }
+.font-size-proto-prototype-micro { font-size: var(--font-size-proto-prototype-micro); }
+.font-size-body-font-role-body-reading-1 { font-size: var(--font-size-body-font-role-body-reading-1); }
+.font-size-body-font-role-body-reading-2 { font-size: var(--font-size-body-font-role-body-reading-2); }
+.font-size-body-font-role-body-reading-3 { font-size: var(--font-size-body-font-role-body-reading-3); }
+.font-size-body-font-role-body-reading-4 { font-size: var(--font-size-body-font-role-body-reading-4); }
+.font-size-body-font-role-body-reading-5 { font-size: var(--font-size-body-font-role-body-reading-5); }
+.font-size-body-font-role-body-reading-6 { font-size: var(--font-size-body-font-role-body-reading-6); }
+.font-size-body-font-role-body-reading-7 { font-size: var(--font-size-body-font-role-body-reading-7); }
+.font-size-body-font-role-body-reading-8 { font-size: var(--font-size-body-font-role-body-reading-8); }
+.font-size-body-font-role-body-reading-9 { font-size: var(--font-size-body-font-role-body-reading-9); }
+.font-size-body-font-role-body-reading-10 { font-size: var(--font-size-body-font-role-body-reading-10); }
+.font-size-body-font-role-body-reading-11 { font-size: var(--font-size-body-font-role-body-reading-11); }
+.font-size-body-font-role-body-reading-12 { font-size: var(--font-size-body-font-role-body-reading-12); }
+.font-size-body-font-role-body-reading-13 { font-size: var(--font-size-body-font-role-body-reading-13); }
+.font-size-body-font-role-body-reading-14 { font-size: var(--font-size-body-font-role-body-reading-14); }
+.font-size-body-font-role-body-reading-15 { font-size: var(--font-size-body-font-role-body-reading-15); }
+.font-size-body-font-role-body-reading-16 { font-size: var(--font-size-body-font-role-body-reading-16); }
+.font-size-body-font-role-body-reading-17 { font-size: var(--font-size-body-font-role-body-reading-17); }
+.font-size-body-font-role-body-reading-18 { font-size: var(--font-size-body-font-role-body-reading-18); }
+.font-size-body-font-role-body-reading-19 { font-size: var(--font-size-body-font-role-body-reading-19); }
+.font-size-body-font-role-body-reading-20 { font-size: var(--font-size-body-font-role-body-reading-20); }
+.font-size-body-font-role-body-reading-micro { font-size: var(--font-size-body-font-role-body-reading-micro); }
+.font-size-body-font-role-body-display-1 { font-size: var(--font-size-body-font-role-body-display-1); }
+.font-size-body-font-role-body-display-2 { font-size: var(--font-size-body-font-role-body-display-2); }
+.font-size-body-font-role-body-display-3 { font-size: var(--font-size-body-font-role-body-display-3); }
+.font-size-body-font-role-body-display-4 { font-size: var(--font-size-body-font-role-body-display-4); }
+.font-size-body-font-role-body-display-5 { font-size: var(--font-size-body-font-role-body-display-5); }
+.font-size-body-font-role-body-display-6 { font-size: var(--font-size-body-font-role-body-display-6); }
+.font-size-body-font-role-body-display-7 { font-size: var(--font-size-body-font-role-body-display-7); }
+.font-size-body-font-role-body-display-8 { font-size: var(--font-size-body-font-role-body-display-8); }
+.font-size-body-font-role-body-display-9 { font-size: var(--font-size-body-font-role-body-display-9); }
+.font-size-body-font-role-body-display-10 { font-size: var(--font-size-body-font-role-body-display-10); }
+.font-size-body-font-role-body-display-11 { font-size: var(--font-size-body-font-role-body-display-11); }
+.font-size-body-font-role-body-display-12 { font-size: var(--font-size-body-font-role-body-display-12); }
+.font-size-body-font-role-body-display-13 { font-size: var(--font-size-body-font-role-body-display-13); }
+.font-size-body-font-role-body-display-14 { font-size: var(--font-size-body-font-role-body-display-14); }
+.font-size-body-font-role-body-display-15 { font-size: var(--font-size-body-font-role-body-display-15); }
+.font-size-body-font-role-body-display-16 { font-size: var(--font-size-body-font-role-body-display-16); }
+.font-size-body-font-role-body-display-17 { font-size: var(--font-size-body-font-role-body-display-17); }
+.font-size-body-font-role-body-display-18 { font-size: var(--font-size-body-font-role-body-display-18); }
+.font-size-body-font-role-body-display-19 { font-size: var(--font-size-body-font-role-body-display-19); }
+.font-size-body-font-role-body-display-20 { font-size: var(--font-size-body-font-role-body-display-20); }
+.font-size-body-font-role-body-display-micro { font-size: var(--font-size-body-font-role-body-display-micro); }
+.font-size-body-font-role-body-proto-1 { font-size: var(--font-size-body-font-role-body-proto-1); }
+.font-size-body-font-role-body-proto-2 { font-size: var(--font-size-body-font-role-body-proto-2); }
+.font-size-body-font-role-body-proto-3 { font-size: var(--font-size-body-font-role-body-proto-3); }
+.font-size-body-font-role-body-proto-4 { font-size: var(--font-size-body-font-role-body-proto-4); }
+.font-size-body-font-role-body-proto-5 { font-size: var(--font-size-body-font-role-body-proto-5); }
+.font-size-body-font-role-body-proto-6 { font-size: var(--font-size-body-font-role-body-proto-6); }
+.font-size-body-font-role-body-proto-7 { font-size: var(--font-size-body-font-role-body-proto-7); }
+.font-size-body-font-role-body-proto-8 { font-size: var(--font-size-body-font-role-body-proto-8); }
+.font-size-body-font-role-body-proto-9 { font-size: var(--font-size-body-font-role-body-proto-9); }
+.font-size-body-font-role-body-proto-10 { font-size: var(--font-size-body-font-role-body-proto-10); }
+.font-size-body-font-role-body-proto-11 { font-size: var(--font-size-body-font-role-body-proto-11); }
+.font-size-body-font-role-body-proto-12 { font-size: var(--font-size-body-font-role-body-proto-12); }
+.font-size-body-font-role-body-proto-13 { font-size: var(--font-size-body-font-role-body-proto-13); }
+.font-size-body-font-role-body-proto-14 { font-size: var(--font-size-body-font-role-body-proto-14); }
+.font-size-body-font-role-body-proto-15 { font-size: var(--font-size-body-font-role-body-proto-15); }
+.font-size-body-font-role-body-proto-16 { font-size: var(--font-size-body-font-role-body-proto-16); }
+.font-size-body-font-role-body-proto-17 { font-size: var(--font-size-body-font-role-body-proto-17); }
+.font-size-body-font-role-body-proto-18 { font-size: var(--font-size-body-font-role-body-proto-18); }
+.font-size-body-font-role-body-proto-19 { font-size: var(--font-size-body-font-role-body-proto-19); }
+.font-size-body-font-role-body-proto-20 { font-size: var(--font-size-body-font-role-body-proto-20); }
+.font-size-body-font-role-body-proto-micro { font-size: var(--font-size-body-font-role-body-proto-micro); }
+.font-size-code-font-role-code-mono-1 { font-size: var(--font-size-code-font-role-code-mono-1); }
+.font-size-code-font-role-code-mono-2 { font-size: var(--font-size-code-font-role-code-mono-2); }
+.font-size-code-font-role-code-mono-3 { font-size: var(--font-size-code-font-role-code-mono-3); }
+.font-size-code-font-role-code-mono-4 { font-size: var(--font-size-code-font-role-code-mono-4); }
+.font-size-code-font-role-code-mono-5 { font-size: var(--font-size-code-font-role-code-mono-5); }
+.font-size-code-font-role-code-mono-6 { font-size: var(--font-size-code-font-role-code-mono-6); }
+.font-size-code-font-role-code-mono-7 { font-size: var(--font-size-code-font-role-code-mono-7); }
+.font-size-code-font-role-code-mono-8 { font-size: var(--font-size-code-font-role-code-mono-8); }
+.font-size-code-font-role-code-mono-9 { font-size: var(--font-size-code-font-role-code-mono-9); }
+.font-size-code-font-role-code-mono-10 { font-size: var(--font-size-code-font-role-code-mono-10); }
+.font-size-code-font-role-code-mono-11 { font-size: var(--font-size-code-font-role-code-mono-11); }
+.font-size-code-font-role-code-mono-12 { font-size: var(--font-size-code-font-role-code-mono-12); }
+.font-size-code-font-role-code-mono-13 { font-size: var(--font-size-code-font-role-code-mono-13); }
+.font-size-code-font-role-code-mono-14 { font-size: var(--font-size-code-font-role-code-mono-14); }
+.font-size-code-font-role-code-mono-15 { font-size: var(--font-size-code-font-role-code-mono-15); }
+.font-size-code-font-role-code-mono-16 { font-size: var(--font-size-code-font-role-code-mono-16); }
+.font-size-code-font-role-code-mono-17 { font-size: var(--font-size-code-font-role-code-mono-17); }
+.font-size-code-font-role-code-mono-18 { font-size: var(--font-size-code-font-role-code-mono-18); }
+.font-size-code-font-role-code-mono-19 { font-size: var(--font-size-code-font-role-code-mono-19); }
+.font-size-code-font-role-code-mono-20 { font-size: var(--font-size-code-font-role-code-mono-20); }
+.font-size-code-font-role-code-mono-micro { font-size: var(--font-size-code-font-role-code-mono-micro); }
+.font-size-code-font-role-code-proto-1 { font-size: var(--font-size-code-font-role-code-proto-1); }
+.font-size-code-font-role-code-proto-2 { font-size: var(--font-size-code-font-role-code-proto-2); }
+.font-size-code-font-role-code-proto-3 { font-size: var(--font-size-code-font-role-code-proto-3); }
+.font-size-code-font-role-code-proto-4 { font-size: var(--font-size-code-font-role-code-proto-4); }
+.font-size-code-font-role-code-proto-5 { font-size: var(--font-size-code-font-role-code-proto-5); }
+.font-size-code-font-role-code-proto-6 { font-size: var(--font-size-code-font-role-code-proto-6); }
+.font-size-code-font-role-code-proto-7 { font-size: var(--font-size-code-font-role-code-proto-7); }
+.font-size-code-font-role-code-proto-8 { font-size: var(--font-size-code-font-role-code-proto-8); }
+.font-size-code-font-role-code-proto-9 { font-size: var(--font-size-code-font-role-code-proto-9); }
+.font-size-code-font-role-code-proto-10 { font-size: var(--font-size-code-font-role-code-proto-10); }
+.font-size-code-font-role-code-proto-11 { font-size: var(--font-size-code-font-role-code-proto-11); }
+.font-size-code-font-role-code-proto-12 { font-size: var(--font-size-code-font-role-code-proto-12); }
+.font-size-code-font-role-code-proto-13 { font-size: var(--font-size-code-font-role-code-proto-13); }
+.font-size-code-font-role-code-proto-14 { font-size: var(--font-size-code-font-role-code-proto-14); }
+.font-size-code-font-role-code-proto-15 { font-size: var(--font-size-code-font-role-code-proto-15); }
+.font-size-code-font-role-code-proto-16 { font-size: var(--font-size-code-font-role-code-proto-16); }
+.font-size-code-font-role-code-proto-17 { font-size: var(--font-size-code-font-role-code-proto-17); }
+.font-size-code-font-role-code-proto-18 { font-size: var(--font-size-code-font-role-code-proto-18); }
+.font-size-code-font-role-code-proto-19 { font-size: var(--font-size-code-font-role-code-proto-19); }
+.font-size-code-font-role-code-proto-20 { font-size: var(--font-size-code-font-role-code-proto-20); }
+.font-size-code-font-role-code-proto-micro { font-size: var(--font-size-code-font-role-code-proto-micro); }
+.font-size-heading-font-role-heading-reading-1 { font-size: var(--font-size-heading-font-role-heading-reading-1); }
+.font-size-heading-font-role-heading-reading-2 { font-size: var(--font-size-heading-font-role-heading-reading-2); }
+.font-size-heading-font-role-heading-reading-3 { font-size: var(--font-size-heading-font-role-heading-reading-3); }
+.font-size-heading-font-role-heading-reading-4 { font-size: var(--font-size-heading-font-role-heading-reading-4); }
+.font-size-heading-font-role-heading-reading-5 { font-size: var(--font-size-heading-font-role-heading-reading-5); }
+.font-size-heading-font-role-heading-reading-6 { font-size: var(--font-size-heading-font-role-heading-reading-6); }
+.font-size-heading-font-role-heading-reading-7 { font-size: var(--font-size-heading-font-role-heading-reading-7); }
+.font-size-heading-font-role-heading-reading-8 { font-size: var(--font-size-heading-font-role-heading-reading-8); }
+.font-size-heading-font-role-heading-reading-9 { font-size: var(--font-size-heading-font-role-heading-reading-9); }
+.font-size-heading-font-role-heading-reading-10 { font-size: var(--font-size-heading-font-role-heading-reading-10); }
+.font-size-heading-font-role-heading-reading-11 { font-size: var(--font-size-heading-font-role-heading-reading-11); }
+.font-size-heading-font-role-heading-reading-12 { font-size: var(--font-size-heading-font-role-heading-reading-12); }
+.font-size-heading-font-role-heading-reading-13 { font-size: var(--font-size-heading-font-role-heading-reading-13); }
+.font-size-heading-font-role-heading-reading-14 { font-size: var(--font-size-heading-font-role-heading-reading-14); }
+.font-size-heading-font-role-heading-reading-15 { font-size: var(--font-size-heading-font-role-heading-reading-15); }
+.font-size-heading-font-role-heading-reading-16 { font-size: var(--font-size-heading-font-role-heading-reading-16); }
+.font-size-heading-font-role-heading-reading-17 { font-size: var(--font-size-heading-font-role-heading-reading-17); }
+.font-size-heading-font-role-heading-reading-18 { font-size: var(--font-size-heading-font-role-heading-reading-18); }
+.font-size-heading-font-role-heading-reading-19 { font-size: var(--font-size-heading-font-role-heading-reading-19); }
+.font-size-heading-font-role-heading-reading-20 { font-size: var(--font-size-heading-font-role-heading-reading-20); }
+.font-size-heading-font-role-heading-reading-micro { font-size: var(--font-size-heading-font-role-heading-reading-micro); }
+.font-size-heading-font-role-heading-display-1 { font-size: var(--font-size-heading-font-role-heading-display-1); }
+.font-size-heading-font-role-heading-display-2 { font-size: var(--font-size-heading-font-role-heading-display-2); }
+.font-size-heading-font-role-heading-display-3 { font-size: var(--font-size-heading-font-role-heading-display-3); }
+.font-size-heading-font-role-heading-display-4 { font-size: var(--font-size-heading-font-role-heading-display-4); }
+.font-size-heading-font-role-heading-display-5 { font-size: var(--font-size-heading-font-role-heading-display-5); }
+.font-size-heading-font-role-heading-display-6 { font-size: var(--font-size-heading-font-role-heading-display-6); }
+.font-size-heading-font-role-heading-display-7 { font-size: var(--font-size-heading-font-role-heading-display-7); }
+.font-size-heading-font-role-heading-display-8 { font-size: var(--font-size-heading-font-role-heading-display-8); }
+.font-size-heading-font-role-heading-display-9 { font-size: var(--font-size-heading-font-role-heading-display-9); }
+.font-size-heading-font-role-heading-display-10 { font-size: var(--font-size-heading-font-role-heading-display-10); }
+.font-size-heading-font-role-heading-display-11 { font-size: var(--font-size-heading-font-role-heading-display-11); }
+.font-size-heading-font-role-heading-display-12 { font-size: var(--font-size-heading-font-role-heading-display-12); }
+.font-size-heading-font-role-heading-display-13 { font-size: var(--font-size-heading-font-role-heading-display-13); }
+.font-size-heading-font-role-heading-display-14 { font-size: var(--font-size-heading-font-role-heading-display-14); }
+.font-size-heading-font-role-heading-display-15 { font-size: var(--font-size-heading-font-role-heading-display-15); }
+.font-size-heading-font-role-heading-display-16 { font-size: var(--font-size-heading-font-role-heading-display-16); }
+.font-size-heading-font-role-heading-display-17 { font-size: var(--font-size-heading-font-role-heading-display-17); }
+.font-size-heading-font-role-heading-display-18 { font-size: var(--font-size-heading-font-role-heading-display-18); }
+.font-size-heading-font-role-heading-display-19 { font-size: var(--font-size-heading-font-role-heading-display-19); }
+.font-size-heading-font-role-heading-display-20 { font-size: var(--font-size-heading-font-role-heading-display-20); }
+.font-size-heading-font-role-heading-display-micro { font-size: var(--font-size-heading-font-role-heading-display-micro); }
+.font-size-heading-font-role-heading-proto-1 { font-size: var(--font-size-heading-font-role-heading-proto-1); }
+.font-size-heading-font-role-heading-proto-2 { font-size: var(--font-size-heading-font-role-heading-proto-2); }
+.font-size-heading-font-role-heading-proto-3 { font-size: var(--font-size-heading-font-role-heading-proto-3); }
+.font-size-heading-font-role-heading-proto-4 { font-size: var(--font-size-heading-font-role-heading-proto-4); }
+.font-size-heading-font-role-heading-proto-5 { font-size: var(--font-size-heading-font-role-heading-proto-5); }
+.font-size-heading-font-role-heading-proto-6 { font-size: var(--font-size-heading-font-role-heading-proto-6); }
+.font-size-heading-font-role-heading-proto-7 { font-size: var(--font-size-heading-font-role-heading-proto-7); }
+.font-size-heading-font-role-heading-proto-8 { font-size: var(--font-size-heading-font-role-heading-proto-8); }
+.font-size-heading-font-role-heading-proto-9 { font-size: var(--font-size-heading-font-role-heading-proto-9); }
+.font-size-heading-font-role-heading-proto-10 { font-size: var(--font-size-heading-font-role-heading-proto-10); }
+.font-size-heading-font-role-heading-proto-11 { font-size: var(--font-size-heading-font-role-heading-proto-11); }
+.font-size-heading-font-role-heading-proto-12 { font-size: var(--font-size-heading-font-role-heading-proto-12); }
+.font-size-heading-font-role-heading-proto-13 { font-size: var(--font-size-heading-font-role-heading-proto-13); }
+.font-size-heading-font-role-heading-proto-14 { font-size: var(--font-size-heading-font-role-heading-proto-14); }
+.font-size-heading-font-role-heading-proto-15 { font-size: var(--font-size-heading-font-role-heading-proto-15); }
+.font-size-heading-font-role-heading-proto-16 { font-size: var(--font-size-heading-font-role-heading-proto-16); }
+.font-size-heading-font-role-heading-proto-17 { font-size: var(--font-size-heading-font-role-heading-proto-17); }
+.font-size-heading-font-role-heading-proto-18 { font-size: var(--font-size-heading-font-role-heading-proto-18); }
+.font-size-heading-font-role-heading-proto-19 { font-size: var(--font-size-heading-font-role-heading-proto-19); }
+.font-size-heading-font-role-heading-proto-20 { font-size: var(--font-size-heading-font-role-heading-proto-20); }
+.font-size-heading-font-role-heading-proto-micro { font-size: var(--font-size-heading-font-role-heading-proto-micro); }
+.font-size-ui-font-role-ui-reading-1 { font-size: var(--font-size-ui-font-role-ui-reading-1); }
+.font-size-ui-font-role-ui-reading-2 { font-size: var(--font-size-ui-font-role-ui-reading-2); }
+.font-size-ui-font-role-ui-reading-3 { font-size: var(--font-size-ui-font-role-ui-reading-3); }
+.font-size-ui-font-role-ui-reading-4 { font-size: var(--font-size-ui-font-role-ui-reading-4); }
+.font-size-ui-font-role-ui-reading-5 { font-size: var(--font-size-ui-font-role-ui-reading-5); }
+.font-size-ui-font-role-ui-reading-6 { font-size: var(--font-size-ui-font-role-ui-reading-6); }
+.font-size-ui-font-role-ui-reading-7 { font-size: var(--font-size-ui-font-role-ui-reading-7); }
+.font-size-ui-font-role-ui-reading-8 { font-size: var(--font-size-ui-font-role-ui-reading-8); }
+.font-size-ui-font-role-ui-reading-9 { font-size: var(--font-size-ui-font-role-ui-reading-9); }
+.font-size-ui-font-role-ui-reading-10 { font-size: var(--font-size-ui-font-role-ui-reading-10); }
+.font-size-ui-font-role-ui-reading-11 { font-size: var(--font-size-ui-font-role-ui-reading-11); }
+.font-size-ui-font-role-ui-reading-12 { font-size: var(--font-size-ui-font-role-ui-reading-12); }
+.font-size-ui-font-role-ui-reading-13 { font-size: var(--font-size-ui-font-role-ui-reading-13); }
+.font-size-ui-font-role-ui-reading-14 { font-size: var(--font-size-ui-font-role-ui-reading-14); }
+.font-size-ui-font-role-ui-reading-15 { font-size: var(--font-size-ui-font-role-ui-reading-15); }
+.font-size-ui-font-role-ui-reading-16 { font-size: var(--font-size-ui-font-role-ui-reading-16); }
+.font-size-ui-font-role-ui-reading-17 { font-size: var(--font-size-ui-font-role-ui-reading-17); }
+.font-size-ui-font-role-ui-reading-18 { font-size: var(--font-size-ui-font-role-ui-reading-18); }
+.font-size-ui-font-role-ui-reading-19 { font-size: var(--font-size-ui-font-role-ui-reading-19); }
+.font-size-ui-font-role-ui-reading-20 { font-size: var(--font-size-ui-font-role-ui-reading-20); }
+.font-size-ui-font-role-ui-reading-micro { font-size: var(--font-size-ui-font-role-ui-reading-micro); }
+.font-size-ui-font-role-ui-mono-1 { font-size: var(--font-size-ui-font-role-ui-mono-1); }
+.font-size-ui-font-role-ui-mono-2 { font-size: var(--font-size-ui-font-role-ui-mono-2); }
+.font-size-ui-font-role-ui-mono-3 { font-size: var(--font-size-ui-font-role-ui-mono-3); }
+.font-size-ui-font-role-ui-mono-4 { font-size: var(--font-size-ui-font-role-ui-mono-4); }
+.font-size-ui-font-role-ui-mono-5 { font-size: var(--font-size-ui-font-role-ui-mono-5); }
+.font-size-ui-font-role-ui-mono-6 { font-size: var(--font-size-ui-font-role-ui-mono-6); }
+.font-size-ui-font-role-ui-mono-7 { font-size: var(--font-size-ui-font-role-ui-mono-7); }
+.font-size-ui-font-role-ui-mono-8 { font-size: var(--font-size-ui-font-role-ui-mono-8); }
+.font-size-ui-font-role-ui-mono-9 { font-size: var(--font-size-ui-font-role-ui-mono-9); }
+.font-size-ui-font-role-ui-mono-10 { font-size: var(--font-size-ui-font-role-ui-mono-10); }
+.font-size-ui-font-role-ui-mono-11 { font-size: var(--font-size-ui-font-role-ui-mono-11); }
+.font-size-ui-font-role-ui-mono-12 { font-size: var(--font-size-ui-font-role-ui-mono-12); }
+.font-size-ui-font-role-ui-mono-13 { font-size: var(--font-size-ui-font-role-ui-mono-13); }
+.font-size-ui-font-role-ui-mono-14 { font-size: var(--font-size-ui-font-role-ui-mono-14); }
+.font-size-ui-font-role-ui-mono-15 { font-size: var(--font-size-ui-font-role-ui-mono-15); }
+.font-size-ui-font-role-ui-mono-16 { font-size: var(--font-size-ui-font-role-ui-mono-16); }
+.font-size-ui-font-role-ui-mono-17 { font-size: var(--font-size-ui-font-role-ui-mono-17); }
+.font-size-ui-font-role-ui-mono-18 { font-size: var(--font-size-ui-font-role-ui-mono-18); }
+.font-size-ui-font-role-ui-mono-19 { font-size: var(--font-size-ui-font-role-ui-mono-19); }
+.font-size-ui-font-role-ui-mono-20 { font-size: var(--font-size-ui-font-role-ui-mono-20); }
+.font-size-ui-font-role-ui-mono-micro { font-size: var(--font-size-ui-font-role-ui-mono-micro); }
+.font-size-ui-font-role-ui-proto-1 { font-size: var(--font-size-ui-font-role-ui-proto-1); }
+.font-size-ui-font-role-ui-proto-2 { font-size: var(--font-size-ui-font-role-ui-proto-2); }
+.font-size-ui-font-role-ui-proto-3 { font-size: var(--font-size-ui-font-role-ui-proto-3); }
+.font-size-ui-font-role-ui-proto-4 { font-size: var(--font-size-ui-font-role-ui-proto-4); }
+.font-size-ui-font-role-ui-proto-5 { font-size: var(--font-size-ui-font-role-ui-proto-5); }
+.font-size-ui-font-role-ui-proto-6 { font-size: var(--font-size-ui-font-role-ui-proto-6); }
+.font-size-ui-font-role-ui-proto-7 { font-size: var(--font-size-ui-font-role-ui-proto-7); }
+.font-size-ui-font-role-ui-proto-8 { font-size: var(--font-size-ui-font-role-ui-proto-8); }
+.font-size-ui-font-role-ui-proto-9 { font-size: var(--font-size-ui-font-role-ui-proto-9); }
+.font-size-ui-font-role-ui-proto-10 { font-size: var(--font-size-ui-font-role-ui-proto-10); }
+.font-size-ui-font-role-ui-proto-11 { font-size: var(--font-size-ui-font-role-ui-proto-11); }
+.font-size-ui-font-role-ui-proto-12 { font-size: var(--font-size-ui-font-role-ui-proto-12); }
+.font-size-ui-font-role-ui-proto-13 { font-size: var(--font-size-ui-font-role-ui-proto-13); }
+.font-size-ui-font-role-ui-proto-14 { font-size: var(--font-size-ui-font-role-ui-proto-14); }
+.font-size-ui-font-role-ui-proto-15 { font-size: var(--font-size-ui-font-role-ui-proto-15); }
+.font-size-ui-font-role-ui-proto-16 { font-size: var(--font-size-ui-font-role-ui-proto-16); }
+.font-size-ui-font-role-ui-proto-17 { font-size: var(--font-size-ui-font-role-ui-proto-17); }
+.font-size-ui-font-role-ui-proto-18 { font-size: var(--font-size-ui-font-role-ui-proto-18); }
+.font-size-ui-font-role-ui-proto-19 { font-size: var(--font-size-ui-font-role-ui-proto-19); }
+.font-size-ui-font-role-ui-proto-20 { font-size: var(--font-size-ui-font-role-ui-proto-20); }
+.font-size-ui-font-role-ui-proto-micro { font-size: var(--font-size-ui-font-role-ui-proto-micro); }
+.font-size-alt-font-role-alt-reading-1 { font-size: var(--font-size-alt-font-role-alt-reading-1); }
+.font-size-alt-font-role-alt-reading-2 { font-size: var(--font-size-alt-font-role-alt-reading-2); }
+.font-size-alt-font-role-alt-reading-3 { font-size: var(--font-size-alt-font-role-alt-reading-3); }
+.font-size-alt-font-role-alt-reading-4 { font-size: var(--font-size-alt-font-role-alt-reading-4); }
+.font-size-alt-font-role-alt-reading-5 { font-size: var(--font-size-alt-font-role-alt-reading-5); }
+.font-size-alt-font-role-alt-reading-6 { font-size: var(--font-size-alt-font-role-alt-reading-6); }
+.font-size-alt-font-role-alt-reading-7 { font-size: var(--font-size-alt-font-role-alt-reading-7); }
+.font-size-alt-font-role-alt-reading-8 { font-size: var(--font-size-alt-font-role-alt-reading-8); }
+.font-size-alt-font-role-alt-reading-9 { font-size: var(--font-size-alt-font-role-alt-reading-9); }
+.font-size-alt-font-role-alt-reading-10 { font-size: var(--font-size-alt-font-role-alt-reading-10); }
+.font-size-alt-font-role-alt-reading-11 { font-size: var(--font-size-alt-font-role-alt-reading-11); }
+.font-size-alt-font-role-alt-reading-12 { font-size: var(--font-size-alt-font-role-alt-reading-12); }
+.font-size-alt-font-role-alt-reading-13 { font-size: var(--font-size-alt-font-role-alt-reading-13); }
+.font-size-alt-font-role-alt-reading-14 { font-size: var(--font-size-alt-font-role-alt-reading-14); }
+.font-size-alt-font-role-alt-reading-15 { font-size: var(--font-size-alt-font-role-alt-reading-15); }
+.font-size-alt-font-role-alt-reading-16 { font-size: var(--font-size-alt-font-role-alt-reading-16); }
+.font-size-alt-font-role-alt-reading-17 { font-size: var(--font-size-alt-font-role-alt-reading-17); }
+.font-size-alt-font-role-alt-reading-18 { font-size: var(--font-size-alt-font-role-alt-reading-18); }
+.font-size-alt-font-role-alt-reading-19 { font-size: var(--font-size-alt-font-role-alt-reading-19); }
+.font-size-alt-font-role-alt-reading-20 { font-size: var(--font-size-alt-font-role-alt-reading-20); }
+.font-size-alt-font-role-alt-reading-micro { font-size: var(--font-size-alt-font-role-alt-reading-micro); }
+.font-size-alt-font-role-alt-display-1 { font-size: var(--font-size-alt-font-role-alt-display-1); }
+.font-size-alt-font-role-alt-display-2 { font-size: var(--font-size-alt-font-role-alt-display-2); }
+.font-size-alt-font-role-alt-display-3 { font-size: var(--font-size-alt-font-role-alt-display-3); }
+.font-size-alt-font-role-alt-display-4 { font-size: var(--font-size-alt-font-role-alt-display-4); }
+.font-size-alt-font-role-alt-display-5 { font-size: var(--font-size-alt-font-role-alt-display-5); }
+.font-size-alt-font-role-alt-display-6 { font-size: var(--font-size-alt-font-role-alt-display-6); }
+.font-size-alt-font-role-alt-display-7 { font-size: var(--font-size-alt-font-role-alt-display-7); }
+.font-size-alt-font-role-alt-display-8 { font-size: var(--font-size-alt-font-role-alt-display-8); }
+.font-size-alt-font-role-alt-display-9 { font-size: var(--font-size-alt-font-role-alt-display-9); }
+.font-size-alt-font-role-alt-display-10 { font-size: var(--font-size-alt-font-role-alt-display-10); }
+.font-size-alt-font-role-alt-display-11 { font-size: var(--font-size-alt-font-role-alt-display-11); }
+.font-size-alt-font-role-alt-display-12 { font-size: var(--font-size-alt-font-role-alt-display-12); }
+.font-size-alt-font-role-alt-display-13 { font-size: var(--font-size-alt-font-role-alt-display-13); }
+.font-size-alt-font-role-alt-display-14 { font-size: var(--font-size-alt-font-role-alt-display-14); }
+.font-size-alt-font-role-alt-display-15 { font-size: var(--font-size-alt-font-role-alt-display-15); }
+.font-size-alt-font-role-alt-display-16 { font-size: var(--font-size-alt-font-role-alt-display-16); }
+.font-size-alt-font-role-alt-display-17 { font-size: var(--font-size-alt-font-role-alt-display-17); }
+.font-size-alt-font-role-alt-display-18 { font-size: var(--font-size-alt-font-role-alt-display-18); }
+.font-size-alt-font-role-alt-display-19 { font-size: var(--font-size-alt-font-role-alt-display-19); }
+.font-size-alt-font-role-alt-display-20 { font-size: var(--font-size-alt-font-role-alt-display-20); }
+.font-size-alt-font-role-alt-display-micro { font-size: var(--font-size-alt-font-role-alt-display-micro); }
+.font-size-alt-font-role-alt-mono-1 { font-size: var(--font-size-alt-font-role-alt-mono-1); }
+.font-size-alt-font-role-alt-mono-2 { font-size: var(--font-size-alt-font-role-alt-mono-2); }
+.font-size-alt-font-role-alt-mono-3 { font-size: var(--font-size-alt-font-role-alt-mono-3); }
+.font-size-alt-font-role-alt-mono-4 { font-size: var(--font-size-alt-font-role-alt-mono-4); }
+.font-size-alt-font-role-alt-mono-5 { font-size: var(--font-size-alt-font-role-alt-mono-5); }
+.font-size-alt-font-role-alt-mono-6 { font-size: var(--font-size-alt-font-role-alt-mono-6); }
+.font-size-alt-font-role-alt-mono-7 { font-size: var(--font-size-alt-font-role-alt-mono-7); }
+.font-size-alt-font-role-alt-mono-8 { font-size: var(--font-size-alt-font-role-alt-mono-8); }
+.font-size-alt-font-role-alt-mono-9 { font-size: var(--font-size-alt-font-role-alt-mono-9); }
+.font-size-alt-font-role-alt-mono-10 { font-size: var(--font-size-alt-font-role-alt-mono-10); }
+.font-size-alt-font-role-alt-mono-11 { font-size: var(--font-size-alt-font-role-alt-mono-11); }
+.font-size-alt-font-role-alt-mono-12 { font-size: var(--font-size-alt-font-role-alt-mono-12); }
+.font-size-alt-font-role-alt-mono-13 { font-size: var(--font-size-alt-font-role-alt-mono-13); }
+.font-size-alt-font-role-alt-mono-14 { font-size: var(--font-size-alt-font-role-alt-mono-14); }
+.font-size-alt-font-role-alt-mono-15 { font-size: var(--font-size-alt-font-role-alt-mono-15); }
+.font-size-alt-font-role-alt-mono-16 { font-size: var(--font-size-alt-font-role-alt-mono-16); }
+.font-size-alt-font-role-alt-mono-17 { font-size: var(--font-size-alt-font-role-alt-mono-17); }
+.font-size-alt-font-role-alt-mono-18 { font-size: var(--font-size-alt-font-role-alt-mono-18); }
+.font-size-alt-font-role-alt-mono-19 { font-size: var(--font-size-alt-font-role-alt-mono-19); }
+.font-size-alt-font-role-alt-mono-20 { font-size: var(--font-size-alt-font-role-alt-mono-20); }
+.font-size-alt-font-role-alt-mono-micro { font-size: var(--font-size-alt-font-role-alt-mono-micro); }
+.font-size-alt-font-role-alt-proto-1 { font-size: var(--font-size-alt-font-role-alt-proto-1); }
+.font-size-alt-font-role-alt-proto-2 { font-size: var(--font-size-alt-font-role-alt-proto-2); }
+.font-size-alt-font-role-alt-proto-3 { font-size: var(--font-size-alt-font-role-alt-proto-3); }
+.font-size-alt-font-role-alt-proto-4 { font-size: var(--font-size-alt-font-role-alt-proto-4); }
+.font-size-alt-font-role-alt-proto-5 { font-size: var(--font-size-alt-font-role-alt-proto-5); }
+.font-size-alt-font-role-alt-proto-6 { font-size: var(--font-size-alt-font-role-alt-proto-6); }
+.font-size-alt-font-role-alt-proto-7 { font-size: var(--font-size-alt-font-role-alt-proto-7); }
+.font-size-alt-font-role-alt-proto-8 { font-size: var(--font-size-alt-font-role-alt-proto-8); }
+.font-size-alt-font-role-alt-proto-9 { font-size: var(--font-size-alt-font-role-alt-proto-9); }
+.font-size-alt-font-role-alt-proto-10 { font-size: var(--font-size-alt-font-role-alt-proto-10); }
+.font-size-alt-font-role-alt-proto-11 { font-size: var(--font-size-alt-font-role-alt-proto-11); }
+.font-size-alt-font-role-alt-proto-12 { font-size: var(--font-size-alt-font-role-alt-proto-12); }
+.font-size-alt-font-role-alt-proto-13 { font-size: var(--font-size-alt-font-role-alt-proto-13); }
+.font-size-alt-font-role-alt-proto-14 { font-size: var(--font-size-alt-font-role-alt-proto-14); }
+.font-size-alt-font-role-alt-proto-15 { font-size: var(--font-size-alt-font-role-alt-proto-15); }
+.font-size-alt-font-role-alt-proto-16 { font-size: var(--font-size-alt-font-role-alt-proto-16); }
+.font-size-alt-font-role-alt-proto-17 { font-size: var(--font-size-alt-font-role-alt-proto-17); }
+.font-size-alt-font-role-alt-proto-18 { font-size: var(--font-size-alt-font-role-alt-proto-18); }
+.font-size-alt-font-role-alt-proto-19 { font-size: var(--font-size-alt-font-role-alt-proto-19); }
+.font-size-alt-font-role-alt-proto-20 { font-size: var(--font-size-alt-font-role-alt-proto-20); }
+.font-size-alt-font-role-alt-proto-micro { font-size: var(--font-size-alt-font-role-alt-proto-micro); }
 .font-size-reading-3xs { font-size: var(--theme-font-size-reading-3xs); }
 .font-size-reading-2xs { font-size: var(--theme-font-size-reading-2xs); }
 .font-size-reading-xs { font-size: var(--theme-font-size-reading-xs); }
@@ -3123,6 +3508,62 @@
 .padding-touch-minimum { padding: var(--spacing-touch-minimum); }
 .margin-pointer-minimum { margin: var(--spacing-pointer-minimum); }
 .padding-pointer-minimum { padding: var(--spacing-pointer-minimum); }
+.margin-0 { margin: var(--spacing--0); }
+.padding-0 { padding: var(--spacing--0); }
+.margin-1 { margin: var(--spacing--1); }
+.padding-1 { padding: var(--spacing--1); }
+.margin-2 { margin: var(--spacing--2); }
+.padding-2 { padding: var(--spacing--2); }
+.margin-3 { margin: var(--spacing--3); }
+.padding-3 { padding: var(--spacing--3); }
+.margin-4 { margin: var(--spacing--4); }
+.padding-4 { padding: var(--spacing--4); }
+.margin-5 { margin: var(--spacing--5); }
+.padding-5 { padding: var(--spacing--5); }
+.margin-6 { margin: var(--spacing--6); }
+.padding-6 { padding: var(--spacing--6); }
+.margin-7 { margin: var(--spacing--7); }
+.padding-7 { padding: var(--spacing--7); }
+.margin-8 { margin: var(--spacing--8); }
+.padding-8 { padding: var(--spacing--8); }
+.margin-9 { margin: var(--spacing--9); }
+.padding-9 { padding: var(--spacing--9); }
+.margin-10 { margin: var(--spacing--10); }
+.padding-10 { padding: var(--spacing--10); }
+.margin-15 { margin: var(--spacing--15); }
+.padding-15 { padding: var(--spacing--15); }
+.margin-105 { margin: var(--spacing--105); }
+.padding-105 { padding: var(--spacing--105); }
+.margin-205 { margin: var(--spacing--205); }
+.padding-205 { padding: var(--spacing--205); }
+.margin-1px { margin: var(--spacing--1px); }
+.padding-1px { padding: var(--spacing--1px); }
+.margin-2px { margin: var(--spacing--2px); }
+.padding-2px { padding: var(--spacing--2px); }
+.margin-05 { margin: var(--spacing--05); }
+.padding-05 { padding: var(--spacing--05); }
+.margin-card { margin: var(--spacing--card); }
+.padding-card { padding: var(--spacing--card); }
+.margin-card-lg { margin: var(--spacing--card-lg); }
+.padding-card-lg { padding: var(--spacing--card-lg); }
+.margin-mobile { margin: var(--theme-spacing-mobile); }
+.padding-mobile { padding: var(--theme-spacing-mobile); }
+.margin-mobile-lg { margin: var(--theme-spacing-mobile-lg); }
+.padding-mobile-lg { padding: var(--theme-spacing-mobile-lg); }
+.margin-tablet { margin: var(--spacing--tablet); }
+.padding-tablet { padding: var(--spacing--tablet); }
+.margin-tablet-lg { margin: var(--spacing--tablet-lg); }
+.padding-tablet-lg { padding: var(--spacing--tablet-lg); }
+.margin-desktop { margin: var(--spacing--desktop); }
+.padding-desktop { padding: var(--spacing--desktop); }
+.margin-desktop-lg { margin: var(--spacing--desktop-lg); }
+.padding-desktop-lg { padding: var(--spacing--desktop-lg); }
+.margin-widescreen { margin: var(--spacing--widescreen); }
+.padding-widescreen { padding: var(--spacing--widescreen); }
+.margin-touch-minimum { margin: var(--spacing--touch-minimum); }
+.padding-touch-minimum { padding: var(--spacing--touch-minimum); }
+.margin-pointer-minimum { margin: var(--spacing--pointer-minimum); }
+.padding-pointer-minimum { padding: var(--spacing--pointer-minimum); }
 .margin-page-margin-mobile-width { margin: var(--theme-spacing-page-margin-mobile-width); }
 .padding-page-margin-mobile-width { padding: var(--theme-spacing-page-margin-mobile-width); }
 .margin-page-margin-breakpoint { margin: var(--theme-spacing-page-margin-breakpoint); }
