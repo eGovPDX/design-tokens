@@ -731,9 +731,14 @@ export function transformToCSS(tokens) {
       }
       // System Font Family & Font Sizes (from "Font type / ..." sets)
       if (usaTokens['font-family'] && usaTokens['font-size']) { // Typically for sets like "Font type / Reading/Public Sans"
+        // Derive a unique font type name from the setName (e.g., 'Font type / Reading/Public Sans' -> 'public-sans')
+        const fontTypeName = setName
+          .replace(/^Font type \/ (Reading|Display|Mono|Proto)\//, '')
+          .replace(/\s+/g, '-')
+          .toLowerCase();
         for (const [fontCategory, familyToken] of Object.entries(usaTokens['font-family'])) {
             if (familyToken && familyToken.value && (familyToken.type === 'text' || familyToken.type === 'fontFamily')) { // type can be 'text'
-                const familyVarName = toKebabCase(`font-family-${fontCategory}`);
+                const familyVarName = toKebabCase(`font-family-${fontCategory}-${fontTypeName}`);
                 const resolvedFamily = getTokenValue(tokens, {...familyToken, type: familyToken.type || 'fontFamily' });
                 if (resolvedFamily) {
                     cssParts.push(`  --${familyVarName}: ${resolvedFamily};`);
@@ -742,26 +747,67 @@ export function transformToCSS(tokens) {
             if (usaTokens['font-size'][fontCategory]) {
                 for (const [sizeKey, sizeToken] of Object.entries(usaTokens['font-size'][fontCategory])) {
                     if (sizeToken && sizeToken.value && sizeToken.type === 'dimension') {
-                        const sizeVarName = toKebabCase(`font-size-${fontCategory}-${sizeKey}`);
+                        const sizeVarName = toKebabCase(`font-size-${fontCategory}-${fontTypeName}-${sizeKey}`);
                         const resolvedSize = getTokenValue(tokens, {...sizeToken, type: sizeToken.type || 'dimension' });
                         if (resolvedSize) {
                            cssParts.push(`  --${sizeVarName}: ${resolvedSize};`);
-                           allProcessedTokensForUtilities['font-size'][`${fontCategory}-${sizeKey}`] = resolvedSize;
+                           allProcessedTokensForUtilities['font-size'][`${fontCategory}-${fontTypeName}-${sizeKey}`] = resolvedSize;
                         }
                     }
                 }
             }
         }
       }
-      // System Radius
+      // System Font Weight (from "Font Weight" set itself or similar)
+      if (usaTokens['font-weight']) {
+        // Derive a unique font type name from the setName (e.g., 'Font role / Body/Reading' -> 'body-reading')
+        const fontWeightTypeName = setName
+          .replace(/^Font role \/ (Body|Heading|UI|Alt|Code|Proto)\//, '')
+          .replace(/\s+/g, '-')
+          .toLowerCase();
+        for (const [weightKey, token] of Object.entries(usaTokens['font-weight'])) {
+          if (token && token.value && (token.type === 'text' || token.type === 'fontWeight')) {
+            const varName = toKebabCase(`font-weight-${weightKey}-${fontWeightTypeName}`);
+            const resolvedValue = getTokenValue(tokens, {...token, type: token.type || 'fontWeight' });
+            if (resolvedValue) {
+              cssParts.push(`  --${varName}: ${resolvedValue};`);
+              allProcessedTokensForUtilities['font-weight'][`${weightKey}-${fontWeightTypeName}`] = resolvedValue;
+            }
+          }
+        }
+      }
+      // System Spacing (from "Spacing" set itself)
+      if (usaTokens.spacing) {
+        // Derive a unique spacing type name from the setName (e.g., 'Spacing' or 'Component Spacing/Button' -> 'spacing' or 'button')
+        const spacingTypeName = setName
+          .replace(/^Spacing\/?/, '')
+          .replace(/\s+/g, '-')
+          .toLowerCase();
+        for (const [spacingKey, token] of Object.entries(usaTokens.spacing)) {
+          if (token && token.value && token.type === 'dimension') {
+            const varName = toKebabCase(`spacing-${spacingTypeName}-${spacingKey}`);
+            const resolvedValue = getTokenValue(tokens, {...token, type: token.type || 'dimension' });
+            if (resolvedValue) {
+              cssParts.push(`  --${varName}: ${resolvedValue};`);
+              allProcessedTokensForUtilities.spacing[`${spacingTypeName}-${spacingKey}`] = resolvedValue; // Store with type for utility
+            }
+          }
+        }
+      }
+      // System Radius (from "Radius" set itself)
       if (usaTokens.radius) {
+        // Derive a unique radius type name from the setName (e.g., 'Radius' or 'Component Radius/Card' -> 'radius' or 'card')
+        const radiusTypeName = setName
+          .replace(/^Radius\/?/, '')
+          .replace(/\s+/g, '-')
+          .toLowerCase();
         for (const [radiusKey, token] of Object.entries(usaTokens.radius)) {
             if (token && token.value && token.type === 'dimension') {
-                const varName = toKebabCase(`radius-${radiusKey}`);
+                const varName = toKebabCase(`radius-${radiusTypeName}-${radiusKey}`);
                 const resolvedValue = getTokenValue(tokens, {...token, type: token.type || 'dimension' });
                 if (resolvedValue) {
                     cssParts.push(`  --${varName}: ${resolvedValue};`);
-                    allProcessedTokensForUtilities.radius[radiusKey] = resolvedValue;
+                    allProcessedTokensForUtilities.radius[`${radiusTypeName}-${radiusKey}`] = resolvedValue;
                 }
             }
         }
