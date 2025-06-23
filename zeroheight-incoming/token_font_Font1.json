@@ -1,0 +1,108 @@
+{
+  "family": {
+    "family": {
+      "$type": "string",
+      "$value": "Open Sans"
+    },
+    "size": {
+      "05": {
+        "$type": "number",
+        "$value": 9.8
+      },
+      "1": {
+        "$type": "number",
+        "$value": 11.7
+      },
+      "10": {
+        "$type": "number",
+        "$value": 23.5
+      },
+      "11": {
+        "$type": "number",
+        "$value": 27.35
+      },
+      "12": {
+        "$type": "number",
+        "$value": 31.3
+      },
+      "13": {
+        "$type": "number",
+        "$value": 35.2
+      },
+      "14": {
+        "$type": "number",
+        "$value": 39.1
+      },
+      "15": {
+        "$type": "number",
+        "$value": 46.9
+      },
+      "16": {
+        "$type": "number",
+        "$value": 54.5
+      },
+      "17": {
+        "$type": "number",
+        "$value": 62.6
+      },
+      "18": {
+        "$type": "number",
+        "$value": 78.2
+      },
+      "19": {
+        "$type": "number",
+        "$value": 117.36
+      },
+      "2": {
+        "$type": "number",
+        "$value": 12.7
+      },
+      "20": {
+        "$type": "number",
+        "$value": 136.9
+      },
+      "3": {
+        "$type": "number",
+        "$value": 13.7
+      },
+      "4": {
+        "$type": "number",
+        "$value": 14.7
+      },
+      "5": {
+        "$type": "number",
+        "$value": 15.63
+      },
+      "6": {
+        "$type": "number",
+        "$value": 16.6
+      },
+      "7": {
+        "$type": "number",
+        "$value": 17.5
+      },
+      "8": {
+        "$type": "number",
+        "$value": 19.6
+      },
+      "9": {
+        "$type": "number",
+        "$value": 21.5
+      }
+    },
+    "weight": {
+      "bold": {
+        "$type": "string",
+        "$value": "bold"
+      },
+      "light": {
+        "$type": "string",
+        "$value": "light"
+      },
+      "regular": {
+        "$type": "string",
+        "$value": "regular"
+      }
+    }
+  }
+}
