@@ -23,6 +23,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./output
+          destination_dir: ./docs
           force_orphan: true
           user_name: 'Design Tokens Bot'
           user_email: 'design-tokens-bot@portland.gov'
