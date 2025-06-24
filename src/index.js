@@ -1,5 +1,6 @@
 import FileProcessor from './processors/fileProcessor.js';
 import FigmaProcessor from './processors/figmaProcessor.js';
+import ZeroheightProcessor from './processors/zeroheightProcessor.js';
 import logger from './utils/logger.js';
 // import slackNotifier from './utils/slackNotifier.js';
 
@@ -18,6 +19,12 @@ export async function processTokens(source, config) {
       processor = new FigmaProcessor(config);
       result = await processor.process(
         config.figmaFileKey,
+        config.outputDir
+      );
+    } else if (source === 'zeroheight') {
+      processor = new ZeroheightProcessor(config);
+      result = await processor.process(
+        config.inputPath,
         config.outputDir
       );
     } else {
