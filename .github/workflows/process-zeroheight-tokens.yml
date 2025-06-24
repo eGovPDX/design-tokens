@@ -51,7 +51,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git add output/zeroheight_tokens.css
+          git add -f output/zeroheight_tokens.css
           if git diff --staged --quiet; then
             echo "No changes to commit."
             exit 0
