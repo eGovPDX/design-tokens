@@ -1,0 +1,28 @@
+name: Publish Tokens to GitHub Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'output/**'
+
+jobs:
+  publish-to-gh-pages:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./output
+          user_name: 'Design Tokens Bot'
+          user_email: 'design-tokens-bot@portland.gov'
+          commit_message: 'chore: publish tokens to gh-pages' 
