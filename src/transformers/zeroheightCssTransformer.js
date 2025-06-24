@@ -1,7 +1,7 @@
 function resolveAlias(path, tokens, visited = new Set()) {
   if (visited.has(path)) {
     console.warn(`Circular dependency detected: ${[...visited, path].join(' -> ')}`);
-    return null; // Or return a fallback color
+    return null;
   }
   visited.add(path);
 
@@ -24,54 +24,46 @@ function resolveAlias(path, tokens, visited = new Set()) {
   return current ? current.$value : null;
 }
 
-function flattenTokens(obj, prefix = '') {
-  const result = {};
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
+function processTokens(tokens) {
+  const resolvedTokens = {};
+
+  function recurse(obj, prefix = '') {
+    for (const key in obj) {
+      if (!obj.hasOwnProperty(key)) continue;
+
       const newPrefix = prefix ? `${prefix}-${key}` : key;
-      if (typeof obj[key] === 'object' && obj[key] !== null && '$value' in obj[key]) {
-        result[newPrefix] = obj[key].$value;
-      } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-        Object.assign(result, flattenTokens(obj[key], newPrefix));
+      const currentValue = obj[key];
+
+      if (typeof currentValue === 'object' && currentValue !== null && '$value' in currentValue) {
+        let value = currentValue.$value;
+        if (typeof value === 'string' && value.startsWith('{') && value.endsWith('}')) {
+          const aliasPath = value.slice(1, -1);
+          resolvedTokens[newPrefix] = resolveAlias(aliasPath, tokens);
+        } else {
+          resolvedTokens[newPrefix] = value;
+        }
+      } else if (typeof currentValue === 'object' && currentValue !== null) {
+        recurse(currentValue, newPrefix);
       }
     }
   }
-  return result;
+
+  recurse(tokens);
+  return resolvedTokens;
 }
 
 export function transformToCSS(tokens) {
-  const flattened = flattenTokens(tokens);
-  const resolvedTokens = {};
-  let cssVariables = ':root {\n';
-  let utilityClasses = '\n';
+  const resolvedTokens = processTokens(tokens);
+  let cssVariables = ':root {\\n';
 
-  // First, resolve all aliases
-  for (const name in flattened) {
-    let value = flattened[name];
-    if (typeof value === 'string' && value.startsWith('{') && value.endsWith('}')) {
-      const aliasPath = value.slice(1, -1);
-      resolvedTokens[name] = resolveAlias(aliasPath, tokens);
-    } else {
-      resolvedTokens[name] = value;
-    }
-  }
-
-  // Then, build CSS from resolved tokens
   for (const name in resolvedTokens) {
     const value = resolvedTokens[name];
     if (value !== null) {
-      const cssVarName = `--${name}`;
-      cssVariables += `  ${cssVarName}: ${value};\n`;
-      
-      const className = name.replace(/\./g, '-');
-      // Basic utility classes for color
-      if (name.toLowerCase().includes('color')) {
-        utilityClasses += `.color-${className} { color: var(${cssVarName}); }\n`;
-        utilityClasses += `.bg-${className} { background-color: var(${cssVarName}); }\n`;
-      }
+      const cssVarName = `--${name.replace(/\s+/g, '-').toLowerCase()}`;
+      cssVariables += `  ${cssVarName}: ${value};\\n`;
     }
   }
 
-  cssVariables += '}\n';
-  return cssVariables + utilityClasses;
+  cssVariables += '}\\n';
+  return cssVariables;
 } 
