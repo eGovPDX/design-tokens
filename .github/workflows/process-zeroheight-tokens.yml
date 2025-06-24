@@ -53,16 +53,21 @@ jobs:
           node src/cli.js --source zeroheight --input zeroheight-incoming --output output
 
       - name: Commit and push changes
+        id: commit_and_push
         run: |
           git add -f output/zeroheight_tokens.css
           if git diff --staged --quiet; then
             echo "No changes to commit."
-            exit 0
+            echo "pushed=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected. Committing and pushing."
+            git commit -m "feat: update tokens from Zeroheight"
+            git push origin ${{ env.BRANCH_NAME }}
+            echo "pushed=true" >> $GITHUB_OUTPUT
           fi
-          git commit -m "feat: update tokens from Zeroheight"
-          git push origin ${{ env.BRANCH_NAME }}
 
       - name: Create Labels If They Don't Exist
+        if: steps.commit_and_push.outputs.pushed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -70,6 +75,7 @@ jobs:
           gh label create "automated" --description "Pull requests created by automation" --color "cfd3d7" || echo "Label 'automated' already exists"
 
       - name: Create Pull Request
+        if: steps.commit_and_push.outputs.pushed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
