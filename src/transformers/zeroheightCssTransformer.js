@@ -65,5 +65,5 @@ export function transformToCSS(tokens) {
   }
 
   cssLines.push('}');
-  return cssLines.join('\\n') + '\\n';
+  return cssLines;
 } 
