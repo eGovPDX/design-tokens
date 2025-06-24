@@ -59,6 +59,13 @@ jobs:
           git commit -m "feat: update tokens from Zeroheight"
           git push origin ${{ env.BRANCH_NAME }}
 
+      - name: Create Labels If They Don't Exist
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create "design-tokens" --description "Pull requests related to design tokens" --color "a2eeef" || echo "Label 'design-tokens' already exists"
+          gh label create "automated" --description "Pull requests created by automation" --color "cfd3d7" || echo "Label 'automated' already exists"
+
       - name: Create Pull Request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
