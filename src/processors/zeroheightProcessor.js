@@ -18,26 +18,40 @@ export default class ZeroheightProcessor {
         return;
       }
 
-      const mergedTokens = {};
+      const allTokens = {};
       for (const file of tokenFiles) {
         const filePath = path.join(inputDir, file);
         const fileContent = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        // Simple deep merge
-        this.deepMerge(mergedTokens, fileContent);
+        
+        // Heuristic to identify font files and restructure them
+        const isFontFile = file.startsWith('token_font_') || (fileContent.family && fileContent.family.family);
+        
+        if (isFontFile && fileContent.family && fileContent.family.family && fileContent.family.family['$value']) {
+          const fontFamilyName = fileContent.family.family['$value'];
+          const sanitizedName = fontFamilyName.replace(/\s+/g, '-').toLowerCase();
+          
+          if (!allTokens.font) {
+            allTokens.font = {};
+          }
+          allTokens.font[sanitizedName] = fileContent.family;
+        } else {
+          // For all other files, perform a deep merge
+          this.deepMerge(allTokens, fileContent);
+        }
       }
 
       if (!fs.existsSync(outputDir)) {
         fs.mkdirSync(outputDir, { recursive: true });
       }
 
-      const cssLines = transformToCSS(mergedTokens);
+      const cssLines = transformToCSS(allTokens);
       const cssPath = path.join(outputDir, 'zeroheight_tokens.css');
       fs.writeFileSync(cssPath, cssLines.join('\n') + '\n');
 
       logger.info('Successfully processed Zeroheight design tokens');
       return {
         cssPath: cssPath,
-        jsonPath: null // Not generating a separate JSON file for this process
+        jsonPath: null
       };
     } catch (error) {
       logger.error('Failed to process Zeroheight design tokens', error);
