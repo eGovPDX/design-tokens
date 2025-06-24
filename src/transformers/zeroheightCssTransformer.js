@@ -54,16 +54,16 @@ function processTokens(tokens) {
 
 export function transformToCSS(tokens) {
   const resolvedTokens = processTokens(tokens);
-  let cssVariables = ':root {\\n';
+  const cssLines = [':root {'];
 
   for (const name in resolvedTokens) {
     const value = resolvedTokens[name];
     if (value !== null) {
       const cssVarName = `--${name.replace(/\s+/g, '-').toLowerCase()}`;
-      cssVariables += `  ${cssVarName}: ${value};\\n`;
+      cssLines.push(`  ${cssVarName}: ${value};`);
     }
   }
 
-  cssVariables += '}\\n';
-  return cssVariables;
+  cssLines.push('}');
+  return cssLines.join('\\n') + '\\n';
 } 
