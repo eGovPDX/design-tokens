@@ -7,9 +7,12 @@ on:
       - main
     paths:
       - 'zeroheight-incoming/**'
+  pull_request:
+    types: [closed]
 
 jobs:
   create-token-pr:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -75,4 +78,15 @@ jobs:
             --body "Automated update of design tokens from Zeroheight. This PR was created by a GitHub Action." \
             --base main \
             --head ${{ env.BRANCH_NAME }} \
-            --label "design-tokens,automated" 
+            --label "design-tokens,automated"
+
+  cleanup:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'feat/update-zeroheight-tokens-')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Delete merged branch
+        run: |
+          BRANCH_TO_DELETE=${{ github.event.pull_request.head.ref }}
+          git push origin --delete $BRANCH_TO_DELETE 
