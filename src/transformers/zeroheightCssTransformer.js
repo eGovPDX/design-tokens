@@ -59,7 +59,17 @@ export function transformToCSS(tokens) {
   for (const name in resolvedTokens) {
     const value = resolvedTokens[name];
     if (value !== null) {
-      const cssVarName = `--${name.replace(/\s+/g, '-').toLowerCase()}`;
+      let cssVarName = `--${name.replace(/\s+/g, '-').toLowerCase()}`;
+
+      // Reformat font family variables
+      const fontRegex = /^--font-([a-zA-Z0-9-]+)-family$/;
+      const match = cssVarName.match(fontRegex);
+      
+      if (match && match[1]) {
+        const fontName = match[1];
+        cssVarName = `--font-family-${fontName}`;
+      }
+
       cssLines.push(`  ${cssVarName}: ${value};`);
     }
   }
