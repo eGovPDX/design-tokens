@@ -41,7 +41,7 @@ console.log('Manually parsed options:', options);
 
 // Now use commander to validate the options
 program
-  .option('--source <source>', 'Source of tokens (file or figma)')
+  .option('--source <source>', 'Source of tokens (file, figma, or zeroheight)')
   .option('--input <input>', 'Input file path')
   .option('--output <output>', 'Output directory path')
   .parse(filteredArgs);
@@ -52,11 +52,11 @@ console.log('Commander parsed options:', commanderOptions);
 async function main() {
   try {
     if (!options.source) {
-      throw new Error('Source is required. Use --source file or --source figma');
+      throw new Error('Source is required. Use --source file, --source figma, or --source zeroheight');
     }
 
-    if (options.source === 'file' && !options.input) {
-      throw new Error('Input file path is required when using file source');
+    if ((options.source === 'file' || options.source === 'zeroheight') && !options.input) {
+      throw new Error('Input file or directory path is required when using file or zeroheight source');
     }
 
     if (options.source === 'figma' && !process.env.FIGMA_ACCESS_TOKEN) {
