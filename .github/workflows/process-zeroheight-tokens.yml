@@ -1,0 +1,70 @@
+name: Process Zeroheight Tokens
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'zeroheight-incoming/**'
+
+jobs:
+  create-token-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'Design Tokens Bot'
+          git config --global user.email 'design-tokens-bot@portland.gov'
+
+      - name: Create new branch
+        id: create_branch
+        run: |
+          BRANCH_NAME="feat/update-zeroheight-tokens-$(date +%Y-%m-%d-%H%M%S)"
+          git checkout -b $BRANCH_NAME
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.19.1'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Process Zeroheight tokens
+        run: |
+          node src/cli.js --source zeroheight --input zeroheight-incoming --output output
+
+      - name: Commit and push changes
+        run: |
+          git add output/zeroheight_tokens.css
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "feat: update tokens from Zeroheight"
+          git push origin ${{ env.BRANCH_NAME }}
+
+      - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --title "Feat: Update Design Tokens from Zeroheight" \
+            --body "Automated update of design tokens from Zeroheight. This PR was created by a GitHub Action." \
+            --base main \
+            --head ${{ env.BRANCH_NAME }} \
+            --label "design-tokens,automated" 
