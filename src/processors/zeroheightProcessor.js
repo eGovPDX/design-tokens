@@ -30,9 +30,9 @@ export default class ZeroheightProcessor {
         fs.mkdirSync(outputDir, { recursive: true });
       }
 
-      const cssOutput = transformToCSS(mergedTokens);
+      const cssLines = transformToCSS(mergedTokens);
       const cssPath = path.join(outputDir, 'zeroheight_tokens.css');
-      fs.writeFileSync(cssPath, cssOutput);
+      fs.writeFileSync(cssPath, cssLines.join('\\n') + '\\n');
 
       logger.info('Successfully processed Zeroheight design tokens');
       return {
