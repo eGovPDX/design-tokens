@@ -78,8 +78,12 @@ async function main() {
 
     const result = await processTokens(options.source, config);
     console.log('Successfully processed tokens:');
-    console.log(`- CSS file: ${path.resolve(result.cssPath)}`);
-    console.log(`- JSON file: ${path.resolve(result.jsonPath)}`);
+    if (result.cssPath) {
+      console.log(`- CSS file: ${path.resolve(result.cssPath)}`);
+    }
+    if (result.jsonPath) {
+      console.log(`- JSON file: ${path.resolve(result.jsonPath)}`);
+    }
   } catch (error) {
     console.error('Error:', error.message);
     process.exit(1);
