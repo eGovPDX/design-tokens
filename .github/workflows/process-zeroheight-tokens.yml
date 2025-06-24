@@ -94,6 +94,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          
       - name: Delete merged branch
         run: |
           BRANCH_TO_DELETE=${{ github.event.pull_request.head.ref }}
