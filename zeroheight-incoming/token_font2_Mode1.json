@@ -1,0 +1,108 @@
+{
+  "font": {
+    "font2-family": {
+      "$type": "string",
+      "$value": "Comic Sans MS"
+    },
+    "size": {
+      "font2-05": {
+        "$type": "number",
+        "$value": 9.5
+      },
+      "font2-1": {
+        "$type": "number",
+        "$value": 11.4
+      },
+      "font2-10": {
+        "$type": "number",
+        "$value": 22.8
+      },
+      "font2-11": {
+        "$type": "number",
+        "$value": 26.6
+      },
+      "font2-12": {
+        "$type": "number",
+        "$value": 30.4
+      },
+      "font2-13": {
+        "$type": "number",
+        "$value": 34.2
+      },
+      "font2-14": {
+        "$type": "number",
+        "$value": 38
+      },
+      "font2-15": {
+        "$type": "number",
+        "$value": 45.6
+      },
+      "font2-16": {
+        "$type": "number",
+        "$value": 53.2
+      },
+      "font2-17": {
+        "$type": "number",
+        "$value": 60.8
+      },
+      "font2-18": {
+        "$type": "number",
+        "$value": 76
+      },
+      "font2-19": {
+        "$type": "number",
+        "$value": 117.36
+      },
+      "font2-2": {
+        "$type": "number",
+        "$value": 12.4
+      },
+      "font2-20": {
+        "$type": "number",
+        "$value": 136.9
+      },
+      "font2-3": {
+        "$type": "number",
+        "$value": 13.3
+      },
+      "font2-4": {
+        "$type": "number",
+        "$value": 14.3
+      },
+      "font2-5": {
+        "$type": "number",
+        "$value": 15.2
+      },
+      "font2-6": {
+        "$type": "number",
+        "$value": 16.2
+      },
+      "font2-7": {
+        "$type": "number",
+        "$value": 17.1
+      },
+      "font2-8": {
+        "$type": "number",
+        "$value": 19
+      },
+      "font2-9": {
+        "$type": "number",
+        "$value": 20.9
+      }
+    },
+    "weight": {
+      "font2-bold": {
+        "$type": "string",
+        "$value": "bold"
+      },
+      "font2-light": {
+        "$type": "string",
+        "$value": "light"
+      },
+      "font2-regular": {
+        "$type": "string",
+        "$value": "regular"
+      }
+    }
+  }
+}
