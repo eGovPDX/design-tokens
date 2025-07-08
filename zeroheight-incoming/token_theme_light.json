@@ -387,105 +387,105 @@
     "body": {
       "2xl": {
         "$type": "number",
-        "$value": "{family.size.13}"
+        "$value": "{font.size.font1-13}"
       },
       "2xs": {
         "$type": "number",
-        "$value": "{family.size.3}"
+        "$value": "{font.size.font1-3}"
       },
       "3xl": {
         "$type": "number",
-        "$value": "{family.size.15}"
+        "$value": "{font.size.font1-15}"
       },
       "3xs": {
         "$type": "number",
-        "$value": "{family.size.2}"
+        "$value": "{font.size.font1-2}"
       },
       "lg": {
         "$type": "number",
-        "$value": "{family.size.10}"
+        "$value": "{font.size.font1-10}"
       },
       "md": {
         "$type": "number",
-        "$value": "{family.size.6}"
+        "$value": "{font.size.font1-6}"
       },
       "sm": {
         "$type": "number",
-        "$value": "{family.size.5}"
+        "$value": "{font.size.font1-5}"
       },
       "xl": {
         "$type": "number",
-        "$value": "{family.size.11}"
+        "$value": "{font.size.font1-11}"
       },
       "xs": {
         "$type": "number",
-        "$value": "{family.size.4}"
+        "$value": "{font.size.font1-4}"
       }
     },
     "header": {
       "2xl": {
         "$type": "number",
-        "$value": "{family.size.13}"
+        "$value": "{font.size.font1-13}"
       },
       "2xs": {
         "$type": "number",
-        "$value": "{family.size.3}"
+        "$value": "{font.size.font1-3}"
       },
       "3xl": {
         "$type": "number",
-        "$value": "{family.size.15}"
+        "$value": "{font.size.font1-15}"
       },
       "3xs": {
         "$type": "number",
-        "$value": "{family.size.2}"
+        "$value": "{font.size.font1-2}"
       },
       "display": {
         "$type": "number",
-        "$value": "{family.size.15}"
+        "$value": "{font.size.font1-15}"
       },
       "h1": {
         "$type": "number",
-        "$value": "{family.size.13}"
+        "$value": "{font.size.font1-13}"
       },
       "h2": {
         "$type": "number",
-        "$value": "{family.size.11}"
+        "$value": "{font.size.font1-11}"
       },
       "h3": {
         "$type": "number",
-        "$value": "{family.size.10}"
+        "$value": "{font.size.font1-10}"
       },
       "h4": {
         "$type": "number",
-        "$value": "{family.size.5}"
+        "$value": "{font.size.font1-5}"
       },
       "h5": {
         "$type": "number",
-        "$value": "{family.size.4}"
+        "$value": "{font.size.font1-4}"
       },
       "h6": {
         "$type": "number",
-        "$value": "{family.size.3}"
+        "$value": "{font.size.font1-3}"
       },
       "lg": {
         "$type": "number",
-        "$value": "{family.size.10}"
+        "$value": "{font.size.font1-10}"
       },
       "md": {
         "$type": "number",
-        "$value": "{family.size.6}"
+        "$value": "{font.size.font1-6}"
       },
       "sm": {
         "$type": "number",
-        "$value": "{family.size.5}"
+        "$value": "{font.size.font1-5}"
       },
       "xl": {
         "$type": "number",
-        "$value": "{family.size.11}"
+        "$value": "{font.size.font1-11}"
       },
       "xs": {
         "$type": "number",
-        "$value": "{family.size.4}"
+        "$value": "{font.size.font1-4}"
       }
     }
   },
