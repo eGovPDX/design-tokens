@@ -1,4 +1,5 @@
 :root {
+  --spacing-none: 0;
   --font-comic-sans-ms-abstraction-comic-sans-2xl: 34.2;
   --font-comic-sans-ms-abstraction-comic-sans-2xs: 13.3;
   --font-comic-sans-ms-abstraction-comic-sans-3xl: 45.6;
@@ -81,5 +82,4 @@
   --font-open-sans-weight-bold: bold;
   --font-open-sans-weight-light: light;
   --font-open-sans-weight-regular: regular;
-  --spacing-none: 0;
 }
