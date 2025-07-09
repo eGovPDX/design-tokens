@@ -387,105 +387,105 @@
     "body": {
       "2xl": {
         "$type": "number",
-        "$value": "{family.size.13}"
+        "$value": "{font.abstraction.open-sans-2xl}"
       },
       "2xs": {
         "$type": "number",
-        "$value": "{family.size.3}"
+        "$value": "{font.abstraction.open-sans-2xs}"
       },
       "3xl": {
         "$type": "number",
-        "$value": "{family.size.15}"
+        "$value": "{font.abstraction.open-sans-3xl}"
       },
       "3xs": {
         "$type": "number",
-        "$value": "{family.size.2}"
+        "$value": "{font.abstraction.open-sans-3xs}"
       },
       "lg": {
         "$type": "number",
-        "$value": "{family.size.10}"
+        "$value": "{font.abstraction.open-sans-lg}"
       },
       "md": {
         "$type": "number",
-        "$value": "{family.size.6}"
+        "$value": "{font.abstraction.open-sans-md}"
       },
       "sm": {
         "$type": "number",
-        "$value": "{family.size.5}"
+        "$value": "{font.abstraction.open-sans-sm}"
       },
       "xl": {
         "$type": "number",
-        "$value": "{family.size.11}"
+        "$value": "{font.abstraction.open-sans-xl}"
       },
       "xs": {
         "$type": "number",
-        "$value": "{family.size.4}"
+        "$value": "{font.abstraction.open-sans-xs}"
       }
     },
     "header": {
       "2xl": {
         "$type": "number",
-        "$value": "{family.size.13}"
+        "$value": "{font.abstraction.open-sans-2xl}"
       },
       "2xs": {
         "$type": "number",
-        "$value": "{family.size.3}"
+        "$value": "{font.abstraction.open-sans-2xs}"
       },
       "3xl": {
         "$type": "number",
-        "$value": "{family.size.15}"
+        "$value": "{font.abstraction.open-sans-3xl}"
       },
       "3xs": {
         "$type": "number",
-        "$value": "{family.size.2}"
+        "$value": "{font.abstraction.open-sans-3xs}"
       },
       "display": {
         "$type": "number",
-        "$value": "{family.size.15}"
+        "$value": "{font.abstraction.open-sans-display}"
       },
       "h1": {
         "$type": "number",
-        "$value": "{family.size.13}"
+        "$value": "{font.abstraction.open-sans-h1}"
       },
       "h2": {
         "$type": "number",
-        "$value": "{family.size.11}"
+        "$value": "{font.abstraction.open-sans-h2}"
       },
       "h3": {
         "$type": "number",
-        "$value": "{family.size.10}"
+        "$value": "{font.abstraction.open-sans-h3}"
       },
       "h4": {
         "$type": "number",
-        "$value": "{family.size.5}"
+        "$value": "{font.abstraction.open-sans-h4}"
       },
       "h5": {
         "$type": "number",
-        "$value": "{family.size.4}"
+        "$value": "{font.abstraction.open-sans-h5}"
       },
       "h6": {
         "$type": "number",
-        "$value": "{family.size.3}"
+        "$value": "{font.abstraction.open-sans-h6}"
       },
       "lg": {
         "$type": "number",
-        "$value": "{family.size.10}"
+        "$value": "{font.abstraction.open-sans-lg}"
       },
       "md": {
         "$type": "number",
-        "$value": "{family.size.6}"
+        "$value": "{font.abstraction.open-sans-md}"
       },
       "sm": {
         "$type": "number",
-        "$value": "{family.size.5}"
+        "$value": "{font.abstraction.open-sans-sm}"
       },
       "xl": {
         "$type": "number",
-        "$value": "{family.size.11}"
+        "$value": "{font.abstraction.open-sans-xl}"
       },
       "xs": {
         "$type": "number",
-        "$value": "{family.size.4}"
+        "$value": "{font.abstraction.open-sans-xs}"
       }
     }
   },
