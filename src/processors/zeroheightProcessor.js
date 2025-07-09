@@ -19,31 +19,38 @@ export default class ZeroheightProcessor {
       }
 
       const allTokens = {};
+      const fontTokenGroups = {};
+
+      // 1. Separate font files from other token files
       for (const file of tokenFiles) {
         const filePath = path.join(inputDir, file);
         const fileContent = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
         if (fileContent.font && fileContent.font.family && fileContent.font.family.$value) {
           const fontFamilyName = fileContent.font.family.$value;
-          const sanitizedFontName = fontFamilyName.replace(/\s+/g, '-').toLowerCase();
-          const fontTokens = fileContent.font;
-
-          function rewriteAliases(obj) {
-            for (const key in obj) {
-              if (typeof obj[key] === 'object' && obj[key] !== null) {
-                rewriteAliases(obj[key]);
-              } else if (key === '$value' && typeof obj[key] === 'string' && obj[key].startsWith('{font.')) {
-                obj[key] = obj[key].replace('{font.', `{font-${sanitizedFontName}.`);
-              }
-            }
-          }
-          
-          rewriteAliases(fontTokens);
-          allTokens[`font-${sanitizedFontName}`] = fontTokens;
-
+          fontTokenGroups[fontFamilyName] = fileContent.font;
         } else {
           this.deepMerge(allTokens, fileContent);
         }
+      }
+
+      // 2. Process the collected font groups and add them to the main tokens object
+      for (const fontFamilyName in fontTokenGroups) {
+        const sanitizedFontName = fontFamilyName.replace(/\s+/g, '-').toLowerCase();
+        const fontTokens = fontTokenGroups[fontFamilyName];
+
+        function rewriteAliases(obj) {
+          for (const key in obj) {
+            if (typeof obj[key] === 'object' && obj[key] !== null) {
+              rewriteAliases(obj[key]);
+            } else if (key === '$value' && typeof obj[key] === 'string' && obj[key].startsWith('{font.')) {
+              obj[key] = obj[key].replace('{font.', `{font-${sanitizedFontName}.`);
+            }
+          }
+        }
+        
+        rewriteAliases(fontTokens);
+        allTokens[`font-${sanitizedFontName}`] = fontTokens;
       }
 
       if (!fs.existsSync(outputDir)) {
