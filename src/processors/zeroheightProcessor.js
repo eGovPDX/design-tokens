@@ -22,20 +22,26 @@ export default class ZeroheightProcessor {
       for (const file of tokenFiles) {
         const filePath = path.join(inputDir, file);
         const fileContent = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        
-        // Heuristic to identify font files and restructure them
-        const isFontFile = file.startsWith('token_font_') || (fileContent.family && fileContent.family.family);
-        
-        if (isFontFile && fileContent.family && fileContent.family.family && fileContent.family.family['$value']) {
-          const fontFamilyName = fileContent.family.family['$value'];
-          const sanitizedName = fontFamilyName.replace(/\s+/g, '-').toLowerCase();
-          
-          if (!allTokens.font) {
-            allTokens.font = {};
+
+        if (fileContent.font && fileContent.font.family && fileContent.font.family.$value) {
+          const fontFamilyName = fileContent.font.family.$value;
+          const sanitizedFontName = fontFamilyName.replace(/\s+/g, '-').toLowerCase();
+          const fontTokens = fileContent.font;
+
+          function rewriteAliases(obj) {
+            for (const key in obj) {
+              if (typeof obj[key] === 'object' && obj[key] !== null) {
+                rewriteAliases(obj[key]);
+              } else if (key === '$value' && typeof obj[key] === 'string' && obj[key].startsWith('{font.')) {
+                obj[key] = obj[key].replace('{font.', `{font-${sanitizedFontName}.`);
+              }
+            }
           }
-          allTokens.font[sanitizedName] = fileContent.family;
+          
+          rewriteAliases(fontTokens);
+          allTokens[`font-${sanitizedFontName}`] = fontTokens;
+
         } else {
-          // For all other files, perform a deep merge
           this.deepMerge(allTokens, fileContent);
         }
       }
