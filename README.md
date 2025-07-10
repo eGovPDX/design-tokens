@@ -1,190 +1,58 @@
-# Figma to CSS Design Tokens System
+# Design Tokens System
 
-A system that processes design tokens from Tokens Studio for Figma and transforms them into CSS files.
+A system that processes design tokens from Zeroheight and transforms them into CSS files for use in various projects.
 
-## Why Tokens Studio?
+## Overview
 
-This project uses the [Tokens Studio for Figma](https://tokens.studio/) plugin as the primary method for managing design tokens. Here's why:
+This system is designed to create a single source of truth for design tokens, ensuring consistency and maintainability across all digital products. The primary workflow uses [Zeroheight](https://zeroheight.com/) as the token management platform, which syncs with GitHub to automate the process of generating CSS files.
 
-### Figma API Limitations
+A legacy workflow using [Tokens Studio for Figma](https://tokens.studio/) is also supported but is no longer the primary method.
 
-The Figma API, while powerful for many use cases, has several limitations when it comes to design tokens:
+## Workflows
 
-1. **Incomplete Token Data**:
-   - Only provides basic style information
-   - Missing computed values and references
-   - No support for token relationships
-   - Limited metadata and documentation
+### 1. Zeroheight Workflow (Primary)
 
-2. **Missing Features**:
-   - No token versioning
-   - Limited support for nested tokens
-   - No built-in token validation
-   - Missing token usage context
+This is the current and recommended workflow for managing design tokens.
 
-3. **Data Structure Issues**:
-   - Inconsistent formatting
-   - Partial token sets
-   - Missing style definitions
-   - No support for token aliases
+1.  **Token Updates in Zeroheight**:
+    *   Design tokens are managed and updated within the Zeroheight platform.
+    *   When changes are published in Zeroheight, they are automatically pushed to the `zeroheight-incoming/` directory on the `main` branch of this repository.
 
-### Tokens Studio Advantages
+2.  **GitHub Action Automation**:
+    *   A push to the `zeroheight-incoming/` directory automatically triggers the `process-zeroheight-tokens.yml` GitHub Action.
+    *   The action creates a new feature branch from `main` (e.g., `feat/update-zeroheight-tokens-YYYY-MM-DD-HHMMSS`).
+    *   It then processes all `.json` files in the `zeroheight-incoming/` directory, resolving aliases and merging them into a single token set.
+    *   The final output is generated as `output/zeroheight_tokens.css`.
 
-Tokens Studio provides a complete solution for design token management:
+3.  **Pull Request and Review**:
+    *   If the processing results in changes to the output file, the action commits the new `zeroheight_tokens.css` to the feature branch.
+    *   A pull request is automatically created from the feature branch to `main`, ready for team review.
+    *   If there are no changes to the tokens, the workflow completes gracefully without creating a pull request.
 
-1. **Complete Token System**:
-   - Full token definitions
-   - Computed values
-   - Token relationships
-   - Metadata and documentation
+4.  **Branch Cleanup**:
+    *   Once the pull request is reviewed and merged, the temporary feature branch is automatically deleted to keep the repository clean.
 
-2. **Consistent Output**:
-   - Standardized formatting
-   - Complete token sets
-   - Proper value handling
-   - Consistent naming
+### 2. Legacy Tokens Studio Workflow
 
-3. **Better Integration**:
-   - Direct GitHub integration
-   - PR-based workflow
-   - Change tracking
-   - Version control
+This workflow was used previously and remains available as a secondary option if needed.
 
-### Workflow
+1.  **Token Updates in Figma**:
+    *   Tokens were managed using the Tokens Studio plugin in Figma.
+    *   Changes were pushed to a dedicated `incoming-token-changes` branch, creating a pull request to `main`.
 
-The recommended workflow is:
+2.  **Action Processing**:
+    *   The `process-tokens.yml` action would trigger on the pull request.
+    *   It processed the `design-tokens.json` file and committed the output (`output/design_tokens.css` and `output/design_tokens.json`) back to the PR branch.
 
-1. Use Tokens Studio in Figma to manage tokens
-2. Push changes to GitHub via the plugin to the `incoming-token-changes` branch
-3. GitHub Action processes the tokens and adds the output files to your PR
-4. Review and merge changes to main
+## GitHub Pages Deployment
 
-This approach ensures we have complete, consistent, and well-managed design tokens.
+After the tokens are processed and the changes are merged into the `main` branch, a separate part of the workflow automatically deploys the final CSS file to GitHub Pages.
 
-### GitHub Integration
+This makes the latest design tokens available for direct use in any project via a URL. You can import the tokens into your CSS file like this:
 
-#### PR Workflow
-
-1. **Token Updates**:
-   - Tokens Studio creates/updates the `incoming-token-changes` branch when changes are pushed
-   - PR includes the updated `design-tokens.json` file
-   - GitHub Action automatically triggers on PR creation/update
-
-2. **Action Processing**:
-   - Action checks out the PR branch
-   - Processes the token file
-   - Generates output files:
-     - CSS variables
-     - Processed JSON
-   - Commits the generated files back to the PR
-
-3. **File Management**:
-   - Original `design-tokens.json` is preserved
-   - Processed files are added to the PR:
-     - `output/design_tokens.json` (processed version)
-     - `output/design_tokens.css` (CSS variables)
-
-#### GitHub Pages Deployment
-
-In addition to committing the processed files back to the pull request, the workflow also deploys the `output/design_tokens.css` and `output/design_tokens.json` files to GitHub Pages.
-
-- **Branch**: The files are pushed to the `gh-pages` branch.
-- **Folder**: The files are placed in the `/docs` folder on the `gh-pages` branch.
-- **Access**: This makes the latest processed tokens available via GitHub Pages, typically at a URL like `https://<your-username>.github.io/<your-repository>/docs/design_tokens.css`. The `design_tokens.json` file will be available at a similar URL.
-
-#### Branch Management
-
-1. **Branch Structure**:
-   - `main`: Production-ready tokens
-   - `incoming-token-changes`: Dedicated branch for Tokens Studio updates
-   - PRs are created from `incoming-token-changes` to `main`
-
-2. **Naming Conventions**:
-   - Main branch: `main`
-   - Token updates branch: `incoming-token-changes`
-   - PR titles: `Update Design Tokens: Description`
-   - Commit messages: `chore: process design tokens`
-
-3. **Conflict Resolution**:
-   - Always rebase on latest `main`
-   - Resolve conflicts in Tokens Studio
-   - Push resolved changes to update PR
-
-#### Action Configuration
-
-1. **Required Secrets**:
-   ```yaml
-   FIGMA_ACCESS_TOKEN: # For validation
-   # SLACK_WEBHOOK_URL: # For notifications (currently disabled)
-   ```
-
-2. **Permissions**:
-   ```yaml
-   permissions:
-     contents: write
-     pull-requests: write
-   ```
-
-3. **Triggers**:
-   ```yaml
-   on:
-     pull_request:
-       types: [opened, synchronize, reopened]
-       paths:
-         - 'design-tokens.json'
-   ```
-
-#### Review Process
-
-1. **PR Checklist**:
-   - [ ] Token changes are valid
-   - [ ] Output files generated successfully
-   - [ ] No conflicts with existing tokens
-   - [ ] Documentation updated if needed
-
-2. **Validation Steps**:
-   - Check token changes in `design-tokens.json`
-   - Verify output files are generated:
-     - `output/design_tokens.css`
-     - `output/design_tokens.json`
-   - Review change comments
-   - Test in preview if available
-
-3. **Common Issues**:
-   - Missing token references
-   - Invalid token values
-   - Output file generation errors
-   - Merge conflicts
-
-#### Troubleshooting
-
-1. **Action Failures**:
-   - Check action logs in GitHub
-   - Verify secrets are set
-   - Review token file format
-   - Test locally
-
-2. **PR Issues**:
-   - Branch conflicts
-   - Permission errors
-   - Processing failures
-   - Validation errors
-
-3. **Debug Steps**:
-   ```bash
-   # Test locally
-   pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
-   
-   # Check output files
-   cat output/design_tokens.json
-   cat output/design_tokens.css
-   ```
-
-4. **Common Solutions**:
-   - Update branch from main
-   - Fix token references
-   - Check file permissions
-   - Clear GitHub Actions cache
+```css
+@import url('https://egovpdx.github.io/design-tokens/zeroheight_tokens.css');
+```
 
 ## Development
 
@@ -192,66 +60,55 @@ In addition to committing the processed files back to the pull request, the work
 
 - Node.js 18 or higher
 - pnpm 8 or higher
-- Figma account with Tokens Studio plugin
 
 ### Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/eGovPDX/design-tokens.git
-   cd design-tokens
-   ```
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/eGovPDX/design-tokens.git
+    cd design-tokens
+    ```
 
-2. Install dependencies:
-   ```bash
-   pnpm install
-   ```
+2.  Install dependencies:
+    ```bash
+    pnpm install
+    ```
 
-3. Configure environment:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your Figma token
-   ```
+### Local Usage
 
-### Usage
+You can process the tokens locally to test changes before pushing them to GitHub.
 
-1. **Process Tokens**:
-   ```bash
-   pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
-   ```
+1.  **Process Zeroheight Tokens**:
+    ```bash
+    pnpm run process-tokens -- --source zeroheight --input ./zeroheight-incoming --output ./output
+    ```
 
-2. **Output Files**:
-   - `output/design_tokens.css`: CSS variables for use in your application
-   - `output/design_tokens.json`: Processed JSON tokens for reference
+2.  **Process Legacy Tokens**:
+    ```bash
+    pnpm run process-tokens -- --source file --input design-tokens.json --output ./output
+    ```
+
+### Output Files
+
+-   `output/zeroheight_tokens.css`: The primary CSS file generated from Zeroheight tokens.
+-   `output/design_tokens.css`: The legacy CSS file generated from `design-tokens.json`.
 
 ### Token Resolution
 
-The token resolution system supports several token formats:
+The system processes token files that follow the [W3C Design Tokens Community Group](https://design-tokens.github.io/community-group/format/) specification.
 
-1. **Color Tokens**:
-   - Direct values: `#RRGGBB` or `rgba(r,g,b,a)`
-   - USWDS references: `{!-usa.color.primary.vivid}` or `usa.color.base.dark`
-   - Theme references: `{#-theme.color.primary.medium}`
+This format supports nesting and aliasing, allowing tokens to reference other tokens. For example, a semantic token like `color-primary-medium` might have a value of `{color.blue.50}`, which points to a base color token. The processor resolves these aliases to their final values during the build process.
 
-2. **Typography Tokens**:
-   - Font sizes: 
-     - USWDS references: `{!-usa.font-size.reading.5}` or `{!-usa.font-size.display.2xl}`
-     - Theme references: `{#-theme.font-size.body.sm}`
-   - Font weights: `bold`, `regular`, `light`, etc.
-   - Font families: References to font stacks
+## Troubleshooting
 
-3. **Spacing Tokens**:
-   - Numeric values: `2px`, `1rem`, etc.
-   - USWDS references: `{usa.spacing.4}` or `{!-usa.spacing.md}`
-   - Theme references: `{#-theme.spacing.container}`
+1.  **Action Failures**:
+    *   Check the action logs in the "Actions" tab of the GitHub repository.
+    *   Verify that any required secrets (e.g., `GITHUB_TOKEN`) are configured correctly.
+    *   Ensure the JSON files from Zeroheight are correctly formatted.
 
-The resolution system follows this precedence order:
-1. Direct token references (exact match)
-2. USWDS token resolution for known patterns
-3. Theme-based resolution using project/default themes
-4. Sensible fallbacks for all token types
+2.  **PR Not Created**:
+    *   This usually means the token processing did not result in any changes to the output file. Check the action logs to confirm.
 
-### Testing
-
-1. **Run Tests**:
-   ```
+3.  **Local Debugging**:
+    *   Run the `process-tokens` script locally (as shown in the "Usage" section) to reproduce and debug issues.
+    *   Check the console for any error messages from the script.
