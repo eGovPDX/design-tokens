@@ -104,13 +104,17 @@ export default class ZeroheightProcessor {
       }
 
       const cssLines = transformToCSS(allTokens);
-      const cssPath = path.join(outputDir, 'zeroheight_tokens.css');
+      const cssPath = path.join(outputDir, 'design_tokens.css');
       fs.writeFileSync(cssPath, cssLines.join('\n') + '\n');
+
+      // Generate JSON output
+      const jsonPath = path.join(outputDir, 'design_tokens.json');
+      fs.writeFileSync(jsonPath, JSON.stringify(allTokens, null, 2));
 
       logger.info('Successfully processed Zeroheight design tokens');
       return {
         cssPath: cssPath,
-        jsonPath: null
+        jsonPath: jsonPath,
       };
     } catch (error) {
       logger.error('Failed to process Zeroheight design tokens', error);

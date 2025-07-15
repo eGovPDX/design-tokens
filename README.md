@@ -22,10 +22,10 @@ This is the current and recommended workflow for managing design tokens.
     *   A push to the `zeroheight-incoming/` directory automatically triggers the `process-zeroheight-tokens.yml` GitHub Action.
     *   The action creates a new feature branch from `main` (e.g., `feat/update-zeroheight-tokens-YYYY-MM-DD-HHMMSS`).
     *   It then processes all `.json` files in the `zeroheight-incoming/` directory, resolving aliases and merging them into a single token set.
-    *   The final output is generated as `output/zeroheight_tokens.css`.
+    *   The final output is generated as `output/design_tokens.css` and `output/design_tokens.json`.
 
 3.  **Pull Request and Review**:
-    *   If the processing results in changes to the output file, the action commits the new `zeroheight_tokens.css` to the feature branch.
+    *   If the processing results in changes to the output file, the action commits the new `design_tokens.css` and `design_tokens.json` to the feature branch.
     *   A pull request is automatically created from the feature branch to `main`, ready for team review.
     *   If there are no changes to the tokens, the workflow completes gracefully without creating a pull request.
 
@@ -51,7 +51,7 @@ After the tokens are processed and the changes are merged into the `main` branch
 This makes the latest design tokens available for direct use in any project via a URL. You can import the tokens into your CSS file like this:
 
 ```css
-@import url('https://egovpdx.github.io/design-tokens/zeroheight_tokens.css');
+@import url('https://egovpdx.github.io/design-tokens/design_tokens.css');
 ```
 
 ## Development
@@ -90,8 +90,8 @@ You can process the tokens locally to test changes before pushing them to GitHub
 
 ### Output Files
 
--   `output/zeroheight_tokens.css`: The primary CSS file generated from Zeroheight tokens.
--   `output/design_tokens.css`: The legacy CSS file generated from `design-tokens.json`.
+-   `output/design_tokens.css`: The primary CSS file generated from all token sources.
+-   `output/design_tokens.json`: The primary JSON file generated from all token sources.
 
 ### Token Resolution
 

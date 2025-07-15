@@ -10,7 +10,9 @@
     "lint": "eslint src/**/*.js",
     "process-tokens": "node src/cli.js",
     "update-tokens": "./scripts/update-tokens.sh",
-    "update-tokens:dry-run": "./scripts/update-tokens.sh --dry-run"
+    "update-tokens:dry-run": "./scripts/update-tokens.sh --dry-run",
+    "build": "node src/cli.js --source zeroheight --input ./zeroheight-incoming --output ./output",
+    "prepublishOnly": "pnpm run build"
   },
   "keywords": [
     "figma",
@@ -19,8 +21,14 @@
     "github",
     "automation"
   ],
+  "files": [
+    "output"
+  ],
   "author": "",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
