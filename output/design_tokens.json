@@ -1,4 +1,342 @@
 {
+  "font-family": {
+    "comic-sans-ms": {
+      "abstraction": {
+        "comic-sans-2xl": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.13}"
+        },
+        "comic-sans-2xs": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.3}"
+        },
+        "comic-sans-3xl": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.15}"
+        },
+        "comic-sans-3xs": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.2}"
+        },
+        "comic-sans-display": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.15}"
+        },
+        "comic-sans-h1": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.13}"
+        },
+        "comic-sans-h2": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.11}"
+        },
+        "comic-sans-h3": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.10}"
+        },
+        "comic-sans-h4": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.5}"
+        },
+        "comic-sans-h5": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.4}"
+        },
+        "comic-sans-h6": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.3}"
+        },
+        "comic-sans-lg": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.10}"
+        },
+        "comic-sans-md": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.6}"
+        },
+        "comic-sans-sm": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.5}"
+        },
+        "comic-sans-xl": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.11}"
+        },
+        "comic-sans-xs": {
+          "$type": "number",
+          "$value": "{font-family.comic-sans-ms.font-size.4}"
+        }
+      },
+      "font-size": {
+        "1": {
+          "$type": "number",
+          "$value": 11.4
+        },
+        "2": {
+          "$type": "number",
+          "$value": 12.4
+        },
+        "3": {
+          "$type": "number",
+          "$value": 13.3
+        },
+        "4": {
+          "$type": "number",
+          "$value": 14.3
+        },
+        "5": {
+          "$type": "number",
+          "$value": 15.2
+        },
+        "6": {
+          "$type": "number",
+          "$value": 16.2
+        },
+        "7": {
+          "$type": "number",
+          "$value": 17.1
+        },
+        "8": {
+          "$type": "number",
+          "$value": 19
+        },
+        "9": {
+          "$type": "number",
+          "$value": 20.9
+        },
+        "10": {
+          "$type": "number",
+          "$value": 22.8
+        },
+        "11": {
+          "$type": "number",
+          "$value": 26.6
+        },
+        "12": {
+          "$type": "number",
+          "$value": 30.4
+        },
+        "13": {
+          "$type": "number",
+          "$value": 34.2
+        },
+        "14": {
+          "$type": "number",
+          "$value": 38
+        },
+        "15": {
+          "$type": "number",
+          "$value": 45.6
+        },
+        "16": {
+          "$type": "number",
+          "$value": 53.2
+        },
+        "17": {
+          "$type": "number",
+          "$value": 60.8
+        },
+        "18": {
+          "$type": "number",
+          "$value": 76
+        },
+        "19": {
+          "$type": "number",
+          "$value": 114
+        },
+        "20": {
+          "$type": "number",
+          "$value": 133
+        },
+        "05": {
+          "$type": "number",
+          "$value": 9.5
+        }
+      },
+      "weight": {
+        "bold": {
+          "$type": "string",
+          "$value": "bold"
+        },
+        "light": {
+          "$type": "string",
+          "$value": "regular"
+        },
+        "regular": {
+          "$type": "string",
+          "$value": "regular"
+        }
+      }
+    },
+    "open-sans": {
+      "abstraction": {
+        "open-sans-2xl": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.13}"
+        },
+        "open-sans-2xs": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.3}"
+        },
+        "open-sans-3xl": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.15}"
+        },
+        "open-sans-3xs": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.2}"
+        },
+        "open-sans-display": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.15}"
+        },
+        "open-sans-h1": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.13}"
+        },
+        "open-sans-h2": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.11}"
+        },
+        "open-sans-h3": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.10}"
+        },
+        "open-sans-h4": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.5}"
+        },
+        "open-sans-h5": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.4}"
+        },
+        "open-sans-h6": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.3}"
+        },
+        "open-sans-lg": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.10}"
+        },
+        "open-sans-md": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.6}"
+        },
+        "open-sans-sm": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.5}"
+        },
+        "open-sans-xl": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.11}"
+        },
+        "open-sans-xs": {
+          "$type": "number",
+          "$value": "{font-family.open-sans.font-size.4}"
+        }
+      },
+      "font-size": {
+        "1": {
+          "$type": "number",
+          "$value": 11.7
+        },
+        "2": {
+          "$type": "number",
+          "$value": 12.7
+        },
+        "3": {
+          "$type": "number",
+          "$value": 13.7
+        },
+        "4": {
+          "$type": "number",
+          "$value": 14.7
+        },
+        "5": {
+          "$type": "number",
+          "$value": 15.63
+        },
+        "6": {
+          "$type": "number",
+          "$value": 16.6
+        },
+        "7": {
+          "$type": "number",
+          "$value": 17.5
+        },
+        "8": {
+          "$type": "number",
+          "$value": 19.6
+        },
+        "9": {
+          "$type": "number",
+          "$value": 21.5
+        },
+        "10": {
+          "$type": "number",
+          "$value": 23.5
+        },
+        "11": {
+          "$type": "number",
+          "$value": 27.35
+        },
+        "12": {
+          "$type": "number",
+          "$value": 31.3
+        },
+        "13": {
+          "$type": "number",
+          "$value": 35.2
+        },
+        "14": {
+          "$type": "number",
+          "$value": 39.1
+        },
+        "15": {
+          "$type": "number",
+          "$value": 46.9
+        },
+        "16": {
+          "$type": "number",
+          "$value": 54.5
+        },
+        "17": {
+          "$type": "number",
+          "$value": 62.6
+        },
+        "18": {
+          "$type": "number",
+          "$value": 78.2
+        },
+        "19": {
+          "$type": "number",
+          "$value": 117.36
+        },
+        "20": {
+          "$type": "number",
+          "$value": 136.9
+        },
+        "05": {
+          "$type": "number",
+          "$value": 9.8
+        }
+      },
+      "weight": {
+        "bold": {
+          "$type": "string",
+          "$value": "bold"
+        },
+        "light": {
+          "$type": "string",
+          "$value": "light"
+        },
+        "regular": {
+          "$type": "string",
+          "$value": "regular"
+        }
+      }
+    }
+  },
   "breakpoints": {
     "desktop": {
       "$type": "number",
@@ -2519,350 +2857,6 @@
       "$value": 2
     }
   },
-  "font-comic-sans-ms": {
-    "abstraction": {
-      "comic-sans-2xl": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.13}"
-      },
-      "comic-sans-2xs": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.3}"
-      },
-      "comic-sans-3xl": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.15}"
-      },
-      "comic-sans-3xs": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.2}"
-      },
-      "comic-sans-display": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.15}"
-      },
-      "comic-sans-h1": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.13}"
-      },
-      "comic-sans-h2": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.11}"
-      },
-      "comic-sans-h3": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.10}"
-      },
-      "comic-sans-h4": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.5}"
-      },
-      "comic-sans-h5": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.4}"
-      },
-      "comic-sans-h6": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.3}"
-      },
-      "comic-sans-lg": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.10}"
-      },
-      "comic-sans-md": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.6}"
-      },
-      "comic-sans-sm": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.5}"
-      },
-      "comic-sans-xl": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.11}"
-      },
-      "comic-sans-xs": {
-        "$type": "number",
-        "$value": "{font-comic-sans-ms.size.4}"
-      }
-    },
-    "family": {
-      "$type": "string",
-      "$value": "Comic Sans MS"
-    },
-    "size": {
-      "1": {
-        "$type": "number",
-        "$value": 11.4
-      },
-      "2": {
-        "$type": "number",
-        "$value": 12.4
-      },
-      "3": {
-        "$type": "number",
-        "$value": 13.3
-      },
-      "4": {
-        "$type": "number",
-        "$value": 14.3
-      },
-      "5": {
-        "$type": "number",
-        "$value": 15.2
-      },
-      "6": {
-        "$type": "number",
-        "$value": 16.2
-      },
-      "7": {
-        "$type": "number",
-        "$value": 17.1
-      },
-      "8": {
-        "$type": "number",
-        "$value": 19
-      },
-      "9": {
-        "$type": "number",
-        "$value": 20.9
-      },
-      "10": {
-        "$type": "number",
-        "$value": 22.8
-      },
-      "11": {
-        "$type": "number",
-        "$value": 26.6
-      },
-      "12": {
-        "$type": "number",
-        "$value": 30.4
-      },
-      "13": {
-        "$type": "number",
-        "$value": 34.2
-      },
-      "14": {
-        "$type": "number",
-        "$value": 38
-      },
-      "15": {
-        "$type": "number",
-        "$value": 45.6
-      },
-      "16": {
-        "$type": "number",
-        "$value": 53.2
-      },
-      "17": {
-        "$type": "number",
-        "$value": 60.8
-      },
-      "18": {
-        "$type": "number",
-        "$value": 76
-      },
-      "19": {
-        "$type": "number",
-        "$value": 114
-      },
-      "20": {
-        "$type": "number",
-        "$value": 133
-      },
-      "05": {
-        "$type": "number",
-        "$value": 9.5
-      }
-    },
-    "weight": {
-      "bold": {
-        "$type": "string",
-        "$value": "bold"
-      },
-      "light": {
-        "$type": "string",
-        "$value": "regular"
-      },
-      "regular": {
-        "$type": "string",
-        "$value": "regular"
-      }
-    }
-  },
-  "font-open-sans": {
-    "abstraction": {
-      "open-sans-2xl": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.13}"
-      },
-      "open-sans-2xs": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.3}"
-      },
-      "open-sans-3xl": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.15}"
-      },
-      "open-sans-3xs": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.2}"
-      },
-      "open-sans-display": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.15}"
-      },
-      "open-sans-h1": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.13}"
-      },
-      "open-sans-h2": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.11}"
-      },
-      "open-sans-h3": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.10}"
-      },
-      "open-sans-h4": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.5}"
-      },
-      "open-sans-h5": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.4}"
-      },
-      "open-sans-h6": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.3}"
-      },
-      "open-sans-lg": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.10}"
-      },
-      "open-sans-md": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.6}"
-      },
-      "open-sans-sm": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.5}"
-      },
-      "open-sans-xl": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.11}"
-      },
-      "open-sans-xs": {
-        "$type": "number",
-        "$value": "{font-open-sans.size.4}"
-      }
-    },
-    "family": {
-      "$type": "string",
-      "$value": "Open Sans"
-    },
-    "size": {
-      "1": {
-        "$type": "number",
-        "$value": 11.7
-      },
-      "2": {
-        "$type": "number",
-        "$value": 12.7
-      },
-      "3": {
-        "$type": "number",
-        "$value": 13.7
-      },
-      "4": {
-        "$type": "number",
-        "$value": 14.7
-      },
-      "5": {
-        "$type": "number",
-        "$value": 15.63
-      },
-      "6": {
-        "$type": "number",
-        "$value": 16.6
-      },
-      "7": {
-        "$type": "number",
-        "$value": 17.5
-      },
-      "8": {
-        "$type": "number",
-        "$value": 19.6
-      },
-      "9": {
-        "$type": "number",
-        "$value": 21.5
-      },
-      "10": {
-        "$type": "number",
-        "$value": 23.5
-      },
-      "11": {
-        "$type": "number",
-        "$value": 27.35
-      },
-      "12": {
-        "$type": "number",
-        "$value": 31.3
-      },
-      "13": {
-        "$type": "number",
-        "$value": 35.2
-      },
-      "14": {
-        "$type": "number",
-        "$value": 39.1
-      },
-      "15": {
-        "$type": "number",
-        "$value": 46.9
-      },
-      "16": {
-        "$type": "number",
-        "$value": 54.5
-      },
-      "17": {
-        "$type": "number",
-        "$value": 62.6
-      },
-      "18": {
-        "$type": "number",
-        "$value": 78.2
-      },
-      "19": {
-        "$type": "number",
-        "$value": 117.36
-      },
-      "20": {
-        "$type": "number",
-        "$value": 136.9
-      },
-      "05": {
-        "$type": "number",
-        "$value": 9.8
-      }
-    },
-    "weight": {
-      "bold": {
-        "$type": "string",
-        "$value": "bold"
-      },
-      "light": {
-        "$type": "string",
-        "$value": "light"
-      },
-      "regular": {
-        "$type": "string",
-        "$value": "regular"
-      }
-    }
-  },
   "border": {
     "0": {
       "$type": "number",
@@ -2879,112 +2873,6 @@
     "sm": {
       "$type": "number",
       "$value": "{units.025}"
-    }
-  },
-  "font-size": {
-    "body": {
-      "2xl": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-2xl}"
-      },
-      "2xs": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-2xs}"
-      },
-      "3xl": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-3xl}"
-      },
-      "3xs": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-3xs}"
-      },
-      "lg": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-lg}"
-      },
-      "md": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-md}"
-      },
-      "sm": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-sm}"
-      },
-      "xl": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-xl}"
-      },
-      "xs": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-xs}"
-      }
-    },
-    "header": {
-      "2xl": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-2xl}"
-      },
-      "2xs": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-2xs}"
-      },
-      "3xl": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-3xl}"
-      },
-      "3xs": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-3xs}"
-      },
-      "display": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-display}"
-      },
-      "h1": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-h1}"
-      },
-      "h2": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-h2}"
-      },
-      "h3": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-h3}"
-      },
-      "h4": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-h4}"
-      },
-      "h5": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-h5}"
-      },
-      "h6": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-h6}"
-      },
-      "lg": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-lg}"
-      },
-      "md": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-md}"
-      },
-      "sm": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-sm}"
-      },
-      "xl": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-xl}"
-      },
-      "xs": {
-        "$type": "number",
-        "$value": "{font-open-sans.abstraction.open-sans-xs}"
-      }
     }
   },
   "radius": {
