@@ -18,8 +18,7 @@ export default class ZeroheightProcessor {
         return;
       }
 
-      const allTokens = {};
-      const fontTokenGroups = {};
+      const allTokens = { 'font-family': {} };
       const themeTokens = {};
 
       // 1. Separate font files and theme files
@@ -29,38 +28,36 @@ export default class ZeroheightProcessor {
 
         if (fileContent.font && fileContent.font.family && fileContent.font.family.$value) {
           const fontFamilyName = fileContent.font.family.$value;
-          fontTokenGroups[fontFamilyName] = fileContent.font;
+          const sanitizedFontName = fontFamilyName.replace(/\s+/g, '-').toLowerCase();
+          
+          // Create a new structure for the font
+          const fontData = {
+            'abstraction': fileContent.font.abstraction,
+            'font-size': fileContent.font.size,
+            'weight': fileContent.font.weight
+          };
+
+          // Rewrite aliases within the abstraction to be self-contained
+          if (fontData.abstraction) {
+            for (const key in fontData.abstraction) {
+              const token = fontData.abstraction[key];
+              if (token.$value && typeof token.$value === 'string' && token.$value.startsWith('{font.size.')) {
+                token.$value = token.$value.replace('{font.size.', `{font-family.${sanitizedFontName}.font-size.`);
+              }
+            }
+          }
+          
+          allTokens['font-family'][sanitizedFontName] = fontData;
         } else if (file.includes('theme')) {
           // Store theme files separately for now
           themeTokens[file] = fileContent;
         } else {
+          // For other files, iterate and merge manually, skipping the 'font' key
           this.deepMerge(allTokens, fileContent);
         }
       }
 
-      // 2. Process the collected font groups and add them to the main tokens object
-      // Also create a mapping for font reference rewrites
-      const fontNameMapping = {};
-      for (const fontFamilyName in fontTokenGroups) {
-        const sanitizedFontName = fontFamilyName.replace(/\s+/g, '-').toLowerCase();
-        fontNameMapping[fontFamilyName] = sanitizedFontName;
-        const fontTokens = fontTokenGroups[fontFamilyName];
-
-        function rewriteAliases(obj) {
-          for (const key in obj) {
-            if (typeof obj[key] === 'object' && obj[key] !== null) {
-              rewriteAliases(obj[key]);
-            } else if (key === '$value' && typeof obj[key] === 'string' && obj[key].startsWith('{font.')) {
-              obj[key] = obj[key].replace('{font.', `{font-${sanitizedFontName}.`);
-            }
-          }
-        }
-        
-        rewriteAliases(fontTokens);
-        allTokens[`font-${sanitizedFontName}`] = fontTokens;
-      }
-
-      // 3. Now process theme files and rewrite their font references
+      // 2. Now process theme files and rewrite their font references
       for (const fileName in themeTokens) {
         const themeContent = themeTokens[fileName];
         
@@ -68,27 +65,16 @@ export default class ZeroheightProcessor {
         function rewriteFontReferencesInTheme(obj) {
           for (const key in obj) {
             if (typeof obj[key] === 'object' && obj[key] !== null) {
-              // Check if this object has a $value property
-              if ('$value' in obj[key]) {
-                if (typeof obj[key].$value === 'string' && obj[key].$value.startsWith('{font.')) {
+              if ('$value' in obj[key] && typeof obj[key].$value === 'string') {
+                if (obj[key].$value.startsWith('{font.abstraction.')) {
                   const originalValue = obj[key].$value;
-                  
-                  // Check if this is a font abstraction reference
-                  if (originalValue.includes('.abstraction.')) {
-                    // Try to determine which font family this belongs to
-                    for (const fontFamilyName in fontNameMapping) {
-                      const sanitizedFontName = fontNameMapping[fontFamilyName];
-                      // Check if the abstraction token name starts with the sanitized font name
-                      if (originalValue.includes(`.abstraction.${sanitizedFontName}-`)) {
-                        // Replace {font. with {font-<sanitized-name>.
-                        obj[key].$value = originalValue.replace('{font.', `{font-${sanitizedFontName}.`);
-                        break;
-                      }
-                    }
+                  const fontNameMatch = originalValue.match(/\{font\.abstraction\.([a-zA-Z0-9-]+)-/);
+                  if (fontNameMatch && fontNameMatch[1]) {
+                    const sanitizedFontName = fontNameMatch[1];
+                    obj[key].$value = originalValue.replace('{font.abstraction.', `{font-family.${sanitizedFontName}.abstraction.`);
                   }
                 }
               } else {
-                // Recurse into the object
                 rewriteFontReferencesInTheme(obj[key]);
               }
             }
@@ -96,6 +82,8 @@ export default class ZeroheightProcessor {
         }
         
         rewriteFontReferencesInTheme(themeContent);
+        
+        // Manually merge theme content, skipping the 'font' key
         this.deepMerge(allTokens, themeContent);
       }
 
@@ -124,6 +112,9 @@ export default class ZeroheightProcessor {
 
   deepMerge(target, source) {
     for (const key in source) {
+      if (key === 'font' || key === 'font-size') {
+        continue;
+      }
       if (source.hasOwnProperty(key)) {
         if (source[key] instanceof Object && key in target) {
           this.deepMerge(target[key], source[key]);
