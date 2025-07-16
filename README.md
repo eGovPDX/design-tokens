@@ -29,7 +29,11 @@ This is the current and recommended workflow for managing design tokens.
     *   A pull request is automatically created from the feature branch to `main`, ready for team review.
     *   If there are no changes to the tokens, the workflow completes gracefully without creating a pull request.
 
-4.  **Branch Cleanup**:
+4.  **Publishing to NPM**:
+    *   Once the pull request is reviewed and merged into `main`, the `process-zeroheight-tokens.yml` workflow is triggered again.
+    *   This time, it automatically bumps the patch version of the package, publishes the new version to NPM, and creates a corresponding GitHub Release.
+
+5.  **Branch Cleanup**:
     *   Once the pull request is reviewed and merged, the temporary feature branch is automatically deleted to keep the repository clean.
 
 ### 2. Legacy Tokens Studio Workflow
@@ -44,14 +48,24 @@ This workflow was used previously and remains available as a secondary option if
     *   The `process-tokens.yml` action would trigger on the pull request.
     *   It processed the `design-tokens.json` file and committed the output (`output/design_tokens.css` and `output/design_tokens.json`) back to the PR branch.
 
-## GitHub Pages Deployment
+## NPM Package
 
-After the tokens are processed and the changes are merged into the `main` branch, a separate part of the workflow automatically deploys the final CSS file to GitHub Pages.
+The design tokens are available as an NPM package: `@cityofportland/design-tokens`.
 
-This makes the latest design tokens available for direct use in any project via a URL. You can import the tokens into your CSS file like this:
+You can install the package in your project:
+
+```bash
+pnpm add @cityofportland/design-tokens
+```
+
+Then, you can import the CSS and JSON files into your project:
 
 ```css
-@import url('https://egovpdx.github.io/design-tokens/design_tokens.css');
+@import '@cityofportland/design-tokens/output/design_tokens.css';
+```
+
+```javascript
+import tokens from '@cityofportland/design-tokens/output/design_tokens.json';
 ```
 
 ## Development
