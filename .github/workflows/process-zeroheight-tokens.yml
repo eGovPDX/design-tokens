@@ -55,7 +55,7 @@ jobs:
       - name: Commit and push changes
         id: commit_and_push
         run: |
-          git add -f output/zeroheight_tokens.css
+          git add -f output/design_tokens.css output/design_tokens.json
           if git diff --staged --quiet; then
             echo "No changes to commit."
             echo "pushed=false" >> $GITHUB_OUTPUT
@@ -85,6 +85,46 @@ jobs:
             --base main \
             --head ${{ env.BRANCH_NAME }} \
             --label "design-tokens,automated"
+
+  publish-to-npm:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'feat/update-zeroheight-tokens-')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.19.1'
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Bump version and publish to NPM
+        run: |
+          pnpm version patch -m "chore: release new version %s"
+          pnpm publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG_NAME=$(git describe --tags --abbrev=0)
+          gh release create $TAG_NAME --title "Release $TAG_NAME" --notes "Automated release for version $TAG_NAME"
 
   cleanup:
     runs-on: ubuntu-latest
